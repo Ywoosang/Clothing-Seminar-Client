@@ -1,6 +1,6 @@
 <template>
-
 <div class="wrapper"> 
+  <router-link :to="'/presentation/poster/'+category+'?page=1'">목록으로</router-link> 
   <h1>카테고리: {{category }}</h1>
   <h1>{{ post.title }}</h1> 
   <div>작성일{{ post.created_at }}</div>
@@ -8,46 +8,39 @@
       <div> 
       {{ post.filename }}
       </div>
-      <a :href="requestUrl"><b>논문 보기</b></a>
+      <a :href="postViewLink"><b>논문 보기</b></a>
   </div>
   <div v-if ="modified">(수정됌)</div>
   <div>{{ post.content }}</div>
   <div>작성자{{ post.username }}({{ post.userid }})</div>
   <button v-if="hasDeleteAuthority" @click="deletePost">삭제하기</button> 
-   <button id="show-modal" @click="showModal = true">Show Modal</button>
+   <!-- <button id="show-modal" @click="showModal = true">Show Modal</button> -->
   <!-- use the modal component, pass in the prop -->
-   <Modal v-if="showModal" @close="showModal = false">
-       {{ message }}
-      <button @click="showModal = false">확인</button>
-      <button v-if="isConfirm" @click="showModal = false">취소</button>
-  </Modal>
   <Comment :postid="postId"/>
 </div> 
 </template>
 
 <script lang="ts">
 import Comment from '../components/Comment.vue';
-import Modal from '../components/common/Modal.vue'; 
 
-import { onMounted,ref,reactive,computed,  } from 'vue';
+import { onMounted,ref,reactive,computed,toRefs  } from 'vue';
 import { useStore } from "vuex";
 import { useRoute,useRouter } from "vue-router";
  
 export default {
     props : {
-        name : {
+        category : {
             type : String,
-            required : false, 
+            required : true, 
         }
     },
     // before created 이전 - this 에 접근이 불가
     // props 가 가장 많이 쓰이기 때문에 props 를 제일 첫 번째로 
     setup(props: any){
-        const category = computed(()=> props.name); 
-      
         const store = useStore();
         const route = useRoute();
         const router = useRouter(); 
+        const { category } = toRefs(props);
         // 
         interface Post {
             title : string,
@@ -57,8 +50,8 @@ export default {
             updated_at : string,
             filename : string,
         }  
-        const postId = reactive<any>(route.query.id);
-        const requestUrl = reactive<any>(`${store.state.requestUrl}/post/${ route.query.id }/view`);
+        const postId = ref<any>(route.query.id);
+        const postViewLink = ref<any>(`${store.state.requestUrl}/post/${ route.query.id }/view`);
         // 모달
         const isConfirm = ref<boolean>(false); 
         const showModal = ref<boolean>(false);  
@@ -74,14 +67,13 @@ export default {
              // 사용자 정보 세팅 
             await store.dispatch('setUserInfo');
             try{
-                const response: any = await fetch(`${store.state.requestUrl}/post/${postId}`,{
+                const response: any = await fetch(`${store.state.requestUrl}/post/${postId.value}`,{
                     method: 'GET',
                     headers: {'Content-Type' : 'application/json'},
                     credentials : 'include',
                 });
                 if(response.status==200){
                     const res = await response.json();
-                    console.log('포스트',res.post);
                     post.value = res.post; 
                 } else {
                     throw new Error('Page Not Found');
@@ -96,9 +88,9 @@ export default {
             return post.value.created_at !== post.value.updated_at; 
         })
         const hasDeleteAuthority  = computed(() => {
-            const userId = store.state.userId;
+            const currentUserId = store.state.userId;
             const authority = store.state.authority;
-            return authority == "ADMINISTRATOR" || userId == post.value.userid;
+            return authority == "ADMINISTRATOR" || currentUserId == post.value.userid;
         });
         // 
         const deletePost = async() => {
@@ -124,16 +116,14 @@ export default {
                 alert(error.message);
             }
         }
-        console.log(post);
         return {
             post,
             postId,
             modified,
-            requestUrl,
+            postViewLink,
             category,
             deletePost,
             hasDeleteAuthority,
-            showModal 
         }
     }, 
     // computed: {
@@ -153,7 +143,6 @@ export default {
     // },
     components : {
         Comment,
-        Modal
     }
 }
 </script>
