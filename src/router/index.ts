@@ -42,10 +42,10 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     // post id 는 query param 으로 받는다. 
-    path : '/post/:name',component: Post, props:true
+    path : '/post/:category',component: Post, props:true
   },
   {
-    path : '/post/:name/write',component: NewPost, props:true
+    path : '/post/:category/write',component: NewPost, props:true
   },
   {
     path : '/404',
