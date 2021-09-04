@@ -49,6 +49,8 @@ import Auth from '../components/common/Auth.vue';
 import { reactive } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
+import { LoginResponse } from '../types/type';
+
 export default {
   name: "Login",
   setup() {
@@ -58,9 +60,6 @@ export default {
       userid: "",
       password: "",
     });
-    interface LoginResponse extends Response {
-      message?: string;
-    }
     const submit = async () => {
       try {
         const response: LoginResponse = await fetch(

@@ -54,10 +54,6 @@ export default {
 </script>
 
 <style scoped>
-* {
-  /* border: 1px solid red; */
-  /* box-sizing: border-box; */
-}
 .wrapper {
   display: flex;
   align-items: center;
@@ -103,7 +99,6 @@ export default {
   font-weight: 500;
   font-size: 1.4em;
 }
-
 .content {
   width: 100%;
   flex: 5;
@@ -117,8 +112,6 @@ export default {
   align-items: center;
   width: 80%;
 }
-/* .content .article-wrapper article {
-} */
 .content .article-wrapper .article{
     float:left; 
     width: 11vw; 
@@ -156,7 +149,6 @@ export default {
     font-size: 1.6rem;
     background-color:#F5AAAF;
     border-radius: 0.8rem;
-    
 }
 
 /* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/

@@ -18,7 +18,6 @@ export default {
 /* Reset CSS */
 * {
   font-family: 'Noto Sans', sans-serif;
-   /* border: 1px solid red;  */
 }
 html {
   height:100%;
@@ -50,6 +49,7 @@ input, button, textarea {
 }
 
 button {
+  border: none;
   cursor : pointer; 
 }
 
@@ -63,8 +63,4 @@ ul{
   display: flex;
   flex-direction: column;
 }
-.wrapper{
-  flex:1;
-}
-
 </style>

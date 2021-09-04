@@ -22,7 +22,7 @@ export default {
   setup() {
     const store = useStore();
     const router = useRouter();
-    const auth = store.state.authenticated;
+    const auth = computed(()=> store.state.authenticated);
     const logout = async () => {
       const response = await fetch(`${store.state.requestUrl}/logout`, {
         method: "GET",

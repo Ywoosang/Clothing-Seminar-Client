@@ -34,9 +34,6 @@ export default {
 </script>
 
 <style scoped>
-*{
-    /* border: 1px solid red; */
-}
 .wrapper {
   display: flex;
   align-items: center;

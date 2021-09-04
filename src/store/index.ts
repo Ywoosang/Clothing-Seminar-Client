@@ -1,24 +1,6 @@
 import { Commit, createStore } from 'vuex'
+import { RootState,UserInfo, AuthResponse } from '../types/type';
 
-interface RootState {
-  authority: string;
-  userId: string;
-  username: string;
-  authenticated: boolean;
-  requestUrl: string;
-  categories: string[];
-}
-
-// interface Category {
-//   [key: string] : string;
-// }
-
-interface UserInfo {
-  authenticated: boolean;
-  userId: string;
-  username: string;
-  authority: string;
-}
 
 const initalState: RootState = {
   authority: "MEMBER",
@@ -34,22 +16,19 @@ export default createStore({
   mutations: {
     SET_AUTHENTICATED_USER(state: RootState, user: UserInfo) {
       state.authenticated = user.authenticated;
-      if (user.authenticated) {
-        state.userId = user.userId;
-        state.authority = user.authority;
-        state.username = user.username;
-      }
+      state.userId = user.userId;
+      state.authority = user.authority;
+      state.username = user.username;
     },
   },
   actions: {
     // 비동기 처리
     async setUserInfo({ commit }: { commit: Commit }) {
-      let response: any = fetch(`${this.state.requestUrl}/user`, {
+      let response: AuthResponse = await fetch(`${this.state.requestUrl}/user`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
-      });
-      console.log(response);
+      }) as AuthResponse;
       if (response.ok) {
         response = await response.json();
         commit('SET_AUTHENTICATED_USER', {
@@ -59,7 +38,12 @@ export default createStore({
           authority: response.authority,
         });
       } else {
-        commit('SET_AUTHENTICATED_USER', { authenticated: false });
+        commit('SET_AUTHENTICATED_USER', { 
+          authenticated: false,
+          userId: '',
+          username: '',
+          authority: ''
+         });
       }
     }
   },

@@ -80,6 +80,7 @@ export default {
     // ref 와 reactive 의 차이점은
     onMounted(async () => {
       await store.dispatch("setUserInfo");
+      console.log(store.state.authenticated);
       // to asign use value
     });
     setInterval(() => {
@@ -136,6 +137,7 @@ main {
   background-color: #dcdcdc;
   font-weight: bold;
   cursor: pointer;
+  border:none;
 }
 .category .table .content:hover {
   background-color: #787878;
