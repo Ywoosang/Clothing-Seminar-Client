@@ -1,8 +1,4 @@
 <template>
-  <!-- <div class="user" v-if="admin">
-    <div class="authority"><b>{{message}}</b> <br>사용자 권한: <b>{{authority}}</b></div>
-    <div> <router-link v-if="authority==='ADMINISTRATOR'" class="admin" to="/admin">멤버 관리</router-link></div>
-  </div>  -->
   <div class="wrapper">
     <main>
       <section class="banner">
@@ -69,16 +65,6 @@
         </div>
       </section>
     </main>
-    <!-- <div class="top"> 
-    <a class="session" href="">개회식/연구 윤리 세미나 (줌)</a>
-    <a class="session" href="">기조 강연 (줌)</a>
-    <router-link class="session" to="/presentation/special">초청 강연</router-link>
-    </div> 
-    <div class="bottom">
-    <router-link class="session" to="/presentation/oral">구두 발표</router-link>
-    <router-link class="session" to="/presentation/poster">포스터 발표</router-link>
-    <a class="session" href="">폐회식 (줌)</a>
-    </div> -->
   </div>
 </template>
 
@@ -89,18 +75,12 @@ import { useStore } from "vuex";
 export default {
   name: "Home",
   setup() {
-    const message = ref<string>("로그인하지 않은 사용자");
-    const admin = ref<string | boolean>(false);
     const store = useStore();
-    const authority = ref<string>("MEMBER");
     const currentImg = ref("img/Asset1.png");
     // ref 와 reactive 의 차이점은
     onMounted(async () => {
       await store.dispatch("setUserInfo");
       // to asign use value
-      message.value = `안녕하세요 ${store.state.username} 님`;
-      admin.value = store.state.authenticated;
-      authority.value = store.state.authority;
     });
     setInterval(() => {
       currentImg.value =
@@ -109,9 +89,6 @@ export default {
           : "img/Asset2.png";
     }, 3500);
     return {
-      message,
-      admin,
-      authority,
       currentImg,
     };
   },

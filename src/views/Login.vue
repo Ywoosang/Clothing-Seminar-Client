@@ -25,8 +25,6 @@ export default {
         interface LoginResponse extends Response {
             message? : string;
         }
-                // because when we send the request to the backend
-                // we wil
         const submit = async() => {
             try{
             const response: LoginResponse= await fetch(`${store.state.requestUrl}/login`,{

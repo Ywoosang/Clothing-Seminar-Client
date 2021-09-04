@@ -22,7 +22,7 @@ export default {
   setup() {
     const store = useStore();
     const router = useRouter();
-    const auth = computed(() => store.state.authenticated);
+    const auth = store.state.authenticated;
     const logout = async () => {
       const response = await fetch(`${store.state.requestUrl}/logout`, {
         method: "GET",
@@ -30,10 +30,9 @@ export default {
         credentials: "include"
       });
       if(response.status == 200){
-          window.location.reload();
+          await router.push(`/login`);
       }
     }
-
     return {
       // data 처럼 사용 가능
       auth,

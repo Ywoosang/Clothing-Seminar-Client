@@ -30,7 +30,7 @@
           </thead>
           <tbody v-if="posts.length != 0">
             <tr v-for="(post, index) in posts" :key="index">
-              <th>{{ 13 - index }}</th>
+              <th>{{ posts.length - index }}</th>
               <td class="post-title">
                 <router-link :to="'/post'+'/'+currentCategory+ '?id='+post.id">{{ post.title }}</router-link>
               </td>
@@ -81,13 +81,13 @@ export default {
 
     const currentCategory = computed(() => props.name.replace(",", "·"));
     watch(currentCategory,async(newValue,oldValue)=>{
-      console.log('기존:',oldValue,'새로운:',newValue);
       await getNumberOfPages();
       await getCurrentPagePosts(); 
     })
 
     onMounted(async () => {
       await store.dispatch("setUserInfo");
+      console.log(store.state.authenticated);
       if (!store.state.authenticated) {
         alert("로그인 해 주세요");
         router.push("/login");
@@ -114,7 +114,7 @@ export default {
       } catch(error){
         alert(error);
       }
-    };
+    }
 
     async function getCurrentPagePosts(){
       try {
