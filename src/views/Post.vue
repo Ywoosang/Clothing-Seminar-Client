@@ -2,22 +2,27 @@
   <div class="wrapper">
     <side-bar />
     <section class="content">
-      <h1>카테고리: {{ category }}</h1>
-      <h1>{{ post.title }}</h1>
-      <div>작성일{{ post.created_at }}</div>
+      <h1 class="category">{{ category }}</h1>
+      <h1 class="title">{{ post.title }} <span v-if="modified">(수정됌)</span></h1>
+      <div class="info">
+        <div>작성자: {{ post.username }}({{ post.userid }})</div>
+        <div>작성일: {{ post.created_at }}</div>
+        <div>조회수: {{ post.views }}</div>
+      </div>
       <div class="file">
-        <div>
+        <div class="name">
           {{ post.filename }}
         </div>
-        <a :href="postViewLink"><b>논문 보기</b></a>
+        <a :href="postViewLink"
+          ><i class="fa fa-file-pdf-o" style="margin-right: 0.5em"></i
+          ><b>논문 보기</b></a
+        >
       </div>
-      <div v-if="modified">(수정됌)</div>
-      <div>{{ post.content }}</div>
-      <div>작성자{{ post.username }}({{ post.userid }})</div>
+      <div class="post-content">{{ post.content }}</div>
       <button v-if="hasDeleteAuthority" @click="deletePost">삭제하기</button>
       <!-- <button id="show-modal" @click="showModal = true">Show Modal</button> -->
       <!-- use the modal component, pass in the prop -->
-      <Comment :postid="postId" />
+      <Comment :postid="postId"/>
     </section>
   </div>
 </template>
@@ -54,32 +59,37 @@ export default {
       filename: string;
     }
     const postId = ref<any>(route.query.id);
-    const postViewLink = ref<any>(
-      `/api/post/${route.query.id}/view`
-    );
+    const postViewLink = ref<any>(`/api/post/${route.query.id}/view`);
     // 모달
+    interface Post {
+      title: string;
+      content: string;
+      userid: string;
+      created_at: string;
+      updated_at: string;
+      filename: string;
+      views: number;
+    }
     const isConfirm = ref<boolean>(false);
     const showModal = ref<boolean>(false);
-    const post: any = ref<any>({
+    const post: any = ref<Post>({
       title: "",
       content: "",
       userid: "",
       created_at: "",
       updated_at: "",
       filename: "",
+      views: 0,
     });
     onMounted(async () => {
       // 사용자 정보 세팅
       await store.dispatch("setUserInfo");
       try {
-        const response: any = await fetch(
-          `/api/post/${postId.value}`,
-          {
-            method: "GET",
-            headers: { "Content-Type": "application/json" },
-            credentials: "include",
-          }
-        );
+        const response: any = await fetch(`/api/post/${postId.value}`, {
+          method: "GET",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+        });
         if (response.status == 200) {
           const res = await response.json();
           post.value = res.post;
@@ -108,15 +118,12 @@ export default {
       );
       if (!comfirmDelete) return alert("삭제를 취소합니다");
       try {
-        let response: any = await fetch(
-          `/api/post/${postId}`,
-          {
-            method: "DELETE",
-            headers: { "Content-Type": "application/json" },
-            credentials: "include",
-            body: JSON.stringify(data),
-          }
-        );
+        let response: any = await fetch(`/api/post/${postId}`, {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify(data),
+        });
         if (response.ok) {
           alert("삭제되었습니다");
           await router.push(`/presentation/poster/${category.value}`);
@@ -139,21 +146,6 @@ export default {
       hasDeleteAuthority,
     };
   },
-  // computed: {
-  //     createdDate : function(){
-  //         const curr = new Date(this.createdAt);
-  //         const utc = curr.getTime() + (curr.getTimezoneOffset() * 60 * 1000);
-  //         const KR_TIME_DIFF = 9 * 60 * 60 * 1000;
-  //         const kr_curr = new Date(utc + (KR_TIME_DIFF));
-  //         const year = kr_curr.getFullYear();
-  //         const month = (kr_curr.getMonth() +1);
-  //         const day = kr_curr.getDate();
-  //         const hours = kr_curr.getHours();
-  //         const minutes = kr_curr.getMinutes();
-  //         const seconds = kr_curr.getSeconds();
-  //         return `${ year}-${month}-${ day } ${hours}:${minutes}:${seconds}`;
-  //     },
-  // },
   components: {
     Comment,
     SideBar,
@@ -161,15 +153,55 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+* {
+  /* border: 1px solid red; */
+}
 .wrapper {
   flex: 1;
   display: flex;
 }
 .content {
+  padding-top: 1em;
   flex: 3;
-  /* display: flex;
+  display: flex;
   flex-direction: column;
-  padding-left: 3em; */
+  padding: 2em 2em 0em 2em;
+}
+
+.content .category {
+  font-weight: bold;
+}
+
+.content .title {
+  margin: 2em 0 0.3em 0;
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+.content .info {
+  width: 80%;
+  display: flex;
+  border-bottom: 2px solid #dcdcdc;
+  padding-bottom: 0.2em;
+}
+.content .info div {
+  margin-right: 2em;
+}
+.content .file {
+  margin: 2em 0 0 0;
+  background-color: #dcdcdc;
+  width: 50em;
+  padding: 1em;
+}
+
+.content .file .name {
+  font-size: 1em;
+}
+
+.content .post-content{
+    margin: 1em 0 0 0;
+}
+.category {
 }
 </style>

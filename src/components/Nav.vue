@@ -24,12 +24,13 @@ export default {
     const router = useRouter();
     const auth = computed(()=> store.state.authenticated);
     const logout = async () => {
-      const response = await fetch(`${store.state.requestUrl}/logout`, {
+      const response = await fetch(`/api/logout`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
         credentials: "include"
       });
       if(response.status == 200){
+          await store.dispatch('setUserInfo');
           await router.push(`/login`);
       }
     }
@@ -48,7 +49,8 @@ nav {
   align-items: center;
   justify-content: space-around;
   background-color: #BBBDC0;
-  height: 48px !important;
+  height: 48px;
+  min-height: 48px;
 }
 nav a {
   color: rgb(44, 44, 44);

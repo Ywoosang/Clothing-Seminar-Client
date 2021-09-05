@@ -37,8 +37,7 @@ export default {
   flex-direction: column;
   align-items: flex-end;
   border-right: 3px solid #a1a1a1;
-  height: 90%;
-  margin-top: 2rem;
+  margin: 2rem 0;
 }
 
 .category h1 {

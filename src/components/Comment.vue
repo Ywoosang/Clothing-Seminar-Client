@@ -1,24 +1,26 @@
 <template>
-  <div class="comment" v-for="(com,index) in comments" :key="index">
-    <div class="content">{{ com.content }}</div>
-    <div>작성자: {{com.username}} 작성일:{{  com.created_at }}</div>
-    <button
-      v-if="com.user_id == userId || authority=='ADMINISTRATOR'"
+  <article class="comments">
+ 
+  <div class="comment" v-for="(comment,index) in comments" :key="index">
+    <div class="title">
+      <div>작성자: {{comment.username}} {{  comment.created_at }}</div>
+      <button
+      class="delete"
+      v-if="comment.userId == userId || authority=='ADMINISTRATOR'"
       @click="deleteComment(index)"
-    >댓글 삭제하기</button>
+    >삭제</button>
+    </div>
+    <div :class="{ content : index !== comments.length -1}">{{ comment.content }}</div>
   </div>
-  <div>
+  <div class="register">
     <textarea v-model="state.comment"></textarea>
-    <button @click="postComment">댓글 달기</button>
+    <button @click="postComment">댓글<br>작성</button>
   </div>
-  <Modal v-if="showModal" @close="showModal = false">
-    <p>{{ message }}</p>
-    <button @click="closeModal">확인</button>
-  </Modal>
+  </article>
 </template>
 
 <script lang="ts">
-import Modal from "./common/Modal.vue";
+import { Comment } from '../types/type';
 import { onMounted, ref, toRefs, reactive } from "vue";
 import { useStore } from "vuex";
 
@@ -35,29 +37,19 @@ export default {
     const showModal = ref<boolean>(false);
     const message = ref<string>("");
     const { postid } = toRefs(props);
-    const authority:string = store.state.authority;
-    const userId:string = store.state.userId;
+    const authority = ref<string>(store.state.authority);
+    const userId = ref<string>(store.state.id);
+    const isBlocked = ref<boolean>(false); 
+    // 
     const state = reactive({
         comment: ''
     });
     const comments = ref<Comment[]>();
-    //
-    interface Comment {
-      id: number;
-      content: string;
-      user_id: string;
-      username: string;
-      created_at: string;
-    }
-    console.log(postid);
-    const closeModal = () => {
-      return (showModal.value = false);
-    };
     const getComments = async () => {
       try {
         await store.dispatch("setUserInfo");
         let response: any = await fetch(
-          `${store.state.requestUrl}/comment/${postid.value}`,
+          `/api/comment/${postid.value}`,
           {
             method: "GET",
             headers: { "Content-Type": "application/json" },
@@ -81,28 +73,35 @@ export default {
         showModal.value = true;
         message.value = "댓글 본문을 입력해 주세요";
       }
+      if(isBlocked.value) return;
+      isBlocked.value = true; 
       const data = { comment: state.comment };
-      let response: any = await fetch(
-        `${store.state.requestUrl}/comment/${postid.value}`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          credentials: "include",
-          body: JSON.stringify(data)
+      setTimeout(async()=> { 
+          let response: any = await fetch(
+          `/api/comment/${postid.value}`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            credentials: "include",
+            body: JSON.stringify(data)
+          }
+        );
+        if (response.ok) {
+          await getComments();
+          state.comment = "";
+          isBlocked.value = false; 
         }
-      );
-      if (response.ok) {
-        await getComments();
-        state.comment = "";
-      }
+      },500);
     };
     // 댓글 삭제
     const deleteComment = async (index: number) => {
+      const isConfirm = confirm('정말로 해당 댓글을 삭제하시겠습니까?');
+      if(!isConfirm) return;
       const comment: Comment = comments.value![index];
       // 댓글 아이디 확인
       const commentId: number = comment.id;
       const response: any = await fetch(
-        `${store.state.requestUrl}/comment/${commentId}`,
+        `/api/comment/${commentId}`,
         {
           method: "DELETE",
           headers: { "Content-Type": "application/json" },
@@ -123,24 +122,62 @@ export default {
     return {
       state,
       comments,
-      showModal,
       message,
       postComment,
       deleteComment,
-      closeModal,
-      authority
+      authority,
+      userId
     };
   }
 };
 </script>
 
 <style scoped>
-/* .comment {
-  border: 2px solid black;
-  padding: 1em 0.5em;
+.comments {
+  background: #DCDCDC;
   width: 80%;
+  padding: 1em;
+  margin: 2em 0;
+}
+
+.comment{
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.5em;
+  
+}
+.comment .title{
+  display: flex;
+}
+.comment .title .delete{
+  margin-left: auto;
+  background-color: #EBEBEB;
 }
 .comment .content {
-  background-color: #ddd;
-} */
+  padding-bottom :0.5em; 
+  border-bottom: 2px solid #787878;
+}
+.comments .register{
+  display: flex;
+  margin: 1em 0;
+}
+.comments .register textarea{
+  background-color: #EBEBEB;
+  resize: none;
+  border: none;
+  font-size: 1.2em;
+  flex:1;
+  box-sizing: border-box;
+}
+
+.comments .register button{
+  background-color: #787878;
+  color:#FFFFFF;
+  width:5em;
+  height: 5em;
+  padding:0;
+  margin-left: 1em;
+}
+
+
 </style>

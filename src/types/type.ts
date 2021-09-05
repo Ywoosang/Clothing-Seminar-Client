@@ -1,4 +1,5 @@
 export interface RootState {
+    id: number,
     authority: string;
     userId: string;
     username: string;
@@ -7,20 +8,19 @@ export interface RootState {
     categories: string[];
 }
 export interface UserInfo {
+    id: number;
     authenticated: boolean;
     userId: string;
     username: string;
     authority: string;
 }
 
-export interface AuthResponse extends Response {
-    userId: string;
+export interface Comment {
+    id: number;
+    content: string;
+    user_id: string;
     username: string;
-    authority: string;
-}
-
-export interface LoginResponse extends Response {
-    message?: string;
+    created_at: string;
 }
 
 export interface Post{
@@ -31,6 +31,17 @@ export interface Post{
     filename: string,
     fileId: number,
     category: string
-  }
- 
+}
 
+export interface AuthResponse extends Response {
+    id: number;
+    userId: string;
+    username: string;
+    authority: string;
+}
+
+export interface LoginResponse extends Response {
+    message?: string;
+}
+
+ 

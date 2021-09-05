@@ -3,6 +3,7 @@ import { RootState, UserInfo, AuthResponse } from '../types/type';
 
 
 const initalState: RootState = {
+  id : 0,
   authority: "MEMBER",
   userId: "",
   username: "",
@@ -15,6 +16,7 @@ export default createStore({
   state: initalState,
   mutations: {
     SET_AUTHENTICATED_USER(state: RootState, user: UserInfo) {
+      state.id = user.id;
       state.authenticated = user.authenticated;
       state.userId = user.userId;
       state.authority = user.authority;
@@ -35,8 +37,10 @@ export default createStore({
       }) as AuthResponse;
       if (response.ok) {
         response = await response.json();
+        console.log(response)
         commit('SET_AUTHENTICATED_USER', {
           authenticated: true,
+          id : response.id,
           userId: response.userId,
           username: response.username,
           authority: response.authority,
@@ -44,6 +48,7 @@ export default createStore({
       } else {
         commit('SET_AUTHENTICATED_USER', {
           authenticated: false,
+          id : 0,
           userId: '',
           username: '',
           authority: ''
