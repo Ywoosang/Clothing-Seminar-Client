@@ -1,17 +1,6 @@
 <template>
   <div class="wrapper">
-    <section class="category">
-      <h1>포스터 발표</h1>
-      <article>
-        <router-link
-          v-for="category in categories"
-          :key="category"
-          :class="{ curr: category == currentCategory }"
-          :to="'/presentation/poster/' + category+'?page=1'"
-          >{{ category }}</router-link
-        >
-      </article>
-    </section>
+    <side-bar/>
     <section class="content">
       <article class="title">
         <h1>{{ currentCategory }}</h1>
@@ -55,16 +44,8 @@
 import { onMounted, ref, watch,computed } from "vue";
 import { useStore } from "vuex";
 import { useRouter,useRoute } from "vue-router";
-
-interface Post{
-  title: string;
-  content: string;
-  created_at: string;
-  username: string,
-  filename: string,
-  fileId: number,
-  category: string
-}
+import SideBar from '../components/SideBar.vue';
+import { Post } from '../types/type';
 
 export default {
   props: ["name"],
@@ -78,20 +59,22 @@ export default {
     const postAuth = ref<boolean>(false);
     const categories = store.state.categories;
     const pages = ref<any>();
-
+    
     const currentCategory = computed(() => props.name.replace(",", "·"));
+     
     watch(currentCategory,async(newValue,oldValue)=>{
+      store.commit('SET_CATEGORY',newValue); 
       await getNumberOfPages();
       await getCurrentPagePosts(); 
     })
 
     onMounted(async () => {
       await store.dispatch("setUserInfo");
-      console.log(store.state.authenticated);
       if (!store.state.authenticated) {
         alert("로그인 해 주세요");
         router.push("/login");
       }
+      store.commit('SET_CATEGORY',currentCategory); 
       await getNumberOfPages();
       await getCurrentPagePosts(); 
     });
@@ -144,45 +127,16 @@ export default {
       pages,
     };
   },
+  components : {SideBar}
 };
 </script>
 
 <style scoped>
-* {
-  /* border: 1px solid red; */
-}
 .wrapper {
   flex: 1;
   display: flex;
 }
 
-.category {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  border-right: 3px solid #a1a1a1;
-  height: 90%;
-  margin-top: 2rem;
-}
-
-.category h1 {
-  margin-top: 4em;
-  margin-bottom: 1em;
-  width: 13.5rem;
-}
-
-.category article {
-  width: 13.5rem;
-}
-.category article a {
-  display: block;
-  color: #787878;
-  margin: 1em 0;
-}
-.category article .curr {
-  color: #ea2d2e;
-}
 
 .content {
   flex: 3;

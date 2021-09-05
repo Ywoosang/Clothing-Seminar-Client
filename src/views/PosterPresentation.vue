@@ -1,5 +1,4 @@
 <template>
-  
   <div class="wrapper">
     <section class="title">
       <article>

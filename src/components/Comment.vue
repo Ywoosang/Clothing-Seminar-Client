@@ -135,12 +135,12 @@ export default {
 </script>
 
 <style scoped>
-.comment {
+/* .comment {
   border: 2px solid black;
   padding: 1em 0.5em;
   width: 80%;
 }
 .comment .content {
   background-color: #ddd;
-}
+} */
 </style>

@@ -4,6 +4,7 @@ export interface RootState {
     username: string;
     authenticated: boolean;
     requestUrl: string;
+    category:string;
     categories: string[];
 }
 export interface UserInfo {
@@ -23,5 +24,14 @@ export interface LoginResponse extends Response {
     message?: string;
 }
 
+export interface Post{
+    title: string;
+    content: string;
+    created_at: string;
+    username: string,
+    filename: string,
+    fileId: number,
+    category: string
+  }
  
 

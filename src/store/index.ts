@@ -8,6 +8,7 @@ const initalState: RootState = {
   username: "",
   authenticated: false,
   requestUrl: 'http://localhost:3000',
+  category : '',
   categories: ['복식사', '복식미학 · 패션디자인', '패션마케팅 · 심리', '복식일반 의복구성 · 텍스타일']
 }
 
@@ -20,6 +21,9 @@ export default createStore({
       state.authority = user.authority;
       state.username = user.username;
     },
+    SET_CATEGORY(state:RootState,category: string){
+      state.category = category;
+    }
   },
   actions: {
     // 비동기 처리
