@@ -63,7 +63,7 @@ export default {
     const submit = async () => {
       try {
         const response: LoginResponse = await fetch(
-          `${store.state.requestUrl}/login`,
+          `/api/login`,
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },

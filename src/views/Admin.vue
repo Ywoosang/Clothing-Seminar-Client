@@ -24,7 +24,7 @@ export default {
   methods: {
     async getUsersInfo() {
       try {
-        const response = await fetch(`${this.$store.state.requestUrl}/admin`, {
+        const response = await fetch(`/api/admin`, {
           method: "GET",
           headers: { "Content-Type": "application/json" },
           credentials: "include",
@@ -55,7 +55,7 @@ export default {
       console.log(user.authority);
       const authority = user.authority === "MEMBER" ? "POST_ALLOWED" : "MEMBER";
       const data = { userid, authority };
-      fetch(`${this.$store.state.requestUrl}/admin`, {
+      fetch(`/api/admin`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         credentials: "include",

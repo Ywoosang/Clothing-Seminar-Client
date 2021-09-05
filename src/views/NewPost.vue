@@ -33,7 +33,7 @@ export default {
       required: true,
     },
   },
-  setup(props: any)  {
+  setup(props: any) {
     const router = useRouter();
     const store = useStore();
     const { category } = toRefs(props);
@@ -64,7 +64,7 @@ export default {
       formData.append("content", data.content);
       formData.append("file", attachedFile.value as string | Blob);
       formData.append("category", category.value);
-      let response: any = await fetch(`${store.state.requestUrl}/post`, {
+      let response: any = await fetch(`/api/post`, {
         method: "POST",
         body: formData,
         credentials: "include",
@@ -80,7 +80,7 @@ export default {
       required,
     };
   },
-}
+};
 </script>
 
 <style scoped>

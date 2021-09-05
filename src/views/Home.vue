@@ -77,11 +77,8 @@ export default {
   setup() {
     const store = useStore();
     const currentImg = ref("img/Asset1.png");
-    // ref 와 reactive 의 차이점은
     onMounted(async () => {
       await store.dispatch("setUserInfo");
-      console.log(store.state.authenticated);
-      // to asign use value
     });
     setInterval(() => {
       currentImg.value =

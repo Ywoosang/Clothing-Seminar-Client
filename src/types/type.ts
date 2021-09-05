@@ -3,7 +3,6 @@ export interface RootState {
     userId: string;
     username: string;
     authenticated: boolean;
-    requestUrl: string;
     category:string;
     categories: string[];
 }

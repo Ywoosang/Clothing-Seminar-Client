@@ -82,7 +82,7 @@ export default {
     async function getNumberOfPages(){
       try{
         let response: any = await fetch(
-          `${store.state.requestUrl}/post/${currentCategory.value}/count`,
+          `/api/post/${currentCategory.value}/count`,
           {
             method: "GET",
             headers: { "Content-Type": "application/json" },
@@ -102,7 +102,7 @@ export default {
     async function getCurrentPagePosts(){
       try {
         let response: any = await fetch(
-          `${store.state.requestUrl}/post/${currentCategory.value}/${page}`,
+          `/api/post/${currentCategory.value}/${page}`,
           {
             method: "GET",
             headers: { "Content-Type": "application/json" },

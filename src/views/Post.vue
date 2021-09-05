@@ -55,7 +55,7 @@ export default {
     }
     const postId = ref<any>(route.query.id);
     const postViewLink = ref<any>(
-      `${store.state.requestUrl}/post/${route.query.id}/view`
+      `/api/post/${route.query.id}/view`
     );
     // 모달
     const isConfirm = ref<boolean>(false);
@@ -73,7 +73,7 @@ export default {
       await store.dispatch("setUserInfo");
       try {
         const response: any = await fetch(
-          `${store.state.requestUrl}/post/${postId.value}`,
+          `/api/post/${postId.value}`,
           {
             method: "GET",
             headers: { "Content-Type": "application/json" },
@@ -109,7 +109,7 @@ export default {
       if (!comfirmDelete) return alert("삭제를 취소합니다");
       try {
         let response: any = await fetch(
-          `${store.state.requestUrl}/post/${postId}`,
+          `/api/post/${postId}`,
           {
             method: "DELETE",
             headers: { "Content-Type": "application/json" },

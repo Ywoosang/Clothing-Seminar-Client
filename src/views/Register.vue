@@ -85,7 +85,7 @@ export default {
     const router = useRouter();
     const store = useStore();
     const submit = async () => {
-      const response = await fetch(`${store.state.requestUrl}/register`, {
+      const response = await fetch(`/api/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
