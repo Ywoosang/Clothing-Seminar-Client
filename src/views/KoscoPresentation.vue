@@ -9,7 +9,7 @@
             </article>
         </section>
         <section class="video-container">
-            <video controls >
+            <video controls>
                 <source :src="requestUrl + '/media/'+video" type="video/mp4" />
             </video>
          </section>
@@ -24,7 +24,7 @@ export default {
     setup(){
         const store = useStore(); 
         const video = "한국의상디자인학회 구두발표_이하은.mp4";
-        const requestUrl = store.state.requestUrl;
+        const requestUrl = process.env.VUE_APP_BASE_URL; 
         return {
             video,
             requestUrl

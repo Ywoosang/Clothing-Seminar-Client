@@ -1,13 +1,13 @@
 <template>
   <nav>
     <router-link class="home" to="/">홈</router-link>
-    <div class ="auth" v-if="!auth">
+    <div class="auth" v-if="!auth">
       <router-link class="signin" to="/login">로그인</router-link>
       <router-link class="signup" to="/register">회원가입</router-link>
     </div>
     <div class="auth" v-if="auth">
-      <router-link to="/profile">프로필</router-link> 
-      <a href="#" class="nav-link logout" @click="logout">로그아웃</a>
+      <router-link to="/profile">프로필</router-link>
+      <a class="nav-link logout" @click="clearCookie">로그아웃</a>
     </div>
   </nav>
 </template>
@@ -16,29 +16,31 @@
 import { computed } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
+import { logout } from "../api/auth";
 
 export default {
   name: "Nav",
   setup() {
     const store = useStore();
     const router = useRouter();
-    const auth = computed(()=> store.state.authenticated);
-    const logout = async () => {
-      const response = await fetch(`/api/logout`, {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include"
-      });
-      if(response.status == 200){
-          await store.dispatch('setUserInfo');
-          await router.push(`/login`);
+    const auth = computed(() => store.state.authenticated);
+    const clearCookie = async () => {
+      try {
+        await logout();
+        localStorage.removeItem('jwt'); 
+        await store.dispatch("setUserInfo");
+        await router.push(`/login`);
+      } catch (error) {
+        console.log(error);
       }
-    }
+    };
+
     return {
       // data 처럼 사용 가능
       auth,
-      logout
-    }
+      logout,
+      clearCookie
+    };
   },
 };
 </script>
@@ -48,7 +50,7 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  background-color: #BBBDC0;
+  background-color: #bbbdc0;
   height: 48px;
   min-height: 48px;
 }
@@ -57,15 +59,16 @@ nav a {
   font-weight: 500;
   font-size: 1.3em;
 }
-nav .home{
+nav .home {
 }
 nav .auth {
 }
-nav .signup{
+nav .signup {
 }
-nav .signin{
+nav .signin {
   margin-right: 1em;
 }
-nav .logout{
+nav .logout {
+  cursor : pointer;
 }
 </style>

@@ -46,6 +46,7 @@ import { useStore } from "vuex";
 import { useRouter,useRoute } from "vue-router";
 import SideBar from '../components/SideBar.vue';
 import { Post } from '../types/type';
+import { getPostsByPageNumber,getTotalPageNumber } from '../api/post'; 
 
 export default {
   props: ["name"],
@@ -55,7 +56,6 @@ export default {
     const router = useRouter();
     const route = useRoute(); 
     const posts = ref<Post[]>([]);
-    const page = route.query.page;
     const postAuth = ref<boolean>(false);
     const categories = store.state.categories;
     const pages = ref<any>();
@@ -81,16 +81,9 @@ export default {
 
     async function getNumberOfPages(){
       try{
-        let response: any = await fetch(
-          `/api/post/${currentCategory.value}/count`,
-          {
-            method: "GET",
-            headers: { "Content-Type": "application/json" },
-            credentials: "include",
-          }
-        );
-        if (response.status == 200) response = await response.json();
-        const pageNumber: any = response.numberOfPages;
+        const category = currentCategory.value; 
+        const response = await getTotalPageNumber(category);
+        const pageNumber: number = response.data.numberOfPages;
         pages.value = Array(pageNumber)
           .fill(0)
           .map((_, index) => index + 1); 
@@ -101,21 +94,14 @@ export default {
 
     async function getCurrentPagePosts(){
       try {
-        let response: any = await fetch(
-          `/api/post/${currentCategory.value}/${page}`,
-          {
-            method: "GET",
-            headers: { "Content-Type": "application/json" },
-            credentials: "include",
-          }
-        );
-        if (response.status == 200) response = await response.json();
-        posts.value = response.posts;
+        const page = route.query.page as string; 
+        const category = currentCategory.value; 
+        const response = await getPostsByPageNumber(page,category); 
+        posts.value = response.data.posts;
       } catch (error) {
         alert(error);
       }
     }
-
     const authority = store.state.authority;
     postAuth.value =
       authority == "ADMINISTRATOR" || authority == "POST_ALLOWED";

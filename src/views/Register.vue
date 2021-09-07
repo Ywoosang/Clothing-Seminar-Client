@@ -72,9 +72,12 @@ import Auth from "../components/common/Auth.vue";
 import { reactive } from "vue";
 import { useRouter } from "vue-router";
 import { useeStore, useStore } from "vuex";
+import { register } from '../api/auth';
 export default {
   name: "Register",
   setup() {
+    const router = useRouter();
+    const store = useStore(); 
     // form 과 양방향 바인딩
     const data = reactive({
       username: "",
@@ -82,18 +85,13 @@ export default {
       email: "",
       password: "",
     });
-    const router = useRouter();
-    const store = useStore();
     const submit = async () => {
-      const response = await fetch(`/api/register`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-      if (response.status == 200) {
-        await router.push("/login");
-      } else {
-        alert("입력에 오류가 있습니다");
+      try{
+        await register(data);
+        await router.push("/login"); 
+      }catch (error) {
+        console.log(error);
+        alert("입력에 오류가 있습니다"); 
       }
     };
     return {

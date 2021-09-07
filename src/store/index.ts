@@ -1,5 +1,6 @@
 import { Commit, createStore } from 'vuex'
 import { RootState, UserInfo, AuthResponse } from '../types/type';
+import { getUserInfo }  from '../api/user'; 
 
 
 const initalState: RootState = {
@@ -29,30 +30,25 @@ export default createStore({
   actions: {
     // 비동기 처리
     async setUserInfo({ commit }: { commit: Commit }) {
-      let response: AuthResponse = await fetch(`
-       /api/user`, {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
-        credentials: 'include',
-      }) as AuthResponse;
-      if (response.ok) {
-        response = await response.json();
-        console.log(response)
+      try{
+        const response  = await getUserInfo();  
+        console.log(response);
         commit('SET_AUTHENTICATED_USER', {
           authenticated: true,
-          id : response.id,
-          userId: response.userId,
-          username: response.username,
-          authority: response.authority,
+          id : response.data.id,
+          userId: response.data.userId,
+          username: response.data.username,
+          authority: response.data.authority,
         });
-      } else {
-        commit('SET_AUTHENTICATED_USER', {
-          authenticated: false,
-          id : 0,
-          userId: '',
-          username: '',
-          authority: ''
-        });
+      } catch (error) {
+          console.log(error.response);
+          commit('SET_AUTHENTICATED_USER', {
+            authenticated: false,
+            id : 0,
+            userId: '',
+            username: '',
+            authority: ''
+          });
       }
     }
   },

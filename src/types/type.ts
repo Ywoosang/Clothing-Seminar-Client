@@ -27,11 +27,14 @@ export interface Post{
     title: string;
     content: string;
     created_at: string;
-    username: string,
-    filename: string,
-    fileId: number,
-    category: string
-}
+    updated_at: string;
+    username: string;
+    userid: string;
+    filename: string;
+    fileId: number;
+    category: string;
+    views: number;
+} 
 
 export interface AuthResponse extends Response {
     id: number;
@@ -42,6 +45,10 @@ export interface AuthResponse extends Response {
 
 export interface LoginResponse extends Response {
     message?: string;
+}
+
+export interface GetPostResponse extends Response {
+
 }
 
  

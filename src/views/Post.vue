@@ -34,6 +34,8 @@ import { onMounted, ref, reactive, computed, toRefs } from "vue";
 import { useStore } from "vuex";
 import { useRoute, useRouter } from "vue-router";
 import SideBar from "../components/SideBar.vue";
+import { Post } from '../types/type';
+import { getPostById,deletePostById } from "../api/post";
 
 export default {
   props: {
@@ -49,30 +51,9 @@ export default {
     const route = useRoute();
     const router = useRouter();
     const { category } = toRefs(props);
-    //
-    interface Post {
-      title: string;
-      content: string;
-      userid: string;
-      created_at: string;
-      updated_at: string;
-      filename: string;
-    }
     const postId = ref<any>(route.query.id);
-    const postViewLink = ref<any>(`/api/post/${route.query.id}/view`);
-    // 모달
-    interface Post {
-      title: string;
-      content: string;
-      userid: string;
-      created_at: string;
-      updated_at: string;
-      filename: string;
-      views: number;
-    }
-    const isConfirm = ref<boolean>(false);
-    const showModal = ref<boolean>(false);
-    const post: any = ref<Post>({
+    const postViewLink = ref<any>(`${process.env.VUE_APP_BASE_URL}/api/post/${route.query.id}/view`);
+    const post = ref<any>({
       title: "",
       content: "",
       userid: "",
@@ -84,24 +65,14 @@ export default {
     onMounted(async () => {
       // 사용자 정보 세팅
       await store.dispatch("setUserInfo");
-      try {
-        const response: any = await fetch(`/api/post/${postId.value}`, {
-          method: "GET",
-          headers: { "Content-Type": "application/json" },
-          credentials: "include",
-        });
-        if (response.status == 200) {
-          const res = await response.json();
-          post.value = res.post;
-        } else {
-          throw new Error("Page Not Found");
-        }
+      try { 
+        const response = await getPostById(postId.value); 
+        post.value = response.data.post;
       } catch (error) {
         console.log(error);
         await router.push(`/404`);
       }
     });
-    //
     const modified = computed(() => {
       return post.value.created_at !== post.value.updated_at;
     });
@@ -112,28 +83,33 @@ export default {
     });
     //
     const deletePost = async () => {
-      const data = { postId };
       const comfirmDelete = confirm(
         `정말로 ${post.value.title} 를 삭제하시겠습니까?`
       );
       if (!comfirmDelete) return alert("삭제를 취소합니다");
       try {
-        let response: any = await fetch(`/api/post/${postId}`, {
-          method: "DELETE",
-          headers: { "Content-Type": "application/json" },
-          credentials: "include",
-          body: JSON.stringify(data),
-        });
-        if (response.ok) {
+          await deletePostById(postId.value);
           alert("삭제되었습니다");
           await router.push(`/presentation/poster/${category.value}`);
-        } else if (response.status == 403) {
-          throw new Error("권한이 없습니다");
-        } else {
-          throw new Error("올바르지 못한 접근입니다");
-        }
       } catch (error) {
-        alert(error.message);
+        if(error.response){
+          const status = error.response.status;
+          switch(status){
+            case 401:
+                alert('로그인 해 주세요');
+                await router.push('/login');
+                break;
+            case 403:
+                alert('권한이 없습니다');
+                break;
+            case 500:
+                console.log(error);
+          }
+        } else if(error.request){ 
+          console.log(error.request);
+        } else {
+          console.log('Error',error.message);
+        }
       }
     };
     return {

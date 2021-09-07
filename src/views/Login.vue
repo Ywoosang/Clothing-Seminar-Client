@@ -1,5 +1,5 @@
 <template>
-   <auth>
+  <auth>
     <section class="title">
       <div class="logo">
         <img src="/img/logo.png" />
@@ -13,7 +13,7 @@
       <form @submit.prevent="submit">
         <div class="input-wrapper">
           <label for="id"
-            ><span style="width: 5em; text-align: end;">아이디</span>
+            ><span style="width: 5em; text-align: end">아이디</span>
             <input
               v-model="data.userid"
               id="id"
@@ -23,7 +23,7 @@
             />
           </label>
           <label for="password"
-            ><span style="width: 5em; text-align: end;">비밀번호</span>
+            ><span style="width: 5em; text-align: end">비밀번호</span>
             <input
               v-model="data.password"
               id="password"
@@ -38,18 +38,19 @@
       </form>
       <div class="tab">
         <button class="route-tab">회원가입</button>
-      </div> 
-      <img src="/img/background-logo.png">
+      </div>
+      <img src="/img/background-logo.png" />
     </section>
-   </auth>
+  </auth>
 </template>
 
 <script lang="ts">
-import Auth from '../components/common/Auth.vue'; 
+import Auth from "../components/common/Auth.vue";
 import { reactive } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
-import { LoginResponse } from '../types/type';
+import { LoginResponse } from "../types/type";
+import { login } from "../api/auth";
 
 export default {
   name: "Login",
@@ -61,29 +62,27 @@ export default {
       password: "",
     });
     const submit = async () => {
+      // 폼검증 필요
       try {
-        const response: LoginResponse = await fetch(
-          `/api/login`,
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            credentials: "include",
-            body: JSON.stringify(data),
-            //receive an http only cookie
-            // have to add this option
-            // otherwise we won't get that cookie
+         
+        const response = await login(data);
+        const jwt = response.data.accessToken;  
+        if(!jwt){
+          return alert('Login Error');
+        } 
+        localStorage.removeItem("jwt"); 
+        localStorage.setItem("jwt",jwt); 
+        await router.push("/");
+      } catch (error) {
+        if (error.response) {
+          if (error.response.status == 401) {
+            alert(error.response.data.message);
+          } else {
+            console.log("Error");
           }
-        );
-        if (response.status == 401) {
-          // 200 코드일 경우 상태코드만 보내므로
-          // json 변환 불가
-          const res = await response.json();
-          alert(res.message);
-        } else if (response.status == 200) {
-          await router.push("/");
+        } else {
+          console.log("Error", error.message);
         }
-      } catch (e) {
-        console.log(e);
       }
     };
     return {
@@ -91,7 +90,7 @@ export default {
       submit,
     };
   },
-  components: {Auth}
+  components: { Auth },
 };
 </script>
  
