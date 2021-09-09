@@ -159,16 +159,33 @@ export default {
    .title{
        display: none;
    }
+<<<<<<< HEAD
+=======
+   .content {
+     height: 80%;
+     align-items: center;
+   }
+>>>>>>> 3cd0120336db02c9e633af1078963de10d85cfa0
    .content .article-wrapper{
        display: flex;
        flex-wrap: wrap;
        margin: 10vh 0;
    }
+<<<<<<< HEAD
    .content .article-wrapper article{
        width: 30vw;
        height: 30vw;
    }
     .content .article-wrapper article h1{
+=======
+   .content .article-wrapper .article{
+       width: 50vw;
+       border-radius: 0.8em;
+       height: 20vw;
+       z-index: 1001;
+   }
+    .content .article-wrapper .article h1{
+>>>>>>> 3cd0120336db02c9e633af1078963de10d85cfa0
         font-size: 3.5vw;
     }
 }

@@ -140,8 +140,16 @@ export default {
     margin: 10vh 0;
   }
   .content .article-wrapper article {
+<<<<<<< HEAD
     width: 30vw;
     height: 30vw;
+=======
+    border-radius: 0.8rem;
+    width: 30vw;
+    z-index:1001;
+    height: 20vw;
+    width: 90%;
+>>>>>>> 3cd0120336db02c9e633af1078963de10d85cfa0
   }
   .content .article-wrapper article h1 {
     font-size: 3.5vw;

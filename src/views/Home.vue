@@ -3,52 +3,64 @@
     <main>
       <section class="banner">
         <img :src="currentImg" />
+<<<<<<< HEAD
+=======
+        <!-- <VueSlickCarousel  v-bind="settings">
+          <div>1</div>
+          <div>2</div>
+          <div>3</div>
+          <div>4</div>
+        </VueSlickCarousel> -->
+>>>>>>> 3cd0120336db02c9e633af1078963de10d85cfa0
       </section>
       <section class="category">
         <div class="table top">
           <div class="content">
             <div>
-              개회사/<br />
-              연구 윤리 세미나
+              개회사/
+              <br />연구 윤리 세미나
             </div>
           </div>
           <div class="content">
             <div>
-              기조강연<br />
+              기조강연
+              <br />
               <span class="sub-text">:지구와 공생하는 삶</span>
             </div>
           </div>
           <div class="content">
             <div>
-              초청강연<br />
-              <span class="sub-text"
-                >:Fashion Textile & TEchnology Ecosystem</span
-              >
+              초청강연
+              <br />
             </div>
           </div>
         </div>
         <div class="table middle">
           <router-link to="/presentation/kosco" class="content">
             <div>
-              2021<br />
-              KOSCO전<br />
+              2021
+              <br />KOSCO전
+              <br />
               <span class="sub-text">:Oneness for fashion</span>
             </div>
           </router-link>
           <div class="content">
             <div>
-              청년 취업/창업<br />
-              프로그램<br />
-              <span class="sub-text">:글로벌 패션플랫폼 청년 창업 세미나</span>
+              청년 취업/창업
+              <br />프로그램
+              <br />
+              <span class="sub-text">
+                :글로벌 패션플랫폼
+                <br />청년 창업 세미나
+              </span>
             </div>
           </div>
           <div class="content">
             <div>
-              이공계 대학원생을 위한<br> 워크샵 
-              <br>
-              <span class="sub-text"
-                >:Rhino를 활용한 <br>3D 패션제품 개발 워크샵</span
-              >
+              이공계
+              <br />대학원생을 위한
+              <br />워크샵
+              <br />
             </div>
           </div>
         </div>
@@ -68,13 +80,30 @@
   </div>
 </template>
 
-<script lang="ts">
+<script lang="js">
 import { onMounted, ref } from "vue";
 import { useStore } from "vuex";
+import VueSlickCarousel from 'vue-slick-carousel'
+// optional style for arrows & dots
+// import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
+
 
 export default {
   name: "Home",
-  setup() {
+  // data(){
+  //   return {
+  //     settings: {
+  //         "dots": true,
+  //         "dotsClass": "slick-dots custom-dot-class",
+  //         "edgeFriction": 0.35,
+  //         "infinite": false,
+  //         "speed": 500,
+  //         "slidesToShow": 1,
+  //         "slidesToScroll": 1
+  //     }
+  //   }
+  // }, 
+  setup()  {
     const store = useStore();
     const currentImg = ref("img/Asset1.png");
     onMounted(async () => {
@@ -87,13 +116,19 @@ export default {
           : "img/Asset2.png";
     }, 3500);
     return {
-      currentImg,
-    };
-  },
-};
+    }
+  // },
+  // components : {
+  //   VueSlickCarousel
+  // }
+}
+}
 </script>
 
 <style scoped>
+* {
+  /* border: 1px solid red; */
+}
 .wrapper {
   flex: 1;
   display: flex;
@@ -102,12 +137,13 @@ export default {
 }
 main {
   display: flex;
-  width: 60%;
+  width: 63%;
   margin: 3rem 0;
 }
 .banner {
-  flex: 3;
-  padding-bottom: 4%;
+  flex: 3.3;
+  padding-bottom: 0;
+  margin-right: 4%;
   position: relative;
   overflow: hidden;
 }
@@ -117,7 +153,7 @@ main {
 }
 
 .category {
-  flex: 5;
+  flex: 6;
   display: flex;
   flex-direction: column;
 }
@@ -128,13 +164,14 @@ main {
 .category .table .content {
   position: relative;
   float: left;
-  width: 26%;
-  padding-bottom: 26%;
-  margin: 0 3%;
+  width: 27%;
+  padding-bottom: 27%;
+  margin-bottom: 2%;
+  margin-right: 2%;
   background-color: #dcdcdc;
   font-weight: bold;
   cursor: pointer;
-  border:none;
+  border: none;
 }
 .category .table .content:hover {
   background-color: #787878;
@@ -147,6 +184,7 @@ main {
   width: 100%;
   text-align: center;
   font-size : 14px;
+  font-size: 14px;
   transform: translate(-50%, -50%);
 }
 .category .table .content .sub-text {
@@ -157,6 +195,9 @@ main {
 
 /* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/
 @media all and (min-width: 768px) and (max-width: 1023px) {
+  main {
+    width: 80%;
+  }
   .category .table .content div {
     font-size: 10px;
   }
@@ -171,6 +212,10 @@ main {
   }
   .banner {
     display: none;
+  }
+  .category .table {
+    display: flex;
+    justify-content: center;
   }
   .category .table {
     margin-bottom: 1em;

@@ -10,7 +10,11 @@
         </section>
         <section class="video-container">
             <video controls>
+<<<<<<< HEAD
                 <source :src="requestUrl + '/media/'+video" type="video/mp4" />
+=======
+                <source :src="requestUrl + '/api/media/'+video +'/'+jwt" type="video/mp4" />
+>>>>>>> 3cd0120336db02c9e633af1078963de10d85cfa0
             </video>
          </section>
         <img class="background-logo" src="/img/background-logo.png"> 
@@ -19,6 +23,7 @@
 </template>
 
 <script lang="ts">
+<<<<<<< HEAD
 import { useStore } from 'vuex'; 
 export default {
     setup(){
@@ -28,6 +33,32 @@ export default {
         return {
             video,
             requestUrl
+=======
+import { ref,onMounted } from 'vue';
+import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
+export default {
+    setup(){
+        const store = useStore(); 
+        const router = useRouter();
+        const video = "한국의상디자인학회 구두발표_이하은.mp4";
+        const requestUrl = process.env.VUE_APP_BASE_URL; 
+        const jwt = ref<string>();
+        onMounted(async()=> {
+          const token = localStorage.getItem('jwt');
+          if(token){
+            jwt.value = token;
+          } else {
+            // 토큰이 존재하지 않는 로그아웃된 사용자
+             alert("로그인 해 주세요");
+            await router.push('/login');
+          }
+        });
+        return {
+            video,
+            requestUrl,
+            jwt 
+>>>>>>> 3cd0120336db02c9e633af1078963de10d85cfa0
         }
     }
 }
