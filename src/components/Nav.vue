@@ -1,22 +1,14 @@
 <template>
   <nav>
-<<<<<<< HEAD
-    <router-link class="home" to="/">홈</router-link>
-=======
     <router-link class="home" to="/">
       <img src="/img/header-logo.png" />
     </router-link>
->>>>>>> 3cd0120336db02c9e633af1078963de10d85cfa0
     <div class="auth" v-if="!auth">
       <router-link class="signin" to="/login">로그인</router-link>
       <router-link class="signup" to="/register">회원가입</router-link>
     </div>
     <div class="auth" v-if="auth">
-<<<<<<< HEAD
-      <router-link to="/profile">프로필</router-link>
-=======
       <router-link class="profile" to="/profile">내 프로필</router-link>
->>>>>>> 3cd0120336db02c9e633af1078963de10d85cfa0
       <a class="nav-link logout" @click="clearCookie">로그아웃</a>
     </div>
   </nav>
@@ -55,11 +47,7 @@ export default {
       logout,
       clearCookie
     };
-<<<<<<< HEAD
-  },
-=======
   }
->>>>>>> 3cd0120336db02c9e633af1078963de10d85cfa0
 };
 </script>
 
@@ -78,18 +66,6 @@ nav a {
   font-size: 1.3em;
 }
 nav .home {
-<<<<<<< HEAD
-}
-nav .auth {
-}
-nav .signup {
-}
-nav .signin {
-  margin-right: 1em;
-}
-nav .logout {
-  cursor : pointer;
-=======
   height: 48px;
 }
 nav .home img {
@@ -154,6 +130,5 @@ nav .logout {
     display: block;
     background: rgb(52, 52, 52);
   }
->>>>>>> 3cd0120336db02c9e633af1078963de10d85cfa0
 }
 </style>

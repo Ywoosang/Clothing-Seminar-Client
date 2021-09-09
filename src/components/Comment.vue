@@ -16,11 +16,7 @@
       </div>
     </div>
     <div class="register">
-<<<<<<< HEAD
-      <textarea v-model="state.comment"></textarea>
-=======
       <textarea v-model="comment"></textarea>
->>>>>>> 3cd0120336db02c9e633af1078963de10d85cfa0
       <button @click="postComment">댓글<br />작성</button>
     </div>
   </article>
@@ -44,17 +40,9 @@ export default {
     const { postid } = toRefs(props);
     const authority = ref<string>(store.state.authority);
     const userId = ref<string>(store.state.id);
-<<<<<<< HEAD
-    const isBlocked = ref<boolean>(false); 
-    // 
-    const state = reactive({
-        comment: ''
-    });
-=======
     // 
     const comment = ref<string>();
      
->>>>>>> 3cd0120336db02c9e633af1078963de10d85cfa0
     const comments = ref<Comment[]>();
     const getComments = async () => {
       try {
@@ -68,31 +56,12 @@ export default {
     };
     // 댓글 등록
     const postComment = async() => {
-<<<<<<< HEAD
-      if (state.comment.trim() == "") {
-        return alert("댓글 본문을 입력해 주세요");
-      }
-      if(isBlocked.value) return;
-      isBlocked.value = true; 
-      const data = { comment: state.comment };
-      setTimeout(async()=> { 
-        try{
-            await postCommentByPostId(postid.value,data);
-            await getComments();
-            state.comment = "";
-            isBlocked.value = false; 
-        } catch(error){
-          console.log(error); 
-        }
-      },500);
-=======
       if (comment.value!.trim() == "") {
         return alert("댓글 본문을 입력해 주세요");
       }
       await postCommentByPostId(postid.value,{ content: comment.value });
       await getComments();
       comment.value = "";
->>>>>>> 3cd0120336db02c9e633af1078963de10d85cfa0
     };
     // 댓글 삭제
     const deleteComment = async (index: number) => {
@@ -114,11 +83,7 @@ export default {
       await store.dispatch('setUserInfo')
     });
     return {
-<<<<<<< HEAD
-      state,
-=======
       comment,
->>>>>>> 3cd0120336db02c9e633af1078963de10d85cfa0
       comments,
       postComment,
       deleteComment,
