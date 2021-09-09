@@ -3,15 +3,12 @@
     <main>
       <section class="banner">
         <img :src="currentImg" />
-<<<<<<< HEAD
-=======
         <!-- <VueSlickCarousel  v-bind="settings">
           <div>1</div>
           <div>2</div>
           <div>3</div>
           <div>4</div>
         </VueSlickCarousel> -->
->>>>>>> 3cd0120336db02c9e633af1078963de10d85cfa0
       </section>
       <section class="category">
         <div class="table top">

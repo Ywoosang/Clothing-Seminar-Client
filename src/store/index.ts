@@ -40,7 +40,7 @@ export default createStore({
           username: response.data.username,
           authority: response.data.authority,
         });
-      } catch (error) {
+      } catch (error: any) {
           console.log(error.response);
           commit('SET_AUTHENTICATED_USER', {
             authenticated: false,

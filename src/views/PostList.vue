@@ -4,11 +4,7 @@
     <section class="content">
       <article class="title">
         <h1>{{ currentCategory }}</h1>
-<<<<<<< HEAD
-        <router-link :to="'/post/'+currentCategory +'/write'">투고하기</router-link>
-=======
         <router-link class="write" :to="'/post/'+currentCategory +'/write'">투고하기</router-link>
->>>>>>> 3cd0120336db02c9e633af1078963de10d85cfa0
       </article>
       <article class="posts">
         <table>
@@ -29,11 +25,7 @@
               </td>
               <td>{{ post.username }}</td>
               <td>{{ post.created_at }}</td>
-<<<<<<< HEAD
-              <td>3</td>
-=======
               <td>{{ post.views}}</td>
->>>>>>> 3cd0120336db02c9e633af1078963de10d85cfa0
             </tr>
           </tbody>
           <tbody v-else>
@@ -80,11 +72,7 @@ export default {
       await store.dispatch("setUserInfo");
       if (!store.state.authenticated) {
         alert("로그인 해 주세요");
-<<<<<<< HEAD
-        router.push("/login");
-=======
         return await router.push("/login");
->>>>>>> 3cd0120336db02c9e633af1078963de10d85cfa0
       }
       store.commit('SET_CATEGORY',currentCategory); 
       await getNumberOfPages();
@@ -144,28 +132,19 @@ export default {
 }
 .title {
   display: flex;
-<<<<<<< HEAD
-  flex-direction: column;
-  justify-content: center;
-  flex: 1;
-=======
   align-items: center;
   flex: 1;
   width: 95%;
->>>>>>> 3cd0120336db02c9e633af1078963de10d85cfa0
 }
 .title h1 {
   font-size: 2.3em;
   font-weight: 500;
 }
-<<<<<<< HEAD
-=======
 .title .write{
   margin-left:auto;
   padding: 0.5em 1em;
   background: #ddd;
 }
->>>>>>> 3cd0120336db02c9e633af1078963de10d85cfa0
 
 .posts {
   flex: 6;

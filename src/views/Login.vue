@@ -2,11 +2,7 @@
   <auth>
     <section class="title">
       <div class="logo">
-<<<<<<< HEAD
-        <img src="/img/logo.png" />
-=======
          <img class="auth-logo" src="/img/logo.png">
->>>>>>> 3cd0120336db02c9e633af1078963de10d85cfa0
       </div>
       <div class="des">
         <h1>한국복식학회에 오신 것을 환영합니다!</h1>
@@ -17,11 +13,7 @@
       <form @submit.prevent="submit">
         <div class="input-wrapper">
           <label for="id"
-<<<<<<< HEAD
-            ><span style="width: 5em; text-align: end">아이디</span>
-=======
             ><span class="label-text">아이디</span>
->>>>>>> 3cd0120336db02c9e633af1078963de10d85cfa0
             <input
               v-model="data.userid"
               id="id"
@@ -31,11 +23,7 @@
             />
           </label>
           <label for="password"
-<<<<<<< HEAD
-            ><span style="width: 5em; text-align: end">비밀번호</span>
-=======
             ><span  class="label-text">비밀번호</span>
->>>>>>> 3cd0120336db02c9e633af1078963de10d85cfa0
             <input
               v-model="data.password"
               id="password"
@@ -48,12 +36,6 @@
         </div>
         <button class="submit" type="submit">LOG-IN</button>
       </form>
-<<<<<<< HEAD
-      <div class="tab">
-        <button class="route-tab">회원가입</button>
-      </div>
-=======
->>>>>>> 3cd0120336db02c9e633af1078963de10d85cfa0
       <img src="/img/background-logo.png" />
     </section>
   </auth>
