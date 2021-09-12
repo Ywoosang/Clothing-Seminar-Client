@@ -113,6 +113,7 @@ export default {
           : "img/Asset2.png";
     }, 3500);
     return {
+      currentImg
     }
   // },
   // components : {

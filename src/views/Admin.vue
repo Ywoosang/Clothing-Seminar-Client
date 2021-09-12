@@ -70,12 +70,8 @@ export default {
 };
 </script>
 
-<<<<<<< HEAD
-<style>
-=======
 <style scoped>
 .wrapper{
   flex:1
 }
->>>>>>> 3cd0120336db02c9e633af1078963de10d85cfa0
 </style>

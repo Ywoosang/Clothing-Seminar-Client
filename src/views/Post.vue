@@ -8,6 +8,7 @@
         <div>작성자: {{ post.username }}({{ post.userid }})</div>
         <div>작성일: {{ post.created_at }}</div>
         <div>조회수: {{ post.views }}</div>
+        <button class="delete" v-if="hasDeleteAuthority" @click="deletePost">삭제하기</button>
       </div>
       <div class="file">
         <div class="name">
@@ -19,7 +20,6 @@
         >
       </div>
       <div class="post-content">{{ post.content }}</div>
-      <button v-if="hasDeleteAuthority" @click="deletePost">삭제하기</button>
       <!-- <button id="show-modal" @click="showModal = true">Show Modal</button> -->
       <!-- use the modal component, pass in the prop -->
       <Comment :postid="postId"/>
@@ -52,7 +52,7 @@ export default {
     const router = useRouter();
     const { category } = toRefs(props);
     const postId = ref<any>(route.query.id);
-    const postViewLink = ref<any>(`${process.env.VUE_APP_BASE_URL}/api/post/${route.query.id}/view`);
+    const postViewLink = ref<any>(`${process.env.VUE_APP_BASE_URL}/api/post/${route.query.id}/view?token=${localStorage.getItem('jwt')}`);
     const post = ref<any>({
       title: "",
       content: "",
@@ -90,7 +90,7 @@ export default {
       try {
           await deletePostById(postId.value);
           alert("삭제되었습니다");
-          await router.push(`/presentation/poster/${category.value}`);
+          await router.push(`/presentation/poster/${category.value}?page=1`);
       } catch (error) {
         if(error.response){
           const status = error.response.status;
@@ -164,13 +164,15 @@ export default {
 .content .info div {
   margin-right: 2em;
 }
+.content .info .delete{
+  margin-left: auto;
+}
 .content .file {
   margin: 2em 0 0 0;
   background-color: #dcdcdc;
   width: 50em;
   padding: 1em;
 }
-
 .content .file .name {
   font-size: 1em;
 }

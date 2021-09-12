@@ -51,7 +51,7 @@ export default {
         comments.value = response.data.comments;
       } catch (error) {
         if(error)
-        alert("댓글 등록에 문제가 발생했습니다.");
+        alert("댓글 조회에 문제가 발생했습니다.");
       }
     };
     // 댓글 등록

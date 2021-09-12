@@ -33,13 +33,9 @@ export default {
     };
   },
 };
-<<<<<<< HEAD
-</script>
-=======
 </script>
 <style scoped> 
 .wrapper{
   flex:1;
 }
 </style> 
->>>>>>> 3cd0120336db02c9e633af1078963de10d85cfa0

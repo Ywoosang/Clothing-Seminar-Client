@@ -29,11 +29,7 @@ export default {
     const clearCookie = async () => {
       try {
         await logout();
-<<<<<<< HEAD
-        localStorage.removeItem('jwt'); 
-=======
         localStorage.removeItem("jwt");
->>>>>>> 3cd0120336db02c9e633af1078963de10d85cfa0
         await store.dispatch("setUserInfo");
         await router.push(`/login`);
       } catch (error) {

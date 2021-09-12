@@ -25,6 +25,7 @@
 import { onMounted, ref, toRefs, reactive, computed } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
+import { uploadPost } from "../api/upload";
 
 export default {
   props: {
@@ -38,8 +39,8 @@ export default {
     const store = useStore();
     const { category } = toRefs(props);
     const data = reactive({
-      content: "",
-      title: "",
+      content:"" as any,
+      title: ""  as any,
     });
     const required = computed(() => {
       return {
@@ -52,25 +53,36 @@ export default {
       attachedFile.value = e.target.files[0] as File;
     }
     async function postPost() {
-      if (!attachedFile.value) {
-        alert("투고할 파일을 첨부해 주세요");
+      try {
+        if (data.title.trim() == "" && data.content.trim() == "") {
+          return alert("투고 제목과 투고 내용을 입력해 주세요");
+        } else if (data.title.trim() == "" && data.content.trim() !== "") {
+          return alert("투고 제목을 입력해 주세요");
+        } else if (data.content.trim() == "" && data.title.trim() !== "") {
+          return alert("투고 내용을 입력해 주세요");
+        }
+        if (!attachedFile.value) {
+          return alert("투고할 파일을 첨부해 주세요");
+        }
+        const accept: boolean = confirm(
+          `정말로 ${attachedFile.value.name}논문을 투고 하시겠습니까?`
+        );
+        if (!accept) return;
+        const formData = new FormData();
+        formData.append("title", data.title);
+        formData.append("content", data.content);
+        formData.append("file", attachedFile.value as string | Blob);
+        formData.append("category", category.value);
+        const response: any = await uploadPost(formData);
+        await router.push(`/post/${category.value}?id=${response.data.postId}`);
+      } catch (error) {
+        if(error.response){
+          if(error.response.stauts == 400){
+            alert('입력 폼에 오류가 있습니다');
+          }
+        }
+        alert(error);
       }
-      const accept: boolean = confirm(
-        `정말로 ${attachedFile.value.name}논문을 투고 하시겠습니까?`
-      );
-      if (!accept) return;
-      const formData = new FormData();
-      formData.append("title", data.title);
-      formData.append("content", data.content);
-      formData.append("file", attachedFile.value as string | Blob);
-      formData.append("category", category.value);
-      let response: any = await fetch(`/api/post`, {
-        method: "POST",
-        body: formData,
-        credentials: "include",
-      });
-      if (response.ok) response = await response.json();
-      router.push(`/post/${category.value}?id=${response.id}`);
     }
     return {
       data,
