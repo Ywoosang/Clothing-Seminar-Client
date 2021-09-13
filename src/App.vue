@@ -63,4 +63,11 @@ ul{
   display: flex;
   flex-direction: column;
 }
+/* slick-slider */
+.banner .slider>.slick-prev{
+ display: none !important; 
+}
+.banner .slider>.slick-next{
+   display: none !important;
+}
 </style>

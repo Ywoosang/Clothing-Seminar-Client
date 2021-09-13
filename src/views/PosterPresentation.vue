@@ -141,8 +141,8 @@ export default {
 .q-a a{
     display: block;
     width: 65%;
-    height: 3rem;
-    line-height: 3rem;
+    height: 4rem;
+    line-height: 4rem;
     margin:0 auto;
     font-weight: bold;
     font-size: 1.6rem;

@@ -2,14 +2,14 @@
   <div class="wrapper">
     <main>
       <section class="banner">
-        <img :src="currentImg" />
-        <!-- <VueSlickCarousel  v-bind="settings">
-          <div>1</div>
-          <div>2</div>
-          <div>3</div>
-          <div>4</div>
-        </VueSlickCarousel> -->
+           <div class="slider">
+           <img src="/img/Asset1.png" />
+           <img src="/img/Asset2.png" />
+           </div> 
+           <div  id="prev" @click="prevImg"><i class="fas fa-caret-square-left"></i></div>
+           <div  id="next" @click="nextImg"><i class="fas fa-caret-square-right"></i></div>
       </section>
+       
       <section class="category">
         <div class="table top">
           <div class="content">
@@ -87,33 +87,31 @@ import VueSlickCarousel from 'vue-slick-carousel'
 
 export default {
   name: "Home",
-  // data(){
-  //   return {
-  //     settings: {
-  //         "dots": true,
-  //         "dotsClass": "slick-dots custom-dot-class",
-  //         "edgeFriction": 0.35,
-  //         "infinite": false,
-  //         "speed": 500,
-  //         "slidesToShow": 1,
-  //         "slidesToScroll": 1
-  //     }
-  //   }
-  // }, 
   setup()  {
     const store = useStore();
     const currentImg = ref("img/Asset1.png");
     onMounted(async () => {
       await store.dispatch("setUserInfo");
+       $('.slider').slick({
+          dots: false,
+          speed: 500,
+          autoplay: true,
+          autoplaySpeed: 1000,
+          slidesToShow: 1,
+          slidesToScroll: 1
+       
+      });
     });
-    setInterval(() => {
-      currentImg.value =
-        currentImg.value == "img/Asset2.png"
-          ? "img/Asset1.png"
-          : "img/Asset2.png";
-    }, 3500);
+    const prevImg = () => {
+      document.querySelector('.slick-prev').click()
+    }
+     const nextImg = () => {
+      document.querySelector('.slick-next').click()
+    }
     return {
-      currentImg
+      currentImg,
+      prevImg,
+      nextImg
     }
   // },
   // components : {
@@ -145,14 +143,38 @@ main {
   position: relative;
   overflow: hidden;
 }
+.banner #prev{
+  z-index: 1001;
+ position:absolute; 
+ left:2%;
+ top: 50%;
+   opacity: 0.5;
+  font-size: 20px;
+}
+
+.banner #next{
+  z-index: 1001;
+  position:absolute; 
+  left:94%;
+  top: 50%;
+  opacity: 0.5;
+  font-size: 20px;
+}
+
+ 
+ 
+
 .banner img {
+  object-fit: contain;
+  width: 100%;
+}
+.banner div {
   object-fit: contain;
   width: 100%;
 }
 
 .category {
   flex: 6;
-  display: flex;
   flex-direction: column;
 }
 .category .table {
@@ -181,7 +203,6 @@ main {
   left: 50%;
   width: 100%;
   text-align: center;
-  font-size : 14px;
   font-size: 14px;
   transform: translate(-50%, -50%);
 }
@@ -202,6 +223,9 @@ main {
   .sub-text {
     display: none;
   }
+  .banner #next{
+    left:92%;
+}
 }
 /* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/
 @media all and (max-width: 767px) {

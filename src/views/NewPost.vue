@@ -13,12 +13,6 @@
       required
     />
     <input type="file" accept=".pdf" @change="handleFileChange" required />
-    <textarea
-      class="content"
-      :class="{ required: required.content }"
-      v-model="data.content"
-      placeholder="투고 내용을 입력해 주세요"
-    ></textarea>
       <div id="summernote"></div> 
     <button @click="postPost">글 등록</button>
      </section>
@@ -124,7 +118,6 @@ export default {
 .title {
   display: flex;
   align-items: center;
-  flex: 1;
   width: 95%;
 }
 .title h1 {
