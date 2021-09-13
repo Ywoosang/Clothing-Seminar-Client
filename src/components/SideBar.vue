@@ -15,7 +15,7 @@
 
 <script lang="ts">
 import { useStore } from 'vuex'; 
-import {computed} from 'vue';
+import {computed, onMounted} from 'vue';
 
 export default {
     setup(){
