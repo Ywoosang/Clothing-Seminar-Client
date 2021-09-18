@@ -7,13 +7,6 @@ export const getPostById = (postId: number) =>
         withCredentials: true
     })
 
-export const getPostsByPageNumber = (page: string,category: string) => 
-    request({
-        url: `/api/post/${category}/${page}`,
-        method: 'GET',
-        withCredentials: true
-    })
-
 export const deletePostById = (postId: number) =>  
     request({
         url: `/api/post/${postId}`,
@@ -24,8 +17,15 @@ export const deletePostById = (postId: number) =>
 
 export const getTotalPageNumber = (category: string) => 
     request({
-        url: `/api/post/${category}/count`,
+        url: `/api/category/${category}/count`,
         method: 'GET',
         withCredentials: true
     })
 
+
+export const getPostsByPageNumber = (page: string,category: string) => 
+    request({
+        url: `/api/category/${category}/${page}`,
+        method: 'GET',
+        withCredentials: true
+    })

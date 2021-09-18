@@ -4,20 +4,24 @@ export const getCommentsByPostId = (postId: number) =>
     request({
         url: `/api/comment/${postId}`,
         method: 'GET',
-        withCredentials: true
     })
 
 export const postCommentByPostId = (postId: number,data: any) => 
     request({
         url: `/api/comment/${postId}`,
         method: 'POST',
-        withCredentials: true,
         data
     })
 
-export const deleteCommentById = (commentId: number) => {
+export const deleteCommentByPassword = (commentId: number,data?: any) => 
     request({
-        url: `/api/comment/${commentId}`,
+        url: `/api/comment/user/${commentId}`,
+        method: 'DELETE',
+        data
+    })
+
+export const deleteCommentByAdmin = (commentId: number) => 
+    request({
+        url: `/api/comment/admin/${commentId}`,
         method: 'DELETE',
     })
-}
