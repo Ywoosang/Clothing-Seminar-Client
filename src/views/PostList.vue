@@ -4,7 +4,7 @@
     <section class="content">
       <article class="title">
         <h1>{{ currentCategory }}</h1>
-        <router-link class="write" :to="'/post/'+currentCategory +'/write'">투고하기</router-link>
+        <router-link v-if="postAuth" class="write" :to="'/post/'+currentCategory +'/write'">투고하기</router-link>
       </article>
       <article class="posts">
         <table>
@@ -56,24 +56,21 @@ export default {
     const router = useRouter();
     const route = useRoute(); 
     const posts = ref<Post[]>([]);
-    const postAuth = ref<boolean>(false);
+    // const postAuth = ref<boolean>(false);
     const categories = store.state.categories;
     const pages = ref<any>();
     
-    const currentCategory = computed(() => props.name.replace(",", "·"));
-     
+    const currentCategory = computed(() =>{
+       return props.name.replace(",", "·");
+    });
     watch(currentCategory,async(newValue,oldValue)=>{
       store.commit('SET_CATEGORY',newValue); 
       await getNumberOfPages();
       await getCurrentPagePosts(); 
-    })
+    });
 
     onMounted(async () => {
       await store.dispatch("setUserInfo");
-      if (!store.state.authenticated) {
-        alert("로그인 해 주세요");
-        return await router.push("/login");
-      }
       store.commit('SET_CATEGORY',currentCategory); 
       await getNumberOfPages();
       await getCurrentPagePosts(); 
@@ -102,9 +99,10 @@ export default {
         alert(error);
       }
     }
-    const authority = store.state.authority;
-    postAuth.value =
-      authority == "ADMINISTRATOR" || authority == "POST_ALLOWED";
+    const postAuth = computed(()=> {
+      return store.state.authority == "ADMINISTER" || store.state.authority == "ROOT"; 
+    }
+    );
     return {
       posts,
       postAuth,

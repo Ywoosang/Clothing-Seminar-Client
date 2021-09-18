@@ -35,8 +35,8 @@ body{
 }
 
 a {
-  text-decoration: none;
-  color : #222;
+  text-decoration: none !important;
+  color : #222 !important;
 }
 
 h1,h2,h3,h4,h5,h6{

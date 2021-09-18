@@ -9,7 +9,7 @@
           <p>(사) 한국복식학회 (04175)서울특별시 마포구 마포대로 12(마포동) 한신빌딩 1616호</p>
           <p>사무국 : 02-324-1511 / ksfsm@ksc.or.kr</p>
           <p>학술국 : 070-8289-1712 / ksc@ksc.or.kr</p>
-          <p>홈페이지 : <a style="color: white" href="http://www.ksc.or.kr">http://www.ksc.or.kr</a></p>
+          <p>홈페이지 : <a style="color: white !important;" href="http://www.ksc.or.kr">http://www.ksc.or.kr</a></p>
       </div>
   </footer>
 </template>

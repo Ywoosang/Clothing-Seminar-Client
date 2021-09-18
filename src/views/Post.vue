@@ -19,7 +19,7 @@
           ><b>논문 보기</b></a
         >
       </div>
-      <div class="post-content">{{ post.content }}</div>
+      <div class="post-content" v-html="post.content"></div>
       <!-- <button id="show-modal" @click="showModal = true">Show Modal</button> -->
       <!-- use the modal component, pass in the prop -->
       <Comment :postid="postId"/>
@@ -30,7 +30,7 @@
 <script lang="ts">
 import Comment from "../components/Comment.vue";
 
-import { onMounted, ref, reactive, computed, toRefs } from "vue";
+import { onMounted, ref, reactive, computed, toRefs,watch } from "vue";
 import { useStore } from "vuex";
 import { useRoute, useRouter } from "vue-router";
 import SideBar from "../components/SideBar.vue";
@@ -44,13 +44,12 @@ export default {
       required: true,
     },
   },
-  // before created 이전 - this 에 접근이 불가
-  // props 가 가장 많이 쓰이기 때문에 props 를 제일 첫 번째로
   setup(props: any) {
     const store = useStore();
     const route = useRoute();
     const router = useRouter();
     const { category } = toRefs(props);
+
     const postId = ref<any>(route.query.id);
     const postViewLink = ref<any>(`${process.env.VUE_APP_BASE_URL}/api/post/${route.query.id}/view?token=${localStorage.getItem('jwt')}`);
     const post = ref<any>({
@@ -64,6 +63,7 @@ export default {
     });
     onMounted(async () => {
       // 사용자 정보 세팅
+      store.commit('SET_CATEGORY',category); 
       await store.dispatch("setUserInfo");
       try { 
         const response = await getPostById(postId.value); 
@@ -146,7 +146,7 @@ export default {
 }
 
 .content .category {
-  font-weight: bold;
+  font-weight: 500;
 }
 
 .content .title {
@@ -170,11 +170,12 @@ export default {
 .content .file {
   margin: 2em 0 0 0;
   background-color: #dcdcdc;
-  width: 50em;
+  width: 80%;
   padding: 1em;
 }
 .content .file .name {
   font-size: 1em;
+  margin-bottom: 0.5em;
 }
 
 .content .post-content{

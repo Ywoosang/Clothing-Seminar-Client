@@ -3,9 +3,8 @@
     <router-link class="home" to="/">
       <img src="/img/header-logo.png" />
     </router-link>
-    <div class="auth" v-if="!auth">
-      <router-link class="signin" to="/login">로그인</router-link>
-      <router-link class="signup" to="/register">회원가입</router-link>
+    <div class="sign-in" v-if="!auth">
+      <router-link class="signin" to="/login">관리자 로그인</router-link>
     </div>
     <div class="auth" v-if="auth">
       <router-link class="profile" to="/profile">내 프로필</router-link>
@@ -69,7 +68,7 @@ nav .home img {
   margin-top: 5px;
   object-fit: contain;
 }
-nav .auth {
+nav .auth,nav.sign-in {
   display: flex;
 }
 
@@ -83,7 +82,7 @@ nav .auth a:first-child::after {
   content: "";
   position: absolute;
   right: -0.3em;
-  top: 2px;
+  top: -2px;
   width: 2px;
   height: 20px;
   vertical-align: middle;
@@ -119,7 +118,7 @@ nav .logout {
     content: "";
     position: absolute;
     right: -3px;
-    top: 7px;
+    top: 2px;
     width: 1px;
     height: 10px;
     vertical-align: middle;

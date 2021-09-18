@@ -62,7 +62,7 @@ export default {
         body: JSON.stringify(data),
       })
       .then(async ()=> {
-        this.getUsersInfo()
+        this.getUsersInfo();
         alert('권한 변경이 완료되었습니다');
       })
     },

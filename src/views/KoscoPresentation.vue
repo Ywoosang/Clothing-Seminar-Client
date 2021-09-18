@@ -33,10 +33,6 @@ export default {
           const token = localStorage.getItem('jwt');
           if(token){
             jwt.value = token;
-          } else {
-            // 토큰이 존재하지 않는 로그아웃된 사용자
-             alert("로그인 해 주세요");
-            await router.push('/login');
           }
         });
         return {

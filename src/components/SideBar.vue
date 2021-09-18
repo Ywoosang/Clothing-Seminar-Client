@@ -20,8 +20,11 @@ import {computed, onMounted} from 'vue';
 export default {
     setup(){
         const store = useStore();
-        const currentCategory = computed(()=>store.state.category);
+        let currentCategory = computed(()=> store.state.category);
         const categories = store.state.categories; 
+        onMounted(()=>{
+          // currentCategory = store.state.category;
+        })
         return {
             currentCategory,
             categories
@@ -32,22 +35,21 @@ export default {
 
 <style scoped>
 .category {
-  flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
   border-right: 3px solid #a1a1a1;
   margin: 2rem 0;
+  padding: 0 1em 0 10vw;
+  box-sizing: border-box;
 }
 
 .category h1 {
-  margin-top: 4em;
+  margin-top: 2em;
   margin-bottom: 1em;
-  width: 13.5rem;
 }
 
 .category article {
-  width: 13.5rem;
 }
 .category article a {
   display: block;
@@ -55,6 +57,6 @@ export default {
   margin: 1em 0;
 }
 .category article .curr {
-  color: #ea2d2e;
+  color: #ea2d2e !important;
 }
 </style>

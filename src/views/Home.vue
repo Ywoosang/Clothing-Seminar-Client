@@ -3,8 +3,8 @@
     <main>
       <section class="banner">
            <div class="slider">
-           <img src="/img/Asset1.png" />
-           <img src="/img/Asset2.png" />
+              <img src="/img/Asset1.png" />
+              <img src="/img/Asset2.png" />
            </div> 
            <div  id="prev" @click="prevImg"><i class="fas fa-caret-square-left"></i></div>
            <div  id="next" @click="nextImg"><i class="fas fa-caret-square-right"></i></div>
@@ -84,7 +84,6 @@ import VueSlickCarousel from 'vue-slick-carousel'
 // optional style for arrows & dots
 // import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 
-
 export default {
   name: "Home",
   setup()  {
@@ -92,15 +91,15 @@ export default {
     const currentImg = ref("img/Asset1.png");
     onMounted(async () => {
       await store.dispatch("setUserInfo");
-       $('.slider').slick({
+         $('.slider').slick({
           dots: false,
           speed: 500,
           autoplay: true,
           autoplaySpeed: 1000,
           slidesToShow: 1,
-          slidesToScroll: 1
-       
+          slidesToScroll: 1,
       });
+       
     });
     const prevImg = () => {
       document.querySelector('.slick-prev').click()
@@ -108,6 +107,7 @@ export default {
      const nextImg = () => {
       document.querySelector('.slick-next').click()
     }
+   
     return {
       currentImg,
       prevImg,
@@ -138,7 +138,6 @@ main {
 }
 .banner {
   flex: 3.3;
-  padding-bottom: 0;
   margin-right: 4%;
   position: relative;
   overflow: hidden;
@@ -146,7 +145,7 @@ main {
 .banner #prev{
   z-index: 1001;
  position:absolute; 
- left:2%;
+ left:2px;
  top: 50%;
    opacity: 0.5;
   font-size: 20px;
@@ -155,24 +154,11 @@ main {
 .banner #next{
   z-index: 1001;
   position:absolute; 
-  left:94%;
+  right:2px;
   top: 50%;
   opacity: 0.5;
   font-size: 20px;
 }
-
- 
- 
-
-.banner img {
-  object-fit: contain;
-  width: 100%;
-}
-.banner div {
-  object-fit: contain;
-  width: 100%;
-}
-
 .category {
   flex: 6;
   flex-direction: column;
@@ -193,9 +179,9 @@ main {
   cursor: pointer;
   border: none;
 }
-.category .table .content:hover {
+.category .table .content:hover{
   background-color: #787878;
-  color: white;
+  color: white !important;
 }
 .category .table .content div {
   position: absolute;
@@ -223,9 +209,6 @@ main {
   .sub-text {
     display: none;
   }
-  .banner #next{
-    left:92%;
-}
 }
 /* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/
 @media all and (max-width: 767px) {
