@@ -1,79 +1,115 @@
 <template>
   <div class="wrapper">
+    <article class="title">
+      <h1>
+        <span style="color: #ff0000">KSC</span> International Conference (KSCIC)
+        2021
+      </h1>
+      <h3>'Fashion for Human, Peace and the Future'</h3>
+      <p>October 23, 2021 International Peace Center(and virtual Jeju)</p>
+    </article>
     <main>
-      <section class="banner">
-           <div class="slider">
-              <img src="/img/Asset1.png" />
-              <img src="/img/Asset2.png" />
-           </div> 
-           <div  id="prev" @click="prevImg"><i class="fas fa-caret-square-left"></i></div>
-           <div  id="next" @click="nextImg"><i class="fas fa-caret-square-right"></i></div>
-      </section>
-       
       <section class="category">
         <div class="table top">
-          <div class="content">
+          <div class="content" style="background: transparent"></div>
+          <div class="content" style="background: transparent"></div>
+          <div class="content" style="background: transparent"></div>
+          <div class="content" style="background: transparent"></div>
+          <router-link to="/info/program?lang=en" class="content">
             <div>
-              개회사/
-              <br />연구 윤리 세미나
+            <p>Program</p>
             </div>
-          </div>
-          <div class="content">
-            <div>
-              기조강연
-              <br />
-              <span class="sub-text">:지구와 공생하는 삶</span>
-            </div>
-          </div>
-          <div class="content">
-            <div>
-              초청강연
-              <br />
-            </div>
-          </div>
+          </router-link>
         </div>
         <div class="table middle">
+          <div class="content" style="background: transparent"></div>
+          <div class="content l-p">
+            <img src="/img/zoom.png" />
+            <div>
+              <p>Welcome</p>
+              <p>Message</p>
+            </div>
+          </div>
+          <div class="content l-p">
+            <img src="/img/zoom.png" />
+            <div>
+              <p>Keynote</p>
+              <p>Talks 1</p>
+            </div>
+          </div>
+          <div class="content">
+            <img src="/img/zoom.png" />
+            <div>
+              <p>Special</p>
+              <p>Topic</p>
+              <p>Session 1</p>
+            </div>
+          </div>
+          <div class="content">
+            <img src="/img/zoom.png" />
+            <div>
+              <p>Research</p>
+              <p>Ethics</p>
+              <p>Seminar</p>
+            </div>
+          </div>
           <router-link to="/presentation/kosco" class="content">
             <div>
-              2021
-              <br />KOSCO전
-              <br />
-              <span class="sub-text">:Oneness for fashion</span>
+              <p>2021</p>
+              <p>International</p>
+              <p>KOSCO</p>
+              <p>Exhibition</p>
             </div>
           </router-link>
-          <div class="content">
-            <div>
-              청년 취업/창업
-              <br />프로그램
-              <br />
-              <span class="sub-text">
-                :글로벌 패션플랫폼
-                <br />청년 창업 세미나
-              </span>
-            </div>
-          </div>
-          <div class="content">
-            <div>
-              이공계
-              <br />대학원생을 위한
-              <br />워크샵
-              <br />
-            </div>
-          </div>
         </div>
         <div class="table bottom">
-          <router-link to="/presentation/poster" class="content">
-            <div>포스터 발표</div>
+          <router-link to="/presentation/poster" class="content l-p">
+            <div>
+              <p>Poster</p>
+              <p>Session</p>
+            </div>
           </router-link>
-          <router-link to="/presentation/oral" class="content">
-            <div>구두 발표</div>
+          <router-link to="/presentation/oral" class="content l-p">
+            <img src="/img/zoom.png" />
+            <div>
+              <p>Oral</p>
+              <p>Session</p>
+            </div>
           </router-link>
+          <div class="content d-p">
+            <img src="/img/zoom.png" />
+            <div>
+              <p>Special</p>
+              <p>Topic</p>
+              <p>Session 2</p>
+            </div>
+          </div>
           <div class="content">
-            <div>폐회사</div>
+            <img src="/img/zoom.png" />
+            <div>
+              <p>Keynote</p>
+              <p>Talks 2</p>
+            </div>
+          </div>
+          <div class="content">
+            <img src="/img/zoom.png" />
+            <div>
+              <p>Closing</p>
+              <p>Remarks</p>
+            </div>
+          </div>
+          <div class="content">
+            <div>
+              <p>Review</p>
+              <p>:After</p>
+              <p>finishing</p>
+              <p>conference</p>
+            </div>
           </div>
         </div>
       </section>
     </main>
+    <img src="/img/background-logo.png" />
   </div>
 </template>
 
@@ -126,82 +162,107 @@ export default {
   /* border: 1px solid red; */
 }
 .wrapper {
+  background-color: #FFF;
+  z-index: 1;
   flex: 1;
-  display: flex;
   align-items: center;
   justify-content: center;
-}
-main {
-  display: flex;
-  width: 63%;
-  margin: 3rem 0;
-}
-.banner {
-  flex: 3.3;
-  margin-right: 4%;
+  text-align: center;
   position: relative;
-  overflow: hidden;
 }
-.banner #prev{
-  z-index: 1001;
- position:absolute; 
- left:2px;
- top: 50%;
-   opacity: 0.5;
-  font-size: 20px;
+.wrapper > img {
+  z-index: -1;
+  position: absolute;
+  bottom: 0;
+  left: 15vw;
+  height: 80%;
+}
+.title {
+  font-family: "Heebo", sans-serif;
+  margin: 4vh 0 5rem 0;
 }
 
-.banner #next{
-  z-index: 1001;
-  position:absolute; 
-  right:2px;
-  top: 50%;
-  opacity: 0.5;
-  font-size: 20px;
+.title h1 {
+  font-weight: bold;
+  font-size: 2.5vw;
+  padding: 0.5rem 0;
+}
+.title h3 {
+  font-size: 2vw;
+  font-weight: 400;
+  color: #c00000;
+  padding: 0.5rem 0;
+}
+.title p {
+  font-size: 1.2vw;
+  padding: 0.5rem 0;
+}
+
+main {
+  width: auto;
+  display: inline-block;
+  padding: 0 0 0 10vw;
 }
 .category {
-  flex: 6;
-  flex-direction: column;
+  width: auto;
+  height: auto;
+  display: table;
 }
 .category .table {
-  flex: 1 1 0;
-  position: relative;
+  display: table-row;
 }
 .category .table .content {
   position: relative;
   float: left;
-  width: 27%;
-  padding-bottom: 27%;
-  margin-bottom: 2%;
-  margin-right: 2%;
+  width: 8vw;
+  height: 8vw;
   background-color: #dcdcdc;
+  margin: 0.5rem;
   font-weight: bold;
   cursor: pointer;
   border: none;
-}
-.category .table .content:hover{
   background-color: #787878;
-  color: white !important;
+}
+.category .table .l-p {
+  background-color: #ceb6b6;
+}
+.category .table .l-p p {
+  color: black !important;
+}
+
+.category .table .d-p {
+  background-color: #706262;
+}
+
+.category .table .content * {
+  font-family: "Fahkwang", sans-serif;
+}
+.category .table .content img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 2vw;
+  object-fit: contain;
+  margin: 0.2vw 0.2vw 0 0;
 }
 .category .table .content div {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100%;
-  text-align: center;
-  font-size: 14px;
-  transform: translate(-50%, -50%);
+  bottom: 0;
+  left: 0;
+  text-align: start;
+  padding: 0.2vw;
+  line-height: 1.2vw;
+  font-size: 1vw;
 }
-.category .table .content .sub-text {
-  font-size: 0.6em;
-  padding: -0.5em;
-  font-weight: normal;
+.category .table .content div p {
+  margin: 0;
+  color: white;
 }
 
 /* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/
 @media all and (min-width: 768px) and (max-width: 1023px) {
   main {
-    width: 80%;
+    padding: 0;
   }
   .category .table .content div {
     font-size: 10px;
@@ -213,23 +274,43 @@ main {
 /* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/
 @media all and (max-width: 767px) {
   main {
-    width: 95%;
+    padding: 0;
   }
-  .banner {
-    display: none;
+  .title {
+    margin-top: 1vh;
+  }
+
+  .category {
+    display: flex;
   }
   .category .table {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
   }
-  .category .table {
-    margin-bottom: 1em;
+  .category .table .content {
+    display: flex;
+    flex-wrap: wrap;
   }
-  .sub-text {
-    display: none;
+  .category .table .content {
+    height: 25vw;
+    width: 25vw;
   }
   .category .table .content div {
-    font-size: 5px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    text-align: start;
+    padding: 0.2vw;
+    line-height: 12px;
+    font-size: 11px;
+  }
+  .category .table .content img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 25px;
+    object-fit: contain;
+    margin: 0.5rem 0.5rem 0 0;
   }
 }
 </style>

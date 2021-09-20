@@ -50,6 +50,7 @@ export default {
 }
 
 .category article {
+  max-width: 200px;
 }
 .category article a {
   display: block;

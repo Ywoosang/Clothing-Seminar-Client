@@ -271,5 +271,8 @@ export default {
 }
 /* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/
 @media all and (max-width: 767px) {
+  .category{
+    display: none;
+  }
 }
 </style>
