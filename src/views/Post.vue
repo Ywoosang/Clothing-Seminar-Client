@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <side-bar />
+    <side-bar/>
     <section class="content">
       <h1 class="category">{{ category }}</h1>
       <h1 class="title">{{ post.title }} <span v-if="modified">(수정됌)</span></h1>
@@ -130,9 +130,6 @@ export default {
 </script>
 
 <style scoped>
-* {
-  /* border: 1px solid red; */
-}
 .wrapper {
   flex: 1;
   display: flex;
@@ -181,6 +178,14 @@ export default {
 .content .post-content{
     margin: 1em 0 0 0;
 }
-.category {
+/* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/
+@media all and (min-width: 768px) and (max-width: 1023px) {
+  
+}
+/* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/
+@media all and (max-width: 767px) {
+  .category{
+    display: none;
+  }
 }
 </style>

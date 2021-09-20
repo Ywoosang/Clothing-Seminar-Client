@@ -10,7 +10,7 @@ const initalState: RootState = {
   username: "",
   authenticated: false,
   category: '',
-  categories: ['복식사', '복식미학 · 패션디자인', '패션마케팅 · 심리', '복식일반 의복구성 · 텍스타일']
+  categories: ['History of Costume', 'Aesthetics · Fashion Design', 'Fashion Marketing · Psychology', 'Clothing Construction · Textiles · General Costume']
 }
 
 export default createStore({

@@ -14,7 +14,7 @@
               <th class="post-title">제목</th>
               <th>작성자</th>
               <th>작성일</th>
-              <th>조회수</th>
+              <th class="views">조회수</th>
             </tr>
           </thead>
           <tbody v-if="posts.length != 0">
@@ -25,11 +25,12 @@
               </td>
               <td>{{ post.username }}</td>
               <td>{{ post.created_at }}</td>
-              <td>{{ post.views}}</td>
+              <td class="views">{{ post.views}}</td>
             </tr>
           </tbody>
-          <tbody v-else>
-            <td colspan="5" style="text-align:center;">해당 카테고리에 투고된 논문이 존재하지 않습니다(0건)</td></tbody>
+          <tbody class="not-exist" v-else>
+            <div class="message">There are no papers submitted to that Session (0 cases)</div>
+            </tbody>
         </table>
       </article>
       <article class="pagination">
@@ -172,6 +173,16 @@ export default {
 .posts table tr .post-title {
   width: 40%;
 }
+.posts table tbody.not-exist{
+  text-align: center;
+  position:relative;
+}
+.posts table tbody.not-exist .message{
+  position:absolute;
+  left: 50%;
+  top: 2rem;
+  transform:translateX(-50%);
+}
 
 .pagination {
   flex: 1;
@@ -200,6 +211,10 @@ export default {
 }
 /* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/
 @media all and (max-width: 767px) {
+  .title h1{
+    font-size: 2rem;
+    padding-left: 1rem;
+  }
   .category {
     display: none;
   }
@@ -208,6 +223,9 @@ export default {
   }
   .posts table {
     width: 100%;
+  }
+  .views{
+    display: none;
   }
 }
 </style>

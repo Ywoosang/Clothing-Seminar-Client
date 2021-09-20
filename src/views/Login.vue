@@ -9,7 +9,7 @@
       </div>
     </section>
     <section class="content">
-      <h1 class="des">로그인</h1>
+      <h1 class="des">관리자 로그인</h1>
       <form @submit.prevent="submit">
         <div class="input-wrapper">
           <label for="id"

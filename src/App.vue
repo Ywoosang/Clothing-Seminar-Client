@@ -14,7 +14,8 @@ export default {
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fahkwang:wght@600;700&display=swap');
 /* Reset CSS */
 * {
   font-family: 'Noto Sans', sans-serif;
@@ -55,19 +56,23 @@ button {
 
 ul{
   list-style : none;
+  margin:0;
+  madding:0;
 }
 
 /* vue app */
 #app{
   height:100%;
+  width:100%;
   display: flex;
   flex-direction: column;
+  overflow: auto;
 }
 /* slick-slider */
-.banner .slider>.slick-prev{
+/* .banner .slider>.slick-prev{
  display: none !important; 
 }
 .banner .slider>.slick-next{
    display: none !important;
-}
+} */
 </style>

@@ -10,6 +10,7 @@ import Admin from '@/views/Admin.vue';
 import Post from '@/views/Post.vue';
 import NewPost from '@/views/NewPost.vue';
 import Profile from '@/views/Profile.vue';
+import WelcomeMessage from '@/views/WelcomeMessage.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -42,6 +43,9 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path : '/post/:category/write',component: NewPost, props:true
+  },
+  {
+    path : '/info/program', component: WelcomeMessage
   },
   {
     path : '/404',

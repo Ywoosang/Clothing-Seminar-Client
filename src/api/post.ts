@@ -22,7 +22,6 @@ export const getTotalPageNumber = (category: string) =>
         withCredentials: true
     })
 
-
 export const getPostsByPageNumber = (page: string,category: string) => 
     request({
         url: `/api/category/${category}/${page}`,
