@@ -1,13 +1,6 @@
 <template>
   <div class="wrapper">
-    <article class="title">
-      <h1>
-        <span style="color: #ff0000">KSC</span> International Conference (KSCIC)
-        2021
-      </h1>
-      <h3>'Fashion for Human, Peace and the Future'</h3>
-      <p>October 23, 2021 International Peace Center(and virtual Jeju)</p>
-    </article>
+    <title-message/>
     <main>
       <section class="category">
         <div class="table top">
@@ -17,34 +10,34 @@
           <div class="content" style="background: transparent"></div>
           <router-link to="/info/program?lang=en" class="content">
             <div>
-            <p>Program</p>
+              <p>Program</p>
             </div>
           </router-link>
         </div>
         <div class="table middle">
           <div class="content" style="background: transparent"></div>
-          <div class="content l-p">
+          <router-link class="content l-p" to="/info/welcome">
             <img src="/img/zoom.png" />
             <div>
               <p>Welcome</p>
               <p>Message</p>
             </div>
-          </div>
-          <div class="content l-p">
+          </router-link>
+          <router-link to="/live/session?sort=keynote1" class="content l-p">
             <img src="/img/zoom.png" />
             <div>
               <p>Keynote</p>
               <p>Talks 1</p>
             </div>
-          </div>
-          <div class="content">
+          </router-link>
+          <router-link to="/live/session?sort=special1" class="content">
             <img src="/img/zoom.png" />
             <div>
               <p>Special</p>
               <p>Topic</p>
               <p>Session 1</p>
             </div>
-          </div>
+          </router-link>
           <div class="content">
             <img src="/img/zoom.png" />
             <div>
@@ -76,21 +69,21 @@
               <p>Session</p>
             </div>
           </router-link>
-          <div class="content d-p">
+          <router-link to="/live/session?sort=special2" class="content d-p">
             <img src="/img/zoom.png" />
             <div>
               <p>Special</p>
               <p>Topic</p>
               <p>Session 2</p>
             </div>
-          </div>
-          <div class="content">
+          </router-link>
+          <router-link to="/live/session?sort=keynote2" class="content">
             <img src="/img/zoom.png" />
             <div>
               <p>Keynote</p>
               <p>Talks 2</p>
             </div>
-          </div>
+          </router-link>
           <div class="content">
             <img src="/img/zoom.png" />
             <div>
@@ -116,7 +109,8 @@
 <script lang="js">
 import { onMounted, ref } from "vue";
 import { useStore } from "vuex";
-import VueSlickCarousel from 'vue-slick-carousel'
+import VueSlickCarousel from 'vue-slick-carousel';
+import TitleMessage from '../components/common/Title.vue';
 // optional style for arrows & dots
 // import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 
@@ -126,7 +120,6 @@ export default {
     const store = useStore();
     const currentImg = ref("img/Asset1.png");
     onMounted(async () => {
-      await store.dispatch("setUserInfo");
          $('.slider').slick({
           dots: false,
           speed: 500,
@@ -149,11 +142,10 @@ export default {
       prevImg,
       nextImg
     }
-  // },
-  // components : {
-  //   VueSlickCarousel
-  // }
-}
+  },
+  components : {
+    TitleMessage
+  }
 }
 </script>
 
@@ -162,7 +154,7 @@ export default {
   /* border: 1px solid red; */
 }
 .wrapper {
-  background-color: #FFF;
+  background-color: #fff;
   z-index: 1;
   flex: 1;
   align-items: center;
@@ -174,30 +166,9 @@ export default {
   z-index: -1;
   position: absolute;
   bottom: 0;
-  left: 15vw;
+left: 8vw;
   height: 80%;
 }
-.title {
-  font-family: "Heebo", sans-serif;
-  margin: 4vh 0 5rem 0;
-}
-
-.title h1 {
-  font-weight: bold;
-  font-size: 2.5vw;
-  padding: 0.5rem 0;
-}
-.title h3 {
-  font-size: 2vw;
-  font-weight: 400;
-  color: #c00000;
-  padding: 0.5rem 0;
-}
-.title p {
-  font-size: 1.2vw;
-  padding: 0.5rem 0;
-}
-
 main {
   width: auto;
   display: inline-block;
@@ -269,6 +240,10 @@ main {
   }
   .sub-text {
     display: none;
+  }
+  .category .table .content {
+  width: 12vw;
+  height: 12vw;
   }
 }
 /* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/
