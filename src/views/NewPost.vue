@@ -2,7 +2,7 @@
   <div class="wrapper">
     <side-bar></side-bar>
     <section class="content">
-      <h1>게시글 작성</h1>
+      <h1>포스터 게시</h1>
       <div class="register">
         <button @click="postPost">작성 완료</button>
       </div>
@@ -26,7 +26,7 @@
           required
         />
       </div>
-      <div class="category">
+      <div class="input-wrapper">
         <label class="des" for="title">게시판</label>
         <select id="title" v-model="selected">
           <option disabled value="">카테고리를 선택해 주세요</option>
@@ -116,6 +116,7 @@ export default {
 
         const response: any = await uploadPost(data);
         const postId = response.data.postId;
+          
         if(attachedFile.value){
             const data = new FormData();
             data.append('file',attachedFile.value); 
@@ -123,16 +124,17 @@ export default {
             await uploadPostPdf(data);
             alert('논문 투고가 완료 되었습니다');
             await router.push(`/post/${category.value}?id=${postId}`);
+        } else {
+          alert('논문 투고가 완료 되었습니다');
+            await router.push(`/post/${category.value}?id=${postId}`);
         }
       } catch (error) {
         if (error.response) {
-          if (error.response.stauts == 400) {
+          console.log(error.response);
+          if (error.response.status == 400) {
             alert(error.response.data.message);
-          } else {
-            alert(error.response.status)
-          }
         }
-      }
+      }}
     }
     onMounted(() => {
       ($("#summernote") as any).summernote({
@@ -154,7 +156,7 @@ export default {
               const data = new FormData();
               data.append('file',files[0]);
               const response = await uploadPostImage(data); 
-              const imgNode = `<p><img style="object-fit:contain;" src="${response.data.url}"></p>`;
+              const imgNode = `<p><img class="post-image" style="object-fit:contain; max-width: 90%;" src="${response.data.url}"></p>`;
               imageFileName.value = files[0].name;
               const editor = document.querySelector('.note-editable')
               if(editor){
@@ -193,20 +195,20 @@ export default {
 };
 </script>
 
-<style scoped>
-* {
-  /* border: 1px solid red; */
-}
+<style scoped> 
 .wrapper {
   flex: 1;
+  max-width: 100vw;
   display: flex;
 }
 .content {
   margin: 2em 10vw 0 0;
-  flex: 3;
+  width:10vw;
+  flex:3;
   display: flex;
   flex-direction: column;
   padding-left: 3em;
+  box-sizing: border-box;
 }
 .content .register {
   height: 2em;
@@ -219,8 +221,7 @@ export default {
   float: right;
 }
 
-.content .input-wrapper,
-.content .category {
+.content .input-wrapper{
   display: flex;
   align-items: center;
 }
@@ -228,14 +229,23 @@ export default {
   margin-bottom: 0.3em;
 }
 .content .des {
-  width: 4.5em;
+  width: 4.5em !important;
+  min-width: 4.5rem;
   font-weight: 500;
 }
-.content div input,
-.content div select {
+.content .input-wrapper input,
+.content .input-wrapper select {
   background: #ffffff;
   border: 1px solid #000000;
   flex: 1;
+}
+.content .input-wrapper select {
+  width: calc(100vw -  87.5px)
+}
+.content .input-wrapper select option{
+  white-space: pre-line;
+  min-width: none;
+  text-overflow: ellipsis;
 }
 .content .attach {
   display: flex;
@@ -273,6 +283,13 @@ export default {
 @media all and (max-width: 767px) {
   .category{
     display: none;
+  }
+  .content{
+    margin:1rem 0;
+    padding:10px;
+  }
+  .content h1{
+    font-size: 2rem;
   }
 }
 </style>

@@ -18,8 +18,9 @@ export default {
 <style scoped>
 .title {
   font-family: "Heebo", sans-serif;
-  white-space: nowrap;
+  margin: 4vh 0 5rem 0;
 }
+
 .title h1 {
   font-weight: bold;
   font-size: 2.5vw;
@@ -38,6 +39,8 @@ export default {
 @media all and (max-width: 767px) {
     .title{
         display: none;
+        margin: 10px 0;
     }
+    
 }
 </style>
