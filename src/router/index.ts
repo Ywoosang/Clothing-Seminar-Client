@@ -10,7 +10,9 @@ import Admin from '@/views/Admin.vue';
 import Post from '@/views/Post.vue';
 import NewPost from '@/views/NewPost.vue';
 import Profile from '@/views/Profile.vue';
+import Program from '@/views/Program.vue';
 import WelcomeMessage from '@/views/WelcomeMessage.vue';
+import ZoomSession from '@/views/ZoomSession.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -45,7 +47,13 @@ const routes: Array<RouteRecordRaw> = [
     path : '/post/:category/write',component: NewPost, props:true
   },
   {
-    path : '/info/program', component: WelcomeMessage
+    path : '/info/program', component: Program
+  },
+  {
+    path : '/info/welcome', component: WelcomeMessage
+  },
+  {
+    path: '/live/session', component: ZoomSession
   },
   {
     path : '/404',
