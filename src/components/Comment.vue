@@ -150,7 +150,6 @@ export default {
     };
     onMounted(async () => {
       await getComments();
-      await store.dispatch("setUserInfo");
     });
     return {
       content,
@@ -237,5 +236,27 @@ export default {
   height: 8rem;
   padding: 0;
   margin-left: 1em;
+}
+
+/* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/
+@media all and (min-width: 768px) and (max-width: 1023px) {
+  
+}
+/* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/
+@media all and (max-width: 767px) {
+  .comments {
+  background: #dcdcdc;
+  width: 100%;
+  padding: 1em;
+  margin: 2em 0;
+}
+  .category{
+    display: none;
+  }
+  .content{
+    margin:2px;
+    padding:0;
+  }
+  
 }
 </style>

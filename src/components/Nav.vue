@@ -13,20 +13,16 @@
         <button class="toggle-btn" @click="toggleSideBar">
           <img src="/img/cancel.png"/>
         </button>
-        <li class="auth">
-          <router-link class="signin" to="/login"><i class="fas fa-user-cog"></i></router-link>
+        <li class="auth-btn" v-if="!auth">
+          <router-link class="signin" to="/login"><i class="fas fa-sign-in-alt"></i></router-link>
+        </li>
+        <li class="auth" v-if="auth">
+          <button class="auth-btn" @click="logout"><i class="fas fa-sign-out-alt"></i></button>
         </li>
          <h1>Poster Session</h1>
         <Category />
       </ul>
     </nav>
-    <!-- <div class="sign-in" v-if="!auth">
-      <router-link class="signin" to="/login">관리자 로그인</router-link>
-    </div>
-    <div class="auth" v-if="auth">
-      <router-link class="profile" to="/profile">내 프로필</router-link>
-      <a class="nav-link logout" @click="clearCookie">로그아웃</a>
-    </div> -->
   </header>
 </template>
 
@@ -44,7 +40,7 @@ export default {
     const router = useRouter();
     const auth = computed(() => store.state.authenticated);
     const isActive = ref<boolean>(false);
-    const clearCookie = async () => {
+    const logout = async () => {
       try {
         await logout();
         localStorage.removeItem("jwt");
@@ -61,7 +57,6 @@ export default {
       // data 처럼 사용 가능
       auth,
       logout,
-      clearCookie,
       isActive,
       toggleSideBar
     };
@@ -116,7 +111,10 @@ nav .menu-btn i{
 .gnb li a:last-child {
   margin-right: 0;
 }
-nav .signin i{
+nav .auth{
+
+}
+nav .auth i{
   font-size: 30px;
 }
 /* PC */
@@ -139,9 +137,7 @@ nav button,.gnb .category,.gnb h1{
 
 nav .auth a:first-child::after {
   display: inline-block;
-  content: "";
-  position: absolute;
-  right: -0.3em;
+  content: "";toggle-btn
   top: -2px;
   width: 2px;
   height: 20px;
@@ -155,6 +151,7 @@ nav .auth a:first-child::after {
 }
 /* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/
 @media all and (max-width: 767px) {
+  
   nav button{
     display: inline-block;
   }
@@ -203,7 +200,12 @@ nav .auth a:first-child::after {
   .gnb li.auth{
     margin: 0 0 4rem 0;
   }
-  .gnb button {
+  /* .gnb li.auth  */
+  .gnb li.auth .auth-btn{
+    margin-left: 15px;
+    background:transparent;
+  }
+  .gnb .toggle-btn {
     width: 40px;
     height: 40px;
     position: absolute;

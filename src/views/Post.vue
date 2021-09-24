@@ -5,12 +5,13 @@
       <h1 class="category">{{ category }}</h1>
       <h1 class="title">{{ post.title }} <span v-if="modified">(수정됌)</span></h1>
       <div class="info">
-        <div>작성자: {{ post.username }}({{ post.userid }})</div>
+        <div>작성자: {{ post.username }}</div>
+        <div>관리자: {{ post.userid }}</div>
         <div>작성일: {{ post.created_at }}</div>
         <div>조회수: {{ post.views }}</div>
         <button class="delete" v-if="hasDeleteAuthority" @click="deletePost">삭제하기</button>
       </div>
-      <div class="file">
+      <div class="file" v-if="post.filename">
         <div class="name">
           {{ post.filename }}
         </div>
@@ -51,7 +52,7 @@ export default {
     const { category } = toRefs(props);
 
     const postId = ref<any>(route.query.id);
-    const postViewLink = ref<any>(`${process.env.VUE_APP_BASE_URL}/api/post/${route.query.id}/view?token=${localStorage.getItem('jwt')}`);
+    const postViewLink = ref<any>(`${process.env.VUE_APP_BASE_URL}/api/post/${route.query.id}/view`);
     const post = ref<any>({
       title: "",
       content: "",
@@ -178,6 +179,9 @@ export default {
 .content .post-content{
     margin: 1em 0 0 0;
 }
+.content .post-image{
+  width: 90%;
+}
 /* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/
 @media all and (min-width: 768px) and (max-width: 1023px) {
   
@@ -186,6 +190,24 @@ export default {
 @media all and (max-width: 767px) {
   .category{
     display: none;
+  }
+  .content{
+    margin:0;
+    padding:10px;
+    width: 100%;
+  }
+  .content .title{
+    margin: 10px 0;
+  }
+  .content .info {
+    width: 100%;
+  }
+  .content .info div{
+    font-size:11px;
+    margin: 0 10px 0 0;
+  }
+  .content .file {
+    width: 100%;
   }
 }
 </style>

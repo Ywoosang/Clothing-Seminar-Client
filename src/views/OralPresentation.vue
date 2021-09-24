@@ -55,7 +55,7 @@ export default {
 
 .wrapper .background-logo {
   position: absolute;
-  left: 0;
+left: 8vw;
   bottom: 0;
   height: 80%;
 }
@@ -64,10 +64,15 @@ export default {
 }
 .title article {
   margin: 0 auto;
-  width: 15rem;
+  width: 30rem;
   height: 100%;
   display: flex;
   flex-direction: column;
+}
+.title article h1{
+  text-align: center;
+  font-size: 30px;
+  margin:0;
 }
 /* 이미지 */
 .title article .image-wrapper {
@@ -104,6 +109,7 @@ export default {
   width: 80%;
 }
 .content .article-wrapper article {
+    z-index:2;
   float: left;
   width: 13vw;
   height: 13vw;

@@ -62,7 +62,7 @@ export default {
 }
 .wrapper .background-logo{
   position:absolute;
-  left: 0;
+ left: 8vw;
   bottom:0;
   height: 80%;
 }
@@ -71,7 +71,7 @@ export default {
 }
 .title article {
   margin: 0 auto;
-  width: 15rem;
+  width: 30rem;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -96,7 +96,7 @@ export default {
   text-align: center;
   line-height: 4rem;
   font-weight: 500;
-  font-size: 1.4em;
+  font-size: 30px;
 }
 .content {
   width: 100%;
@@ -112,6 +112,7 @@ export default {
   width: 80%;
 }
 .content .article-wrapper .article{
+    z-index:2;
     float:left; 
     width: 11vw; 
     height: 11vw;
@@ -134,6 +135,7 @@ export default {
     line-height: 140%;
 }
 .q-a{
+  z-index:2;
     flex:4;
     width: 80%;
     text-align: center;
@@ -172,7 +174,7 @@ export default {
        width: 50vw;
        border-radius: 0.8em;
        height: 20vw;
-       z-index: 1001;
+       z-index: 2;
    }
     .content .article-wrapper .article h1{
         font-size: 3.5vw;

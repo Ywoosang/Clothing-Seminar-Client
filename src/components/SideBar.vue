@@ -1,6 +1,6 @@
 <template>
    <section class="category">
-      <h1>포스터 발표</h1>
+      <h1>Poster Session</h1>
       <article>
         <router-link
           v-for="category in categories"
@@ -40,7 +40,7 @@ export default {
   align-items: flex-start;
   border-right: 3px solid #a1a1a1;
   margin: 2rem 0;
-  padding: 0 1em 0 10vw;
+  padding: 0 1em 0 5vw;
   box-sizing: border-box;
 }
 
