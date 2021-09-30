@@ -1,9 +1,9 @@
 <template>
   <footer>
       <div class="text-wrapper f-left">
-          <p>KSC international conferance</p>
-          <p>2020. 10. 23</p>
-          <p>Copyright ©KSCT. All Right Reserved.</p>
+          <p>KSC International Conference</p>
+          <p>2021. 10. 23</p>
+          <p>Copyright ©KSC. All Right Reserved.</p>
       </div>
       <div class="text-wrapper f-right">
           <p>(사) 한국복식학회 (04175)서울특별시 마포구 마포대로 12(마포동) 한신빌딩 1616호</p>
@@ -17,6 +17,7 @@
 <style scoped>
 footer{
     display: flex;
+    z-index: 1;
     justify-content: center;
     background-color: #787878;
     color: white;

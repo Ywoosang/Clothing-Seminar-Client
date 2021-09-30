@@ -1,29 +1,23 @@
 <template>
-<div class="wrapper"> 
+  <div class="wrapper">
     <section class="title">
       <div class="logo">
-         <img class="auth-logo" src="/img/logo.png">
+        <img class="auth-logo" src="/img/logo.png" />
       </div>
       <div class="des">
         <h1>한국복식학회에 오신 것을 환영합니다!</h1>
       </div>
     </section>
     <section class="content">
-      <h1 class="des">관리자 로그인</h1>
+      <h1 class="login">관리자 로그인</h1>
       <form @submit.prevent="submit">
         <div class="input-wrapper">
-          <label for="id"
-            ><span class="label-text">아이디</span>
-            <input
-              v-model="data.userId"
-              id="id"
-              type="userid"
-              placeholder="발급받은 아이디"
-              required
-            />
+          <label for="id">
+            <span class="label-text">아이디</span>
+            <input v-model="data.userId" id="id" type="userid" placeholder="발급받은 아이디" required />
           </label>
-          <label for="password"
-            ><span  class="label-text">비밀번호</span>
+          <label for="password">
+            <span class="label-text">비밀번호</span>
             <input
               v-model="data.password"
               id="password"
@@ -37,8 +31,8 @@
         <button class="submit" type="submit">LOG-IN</button>
       </form>
       <div class="space"></div>
-      <img src="/img/background-logo.png" />
     </section>
+    <background/>
   </div>
 </template>
 
@@ -48,32 +42,34 @@ import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 import { LoginResponse } from "../types/type";
 import { login } from "../api/auth";
+import Background from '../components/common/Background.vue';
 
 export default {
+  components: { Background },
   name: "Login",
   setup() {
     const store = useStore();
     const router = useRouter();
     const data = reactive({
       userId: "",
-      password: "",
+      password: ""
     });
     const submit = async () => {
       // 폼검증 필요
       try {
         const response = await login(data);
-        const jwt = response.data.accessToken;  
-        if(!jwt){
-          return alert('Login Error');
-        } 
-        localStorage.removeItem("jwt"); 
-        localStorage.setItem("jwt",jwt); 
+        const jwt = response.data.accessToken;
+        if (!jwt) {
+          return alert("Login Error");
+        }
+        localStorage.removeItem("jwt");
+        localStorage.setItem("jwt", jwt);
         await router.push("/");
       } catch (error) {
         if (error.response) {
           if (error.response.status == 401 || error.response.status == 400) {
             alert(error.response.data.message);
-          } 
+          }
         } else {
           console.log("Error", error.message);
         }
@@ -81,17 +77,24 @@ export default {
     };
     return {
       data,
-      submit,
+      submit
     };
-  },
+  }
 };
 </script>
 <style scoped>
-.wrapper{
+.wrapper {
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.wrapper > img{
+  position: absolute;
+  z-index: -1;
+  left: 10vw;
+  bottom: 0%;
+  height: 80%;
 }
 .title {
   margin-top: 1em;
@@ -105,34 +108,29 @@ export default {
   position: relative;
   margin-bottom: 0.5em;
 }
-.title .logo .auth-logo{
+.title .logo .auth-logo {
   height: 8vh;
-  top:0; 
+  top: 0;
   position: absolute;
   object-fit: contain;
 }
- .title .des {
-  flex:1;
+.title .des {
+  flex: 1;
 }
- .title .des h1 {
+.title .des h1 {
   font-weight: 500;
   font-size: 1em;
 }
-.content { 
-  border: 1px solid #AAAAAA;
+/* 로그인 창 */
+.content {
+  border: 1px solid #aaaaaa;
   width: 55%;
-  position:relative;
+  position: relative;
   overflow: hidden;
 }
-img{
-  position:absolute;
-  left:5%;
-  bottom:-20%;
-  height: 110%;
-}
-.content h1 {
-  box-sizing: border-box;
-  padding: 3rem;
+.content .login {
+  font-size: 3rem;
+   padding: 3rem;
   height: 11rem;
 }
 .content form {
@@ -144,7 +142,7 @@ img{
 }
 .content form .input-wrapper {
   display: flex;
-  flex:1;
+  flex: 1;
   max-width: 60%;
   flex-direction: column;
   margin-right: 3%;
@@ -154,7 +152,7 @@ img{
   justify-content: space-between;
   flex-wrap: nowrap;
   font-size: 2rem;
-  flex:1;
+  flex: 1;
   line-height: 3.5rem;
   min-width: 25rem;
   margin-bottom: 1.5em;
@@ -164,7 +162,7 @@ img{
   margin-bottom: 0;
 }
 .content form .input-wrapper label input {
-  border: 1px solid #AAAAAA;
+  border: 1px solid #aaaaaa;
   height: 3.5rem;
   margin-left: 0.5em;
   font-weight: normal;
@@ -172,52 +170,57 @@ img{
   flex: 1;
 }
 .content form .submit {
-    background-color: #AAAAAA;
-    padding: 0 1em;
-    font-size: 1em;
+  background-color: #aaaaaa;
+  padding: 0 1em;
+  font-size: 1em;
 }
-.content form .input-wrapper label .label-text{
-  width: 4.3em; 
+.content form .input-wrapper label .label-text {
+  width: 4.3em;
   text-align: end;
 }
-.content .space{
+.content .space {
   box-sizing: border-box;
   height: 11rem;
 }
- 
 
 /* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/
 @media all and (min-width: 768px) and (max-width: 1023px) {
-    .content form{
-     display: flex;
-     flex-direction: column;
-   }
-    .content form .input-wrapper{
-     margin:0 0 3em 0;
-      max-width: none;
-   }
-    .content form .submit{
-       height: 2.5em;
-   }
+  .content form {
+    display: flex;
+    flex-direction: column;
+  }
+  .content form .input-wrapper {
+    margin: 0 0 3em 0;
+    max-width: none;
+  }
+  .content form .submit {
+    height: 2.5em;
+  }
 }
 /* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/
 @media all and (max-width: 767px) {
-  .content{
+  .content {
     width: 90%;
   }
-  .content form{
-     display: flex;
-     flex-direction: column;
-   }
-  .content form .input-wrapper{
-     margin:0 0 3em 0;
-      max-width: none;
-
-   }
-    .content form .submit{
-       height: 2.5em;
-   }
-
+  .content form {
+    display: flex;
+    flex-direction: column;
+  }
+  .content form .input-wrapper {
+    margin: 0 0 3em 0;
+    max-width: none;
+  }
+  .content form .submit {
+    height: 2.5em;
+  }
+  .content .login {
+    font-size: 2rem;
+     padding: 3rem;
+  height: 8rem;
+  }
+  .content form .input-wrapper label {
+  font-size: 1.5rem;
+}
 }
 </style>
  

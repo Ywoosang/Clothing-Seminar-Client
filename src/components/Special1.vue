@@ -7,7 +7,7 @@
       <div class="speakers-list">
         <div class="speaker">
           <div class="speaker-img">
-            <img src="/img/specialtopic1.png" />
+            <img src="/img/specialtopic1.jpg" />
           </div>
           <div class="speaker-body">
             <h3 style="color: #5b9bd5">
@@ -37,7 +37,7 @@
         </div>
       </div>
       <div class="btn-wrap">
-        <button type="button" onclick="openZoom()">participate</button>
+        <button type="button" onclick="openZoom()">Participate</button>
       </div>
     </article>
   </main>

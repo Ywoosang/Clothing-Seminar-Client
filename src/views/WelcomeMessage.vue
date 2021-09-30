@@ -1,7 +1,6 @@
 <template>
   <div class="wrapper">
     <title-message />
-
     <main>
       <article>
         <div class="speaker">
@@ -11,6 +10,36 @@
           </div>
           <div class="speaker-body">
             <p class="header" style="color: #5b9bd5">Welcome Message</p>
+            <p class="en">
+              Welcome to the 2021 International Conference on Korean Society of
+              Costume (KSCIC)!
+              <br />
+              The 2021 conference title is ‘Fashion for Human, Peace and the
+              Future’. This year’s KSCIC will be in Jeju and virtual.
+              <br />
+              KSCIC 2021 provides a forum for scholars from Korea, the UK, the
+              US, China, Spain, Japan, and Italy to come together to share
+              practical solutions to achieve the sustainable development goals
+              of the fashion industry for the better future. There are two
+              keynote lectures, Professor Woo Seok Kong's lecture ‘Homo
+              symbiosis’, and Reader Alessandra Vecchi on a Uk fashion
+              industry-led project, which focusses on delivering sustainable
+              innovation within the entire fashion and textile supply chain.
+              KSCIC 2021 provides two special topic session on the global
+              fashion platform and metaverse, which are spotlighted as a future
+              workplace of young fashion professional.
+              <br />
+              Korean Society of Costume (KSC) was founded in 1975 and holds
+              international academic conferences every year. In KSCIC 2021, oral
+              presentations and poster presentations will be held in four
+              divisions consisting of ‘History of Costume’, ‘Aesthetics ·
+              Fashion Design’, ‘Fashion Marketing · Psychology’, and ‘Clothing
+              Construction · Textiles · General Costume’.
+              <br />
+              I hope you will have a useful and enjoyable day to Improve your
+              research, and a real contribution to knowledge with the various
+              programs prepared by KSCIC 2021.
+            </p>
             <p class="ko">
               2021년 한국 복식학회 추계 국제 학술대회(KSCIC 2021)에 오신 것을
               환영합니다!
@@ -42,40 +71,11 @@
               바랍니다.
             </p>
             <br />
-            <p class="en">
-              Welcome to the 2021 International Conference on Korean Society of
-              Costume (KSCIC)!
-              <br />
-              The 2021 conference title is ‘Fashion for Human, Peace and the
-              Future’. This year’s KSCIC will be in Jeju and virtual.
-              <br />
-              KSCIC 2021 provides a forum for scholars from Korea, the UK, the
-              US, China, Spain, Japan, and Italy to come together to share
-              practical solutions to achieve the sustainable development goals
-              of the fashion industry for the better future. There are two
-              keynote lectures, Professor Woo Seok Kong's lecture ‘Homo
-              symbiosis’, and Reader Alessandra Vecchi on a Uk fashion
-              industry-led project, which focusses on delivering sustainable
-              innovation within the entire fashion and textile supply chain.
-              KSCIC 2021 provides two special topic session on the global
-              fashion platform and metaverse, which are spotlighted as a future
-              workplace of young fashion professional.
-              <br />
-              Korean Society of Costume (KSC) was founded in 1975 and holds
-              international academic conferences every year. In KSCIC 2021, oral
-              presentations and poster presentations will be held in four
-              divisions consisting of ‘History of Costume’, ‘Aesthetics ·
-              Fashion Design’, ‘Fashion Marketing · Psychology’, and ‘Clothing
-              Construction · Textiles · General Costume’.
-              <br />
-              I hope you will have a useful and enjoyable day to Improve your
-              research, and a real contribution to knowledge with the various
-              programs prepared by KSCIC 2021.
-            </p>
+             
           </div>
         </div>
         <div class="btn-wrap">
-          <button type="button" onclick="openZoom()">participate</button>
+          <button type="button" onclick="openZoom()">Participate</button>
         </div>
       </article>
     </main>
@@ -143,6 +143,7 @@ article {
 }
 .speaker-body .en {
   font-family: "Heebo", sans-serif;
+  margin-bottom: 3rem;
 }
 .btn-wrap {
   width: 70%;
@@ -199,9 +200,7 @@ article {
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
-  * {
-    border: 1px solid red;
-  }
+   
   .speaker {
     width: 90%;
   }

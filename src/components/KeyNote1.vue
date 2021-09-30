@@ -38,7 +38,7 @@
         </div>
       </div>
       <div class="btn-wrap">
-        <button type="button" onclick="openZoom()">participate</button>
+        <button type="button" onclick="openZoom()">Participate</button>
       </div>
     </article>
   </main>

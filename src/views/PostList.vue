@@ -28,9 +28,6 @@
               <td class="views">{{ post.views}}</td>
             </tr>
           </tbody>
-          <tbody class="not-exist" v-else>
-            <div class="message">There are no papers submitted to that Session (0 cases)</div>
-            </tbody>
         </table>
       </article>
       <article class="pagination">
@@ -50,29 +47,31 @@ import { Post } from '../types/type';
 import { getPostsByPageNumber,getTotalPageNumber } from '../api/post'; 
 
 export default {
-  props: ["name"],
+  props: ["category"],
   name: "PostList",
   setup(props: any) {
     const store = useStore();
     const router = useRouter();
     const route = useRoute(); 
     const posts = ref<Post[]>([]);
-    // const postAuth = ref<boolean>(false);
     const categories = store.state.categories;
     const pages = ref<any>();
     
     const currentCategory = computed(() =>{
-       return props.name.replace(",", "·");
+       return props.category.replace(",", "·");
     });
     watch(currentCategory,async(newValue,oldValue)=>{
       store.commit('SET_CATEGORY',newValue); 
       await getNumberOfPages();
       await getCurrentPagePosts(); 
+      document.title = `KSCIC > ${newValue}`
     });
 
     onMounted(async () => {
       await store.dispatch("setUserInfo");
       store.commit('SET_CATEGORY',currentCategory); 
+      // title
+      document.title = `KICIC > ${currentCategory.value}`
       await getNumberOfPages();
       await getCurrentPagePosts(); 
     });
@@ -86,7 +85,7 @@ export default {
           .fill(0)
           .map((_, index) => index + 1); 
       } catch(error){
-        alert(error);
+        console.log(error);
       }
     }
 
@@ -97,7 +96,7 @@ export default {
         const response = await getPostsByPageNumber(page,category); 
         posts.value = response.data.posts;
       } catch (error) {
-        alert(error);
+        console.log(error);
       }
     }
     const postAuth = computed(()=> {
@@ -221,8 +220,13 @@ export default {
   .content {
     padding: 0;
   }
+  .posts{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   .posts table {
-    width: 100%;
+    width: 98%;
   }
   .views{
     display: none;

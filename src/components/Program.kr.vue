@@ -24,6 +24,7 @@
           <tr>
             <td>9:45 - 10:00</td>
             <td colspan="6">KSCIC 2021 소개영상</td>
+            <td></td>
           </tr>
           <tr>
             <td>10:00 - 10:10</td>
@@ -63,6 +64,7 @@
             <td>11:50 - 12:50</td>
             <td colspan="4">휴식</td>
             <td colspan="2">Virtual Tour : 2021 국제 KOSCO전</td>
+            <td></td>
           </tr>
           <tr>
             <td rowspan="2">12:50 - 13:30</td>
@@ -100,6 +102,7 @@
           <tr>
             <td>14:50 - 15:00</td>
             <td colspan="6">휴식</td>
+            <td></td>
           </tr>
           <tr>
             <td>15:00 - 15:50</td>
@@ -130,6 +133,7 @@
           <tr>
             <td>17:20</td>
             <td colspan="6">폐회</td>
+            <td></td>
           </tr>
         </tbody>
       </table>
@@ -145,9 +149,6 @@ export default {
 }
 </script>
 <style scoped>
-main {
-    min-width: 850px;
-}
 article {
   display: flex;
   flex-direction: column;
@@ -202,5 +203,19 @@ td {
 }
 .section .section-02 {
   flex: 2;
+}
+
+@media all and (max-width: 767px) {
+    article {
+    padding: 0 5px;
+  }
+  table{
+    width: 100%;
+    margin-top: 4em;
+  }
+  td {
+  font-size: 11px;
+  word-break: break-all;
+  }
 }
 </style>

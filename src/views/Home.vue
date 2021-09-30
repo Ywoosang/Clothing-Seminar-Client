@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <title-message/>
+    <title-message />
     <main>
       <section class="category">
         <div class="table top">
@@ -87,46 +87,64 @@
           <div class="content">
             <img src="/img/zoom.png" />
             <div>
-              <p>Closing</p>
-              <p>Remarks</p>
+              <p>Awards</p>
+              <p>Ceremony</p>
             </div>
           </div>
-          <div class="content">
+          <router-link to="/review?page=1" class="content">
             <div>
-              <p>Review</p>
-              <p>:After</p>
-              <p>finishing</p>
-              <p>conference</p>
+              <p>Comments</p>
+              <p>on</p>
+              <p>KSCIC</p>
+              <p>2021</p>
             </div>
-          </div>
+          </router-link>
         </div>
       </section>
     </main>
-    <img src="/img/background-logo.png" />
+    <div class="banner">
+      <div id="slider" class="sponsors">
+        <a href="https://www.mcst.go.kr/kor/main.jsp" target="_blank">
+          <img src="/img/banner/banner1.png" alt />
+        </a>
+        <a href="https://kofst.or.kr/intro.jsp" target="_blank">
+          <img src="/img/banner/banner2.png" alt />
+        </a>
+       <div>
+          <img src="/img/banner/banner3.png" alt />
+        </div>
+           <a href="http://www.apparelbase.com/" target="_blank">
+          <img src="/img/banner/banner4.png" alt />
+           </a>
+        <a href="http://www.dnastudio.co.kr/" target="_blank">
+          <img src="/img/banner/banner5.png" alt />
+        </a>
+      </div>
+    </div>
+    <background/>
   </div>
 </template>
 
 <script lang="js">
 import { onMounted, ref } from "vue";
 import { useStore } from "vuex";
-import VueSlickCarousel from 'vue-slick-carousel';
 import TitleMessage from '../components/common/Title.vue';
-// optional style for arrows & dots
-// import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
+import Background from '../components/common/Background.vue'; 
 
 export default {
   name: "Home",
   setup()  {
     const store = useStore();
-    const currentImg = ref("img/Asset1.png");
     onMounted(async () => {
-         $('.slider').slick({
+        await store.dispatch("setUserInfo");
+         $('#slider').slick({
           dots: false,
-          speed: 500,
-          autoplay: true,
-          autoplaySpeed: 1000,
-          slidesToShow: 1,
+          infinite: true,
+          slidesToShow: 3,
           slidesToScroll: 1,
+          autoplay: true,
+          autoplaySpeed: 2000,
+          dots: false
       });
        
     });
@@ -138,13 +156,13 @@ export default {
     }
    
     return {
-      currentImg,
       prevImg,
       nextImg
     }
   },
   components : {
-    TitleMessage
+    TitleMessage,
+    Background
   }
 }
 </script>
@@ -162,17 +180,10 @@ export default {
   text-align: center;
   position: relative;
 }
-.wrapper > img {
-  z-index: -1;
-  position: absolute;
-  bottom: 0;
-left: 8vw;
-  height: 80%;
-}
 main {
   width: auto;
   display: inline-block;
-  padding: 0 0 0 10vw;
+  padding: 0 0 5rem 10vw;
 }
 .category {
   width: auto;
@@ -214,7 +225,7 @@ main {
   right: 0;
   width: 2vw;
   object-fit: contain;
-  margin: 0.2vw 0.2vw 0 0;
+  margin: 0.4vw 0.4vw 0 0;
 }
 .category .table .content div {
   position: absolute;
@@ -230,6 +241,24 @@ main {
   color: white;
 }
 
+.banner {
+}
+.banner .sponsors {
+  padding: 0 25vw 3rem 20vw;
+}
+.banner .sponsors a,.banner .sponsors div{
+  height: 6rem;
+  border: none;
+  text-align: center;
+  box-sizing: border-box;
+}
+.banner .sponsors a img,.banner .sponsors div img{
+  padding: 0 0.1rem;
+  object-fit: contain;
+  display: inline-block;
+  height: 4rem;
+  box-sizing: border-box;
+}
 /* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/
 @media all and (min-width: 768px) and (max-width: 1023px) {
   main {
@@ -242,12 +271,19 @@ main {
     display: none;
   }
   .category .table .content {
-  width: 12vw;
-  height: 12vw;
+    width: 12vw;
+    height: 12vw;
   }
+  .banner .sponsors {
+  padding: 3rem 10vw;
+}
 }
 /* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/
 @media all and (max-width: 767px) {
+  .wrapper > img{
+  left: 2rem;
+      height: 70%;
+  }
   main {
     padding: 0;
   }
@@ -275,7 +311,7 @@ main {
     bottom: 0;
     left: 0;
     text-align: start;
-    padding: 0.2vw;
+    padding: 0.5rem;
     line-height: 12px;
     font-size: 11px;
   }
@@ -287,5 +323,12 @@ main {
     object-fit: contain;
     margin: 0.5rem 0.5rem 0 0;
   }
+  .banner .sponsors {
+  padding: 3rem ;
+}
+.banner .sponsors div img{
+  height: 1.7rem;
+  box-sizing: border-box;
+}
 }
 </style>

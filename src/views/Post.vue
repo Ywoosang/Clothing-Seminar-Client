@@ -16,13 +16,11 @@
           {{ post.filename }}
         </div>
         <a :href="postViewLink"
-          ><i class="fa fa-file-pdf-o" style="margin-right: 0.5em"></i
-          ><b>논문 보기</b></a
+          ><i class="fa fa-file-pdf-o" style="margin-right: 0.5em; font-size: 1.3em;"></i
+          ><b style="font-size: 1.3em; line-height: 3rem;">원본 PDF 파일 보기</b></a
         >
       </div>
       <div class="post-content" v-html="post.content"></div>
-      <!-- <button id="show-modal" @click="showModal = true">Show Modal</button> -->
-      <!-- use the modal component, pass in the prop -->
       <Comment :postid="postId"/>
     </section>
   </div>
@@ -50,7 +48,6 @@ export default {
     const route = useRoute();
     const router = useRouter();
     const { category } = toRefs(props);
-
     const postId = ref<any>(route.query.id);
     const postViewLink = ref<any>(`${process.env.VUE_APP_BASE_URL}/api/post/${route.query.id}/view`);
     const post = ref<any>({
@@ -69,6 +66,7 @@ export default {
       try { 
         const response = await getPostById(postId.value); 
         post.value = response.data.post;
+           document.title = `KICIC > ${post.value.title}`
       } catch (error) {
         console.log(error);
         await router.push(`/404`);
@@ -154,8 +152,8 @@ export default {
 }
 
 .content .info {
-  width: 80%;
   display: flex;
+  width: 90%;
   border-bottom: 2px solid #dcdcdc;
   padding-bottom: 0.2em;
 }
@@ -168,7 +166,7 @@ export default {
 .content .file {
   margin: 2em 0 0 0;
   background-color: #dcdcdc;
-  width: 80%;
+  width: 90%;
   padding: 1em;
 }
 .content .file .name {
@@ -178,9 +176,6 @@ export default {
 
 .content .post-content{
     margin: 1em 0 0 0;
-}
-.content .post-image{
-  width: 90%;
 }
 /* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/
 @media all and (min-width: 768px) and (max-width: 1023px) {

@@ -19,7 +19,7 @@
             <p>
               Alessandra Vecchi is a Reader with London College of Fashion,
               University of the Arts London, with an established career in the
-              field of International Fashion Business Management, I have
+              field of International Fashion Business Management, she has
               developed a significant body of work in this disciplinary field,
               drawing together research in International Business, International
               Marketing, Operations Management, and Fashion Management. She is
@@ -54,7 +54,7 @@
         </div>
       </div>
       <div class="btn-wrap">
-        <button type="button" onclick="openZoom()">participate</button>
+        <button type="button" onclick="openZoom()">Participate</button>
       </div>
     </article>
   </main>

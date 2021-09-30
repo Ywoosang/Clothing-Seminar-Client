@@ -1,46 +1,44 @@
 <template>
   <div class="wrapper">
-    <section class="title">
-      <article>
-        <div class="image-wrapper">
-          <img src="/img/logo.png" />
-        </div>
-        <h1>논문 구두발표</h1>
-      </article>
-    </section>
+    <presentation-title>
+      <h1>Oral Presentation</h1>
+    </presentation-title>
     <section class="content">
       <div class="article-wrapper">
         <article v-for="category in categories" :key="category">
-          <h1 v-if="category.length == 2">
-            {{ category[0] }}<br />{{ category[1] }}
+          <h1 class="article-title" v-if="category.length != 1">
+            <p v-for="(text,index) in category" :key="text">
+              <span v-if="index !== 0">·</span>
+              {{ text }}
+            </p>
           </h1>
-          <h1 v-else>{{ category[0] }}</h1>
+          <h1 class="article-title" v-else><p>{{ category[0] }}</p></h1>
         </article>
       </div>
     </section>
-    <img class="background-logo" src="/img/background-logo.png" />
+    <background/>
   </div>
 </template>
 
 <script>
 import { useStore } from "vuex";
 import { onMounted, computed } from "vue";
+import Background from '../components/common/Background.vue';
+import PresentationTitle from '../components/common/PresentationTitle.vue';
 
 export default {
+  components: { Background, PresentationTitle },
   setup() {
     const store = useStore();
     const categories = computed(() => {
-      return store.state.categories.map((text) => {
-        return text.split("·");
+      return store.state.categories.map(text => {
+        return text.split(" · ");
       });
     });
-    onMounted(async () => {
-      // await store.dispatch('us')
-    });
     return {
-      categories,
+      categories
     };
-  },
+  }
 };
 </script>
 
@@ -52,49 +50,10 @@ export default {
   flex: 1;
   position: relative;
 }
-
-.wrapper .background-logo {
-  position: absolute;
-left: 8vw;
-  bottom: 0;
-  height: 80%;
-}
-.title {
-  flex: 3;
-}
-.title article {
-  margin: 0 auto;
-  width: 30rem;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-.title article h1{
+.title h1{
   text-align: center;
-  font-size: 30px;
-  margin:0;
-}
-/* 이미지 */
-.title article .image-wrapper {
-  width: 100%;
-  flex: 5;
-  position: relative;
-}
-.title article .image-wrapper img {
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  transform: translate(-50%, 0);
-  height: 70%;
-  object-fit: contain;
-}
-/* 구두발표 */
-.title article h1 {
-  flex: 4;
-  text-align: center;
-  line-height: 5rem;
-  font-weight: 500;
-  font-size: 2em;
+  font-size: 2.5rem;
+  margin: 0;
 }
 .content {
   width: 100%;
@@ -109,18 +68,17 @@ left: 8vw;
   width: 80%;
 }
 .content .article-wrapper article {
-    z-index:2;
+  z-index: 2;
   float: left;
   width: 13vw;
   height: 13vw;
   margin: 2vw;
   border-radius: 50%;
   background-color: #aaaaaa;
-  color: #ffffff;
   position: relative;
   cursor: pointer;
 }
-.content .article-wrapper article h1 {
+.content .article-wrapper article .article-title {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -128,8 +86,13 @@ left: 8vw;
   width: 100%;
   text-align: center;
   font-weight: 500;
-  font-size: 1.5vw;
-  line-height: 140%;
+}
+
+.content .article-wrapper article .article-title p{
+  margin:0;
+  font-size: 1.1vw;
+  line-height: 130%;
+  coloR: white;
 }
 
 /* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/
@@ -147,13 +110,15 @@ left: 8vw;
   }
   .content .article-wrapper article {
     border-radius: 0.8rem;
-    width: 30vw;
-    z-index:1001;
+    z-index: 1001;
     height: 20vw;
-    width: 90%;
+    width: 50vw;
   }
   .content .article-wrapper article h1 {
     font-size: 3.5vw;
+  }
+   .content .article-wrapper article .article-title p{
+    font-size: 1.5rem;
   }
 }
 </style>

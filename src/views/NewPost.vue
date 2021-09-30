@@ -64,6 +64,7 @@
         <textarea id="summernote" name="editordata"></textarea>
       </form>
     </section>
+    <background/>
   </div>
 </template>
 
@@ -74,9 +75,10 @@ import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import { uploadPost,uploadPostImage,uploadPostPdf } from "../api/upload";
 import SideBar from "../components/SideBar.vue";
+import Background from '../components/common/Background.vue';
 
 export default {
-  components: { SideBar },
+  components: { SideBar, Background },
   props: {
     category: {
       type: String,
@@ -106,14 +108,15 @@ export default {
           `정말로 논문을 투고 하시겠습니까?`
         );
         if (!accept) return;
-        const content = (document.getElementById("summernote") as HTMLTextAreaElement).value;
+        // const content = (document.getElementById("summernote") as HTMLTextAreaElement).value;
+        const content = document.querySelector('.note-editable')!.innerHTML;
+        console.log('컨텐트 노드',content);
         const data = {
           title : title.value,
           content : content,
           category : selected.value,
           copyrightHolder: copyrightHolder.value
         }
-
         const response: any = await uploadPost(data);
         const postId = response.data.postId;
           
@@ -144,8 +147,6 @@ export default {
           ["fontsize", ["fontsize"]],
           ["style", ["bold", "italic", "underline", "strikethrough", "clear"]],
           ["color", ["forecolor", "color"]],
-          // ['para', ['ul', 'ol', 'paragraph']],
-          // ['height', ['height']],
           ["insert", ["picture"]],
         ],
         callbacks: {
@@ -156,12 +157,13 @@ export default {
               const data = new FormData();
               data.append('file',files[0]);
               const response = await uploadPostImage(data); 
-              const imgNode = `<p><img class="post-image" style="object-fit:contain; max-width: 90%;" src="${response.data.url}"></p>`;
+              const imgNode = `<p><img class="post-image" src="${response.data.url}"></p>`;
+              console.log('파일 주소',response.data.url);
               imageFileName.value = files[0].name;
-              const editor = document.querySelector('.note-editable')
+              const editor = document.querySelector('.note-editable'); 
               if(editor){
                 editor.innerHTML += imgNode; 
-              } 
+              }
             } catch(error){
               alert('이미지 업로드에 문제가 발생했습니다');
             }

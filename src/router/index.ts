@@ -5,65 +5,86 @@ import OralPresentation from '@/views/OralPresentation.vue'
 import KoscoPresentation from '@/views/KoscoPresentation.vue'
 import PosterPresentation from '@/views/PosterPresentation.vue'
 import PostList from '@/views/PostList.vue';
-import NotFound from '@/components/NotFound.vue'; 
+import NotFound from '@/components/NotFound.vue';
 import Admin from '@/views/Admin.vue';
 import Post from '@/views/Post.vue';
 import NewPost from '@/views/NewPost.vue';
-import Profile from '@/views/Profile.vue';
 import Program from '@/views/Program.vue';
 import WelcomeMessage from '@/views/WelcomeMessage.vue';
-import ZoomSession from '@/views/ZoomSession.vue'
-
+import ZoomSession from '@/views/ZoomSession.vue';
+import Review from '@/views/Review.vue';
+ 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: '/', component: Home,
+    path: '/', component: Home, meta : {
+      title : "2021 KSCIC"
+    }
   },
   {
-    path: '/login', component: Login,
+    path: '/login', component: Login, meta: {
+      title : "KSCIC > Login"
+    }
   },
   {
-    path: '/profile', component: Profile,
+    path: '/admin', component: Admin, meta: {
+      title : "KSCIC > Admin"
+    }
   },
   {
-    path : '/admin', component: Admin,
+    path: '/presentation/kosco', component: KoscoPresentation, meta: {
+      title : "KSCIC > Kosco Presentation"
+    }
   },
   {
-    path : '/presentation/kosco', component: KoscoPresentation
+    path: '/presentation/poster', component: PosterPresentation, meta: {
+      title : "KSCIC > Poster Presentation"
+    }
   },
   {
-    path : '/presentation/poster', component: PosterPresentation
+    path: '/presentation/oral', component: OralPresentation,meta: {
+      title : "KSCIC > Oral Presentation"
+    }
   },
   {
-    path : '/presentation/oral', component: OralPresentation
-  },
-  {
-    path : '/presentation/poster/:name', component: PostList, props:true
+    path: '/presentation/poster/:category', component: PostList, props: true
   },
   {
     // post id 는 query param 으로 받는다. 
-    path : '/post/:category',component: Post, props:true
+    path: '/post/:category', component: Post, props: true
   },
   {
-    path : '/post/:category/write',component: NewPost, props:true
+    path: '/post/:category/write', component: NewPost, props: true, meta: {
+      title: "KSCIC > Register"
+    }
   },
   {
-    path : '/info/program', component: Program
+    path: '/info/program', component: Program
   },
   {
-    path : '/info/welcome', component: WelcomeMessage
+    path: '/info/welcome', component: WelcomeMessage, meta: {
+      title : 'KICIC > Welcome'
+    }
   },
   {
-    path: '/live/session', component: ZoomSession
+    path: '/live/session', component: ZoomSession,
   },
   {
-    path : '/404',
-    name : 'notFound',
-    component : NotFound,
-    props : true
+    path: '/review', component: Review, meta: {
+      title: "KSCIC > Review"
+    }
+  },
+  {
+    path: '/404',
+    name: 'notFound',
+    component: NotFound,
+    props: true, 
+    meta: {
+      title : 'Page Not Found'
+    }
   },
   {
     path: '/:pathMatch(.*)*',
-    redirect : "/404"
+    redirect: "/404"
   }
 ]
 
@@ -71,5 +92,11 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
+
+router.afterEach((to, from) => {
+    if(to.meta.title){
+      document.title = to.meta.title as any;
+    }
+});
 
 export default router

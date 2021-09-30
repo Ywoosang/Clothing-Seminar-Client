@@ -13,7 +13,7 @@
                 <source :src="requestUrl + '/api/media/'+video +'/?token='+jwt" type="video/mp4" />
             </video>
          </section>
-        <img class="background-logo" src="/img/background-logo.png"> 
+         <background/>
     </div>  
 
 </template>
@@ -22,7 +22,9 @@
 import { ref,onMounted } from 'vue';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
+import Background from '../components/common/Background.vue';
 export default {
+  components: { Background },
     setup(){
         const store = useStore(); 
         const router = useRouter();

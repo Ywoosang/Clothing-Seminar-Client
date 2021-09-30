@@ -5,6 +5,7 @@
     <special-2 v-if="sort == 'special2'"/>
     <key-note-1 v-if="sort == 'keynote1'"/>
     <key-note-2 v-if="sort == 'keynote2'"/>
+    <background/>
 </div>
 </template>
 
@@ -14,12 +15,19 @@ import KeyNote1 from '../components/KeyNote1.vue';
 import KeyNote2 from '../components/KeyNote2.vue';
 import Special1 from '../components/Special1.vue';
 import Special2 from '../components/Special2.vue'; 
+import Background from '../components/common/Background.vue';
 import {useRoute} from 'vue-router'; 
-import { computed } from 'vue';
+import { computed, onMounted } from 'vue';
 export default {
     setup() {
         const route = useRoute();
-        const sort = computed(()=> route.query.sort);
+        const sort = route.query.sort as string;
+        onMounted(()=>{
+          if(sort){
+             const title = sort.charAt(0).toUpperCase() + sort.slice(1)
+             document.title = `KSCIC > ${title}`
+          }
+        })
         return {
             sort
         }
@@ -29,7 +37,8 @@ export default {
         KeyNote2,
         Special1,
         Special2,
-        TitleMessage 
+        TitleMessage,
+        Background 
     }
 
 }

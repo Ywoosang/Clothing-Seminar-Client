@@ -6,11 +6,14 @@
     <div>해당 회원의 현재 역할: {{ user.role }}</div>
     <button @click="changeAuth(index)">{{ user.change }}</button>
   </div>
+  <background/>
   </div>
 </template>
 
 <script>
+import Background from '../components/common/Background.vue';
 export default {
+  components: { Background },
   name: "Admin",
   data() {
     return {

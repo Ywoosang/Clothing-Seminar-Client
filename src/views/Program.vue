@@ -2,7 +2,7 @@
   <div class="wrapper">
     <welcom-msg-ko v-if="lang == 'ko'" />
     <welcom-msg-en v-if="lang == 'en'" />
-    <img src="/img/background-logo.png" />
+    <background/>
   </div>
 </template>
 
@@ -11,6 +11,7 @@ import WelcomMsgEn from "../components/Program.en.vue";
 import WelcomMsgKo from "../components/Program.kr.vue";
 import { useRoute } from "vue-router";
 import { computed } from "vue";
+import Background from '../components/common/Background.vue';
 
 export default {
   setup() {
@@ -23,21 +24,13 @@ export default {
   components: {
     WelcomMsgEn,
     WelcomMsgKo,
+    Background,
   },
 };
 </script>
 <style scoped>
 .wrapper {
   flex:1;
-  overflow-x: auto; 
-  min-height: 110vh;
-}
-.wrapper > img {
-  z-index: -1;
-  position: absolute;
-  bottom: 0;
-  left: 5vw;
-  height: 80%;
 }
 
 /* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/

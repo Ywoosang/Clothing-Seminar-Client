@@ -1,44 +1,55 @@
 <template>
   <div class="wrapper">
-    <section class="title">
-      <article>
-        <div class="image-wrapper">
-          <img src="/img/logo.png" />
-        </div>
-        <h1>논문 포스터발표</h1>
-      </article>
-    </section>
+    <poster-presentation>
+      <h1>Poster Presentation</h1>
+    </poster-presentation>
     <section class="content">
-      <div class="article-wrapper"> 
-        <router-link :to="baseUrl + category +'?page=1'" class="article" v-for="category in categories" :key="category">
-            <h1 v-if="category.length == 2">
-                {{ category[0] }}<br>{{ category[1] }} 
-            </h1>
-            <h1 v-else>{{ category[0] }}</h1>
+      <div class="article-wrapper">
+        <router-link
+          class="article"
+          :to="baseUrl + category +'?page=1'"
+          v-for="category in categories"
+          :key="category"
+        >
+          <h1 class="article-title" v-if="category.length != 1">
+            <p v-for="(text,index) in category" :key="text">
+              <span v-if="index !== 0">·</span>
+              {{ text }}
+            </p>
+          </h1>
+          <h1 class="article-title" v-else>
+            <p>{{ category[0] }}</p>
+          </h1>
         </router-link>
       </div>
     </section>
-    <section class="q-a"><a href="#">Q&A</a></section>
-    <img class="background-logo" src="/img/background-logo.png"> 
+    <section class="q-a">
+      <a href="#">Q&A on Zoom</a>
+    </section>
+    <img class="background-logo" src="/img/background-logo.png" />
   </div>
 </template>
 
 <script lang="ts">
 import { ref } from "vue";
 import { useStore } from "vuex";
-import { onMounted,computed } from "vue";
+import { onMounted, computed } from "vue";
+import PosterPresentation from "../components/common/PresentationTitle.vue";
 
 export default {
   name: "Home",
+  components: {
+    PosterPresentation
+  },
   setup() {
     const store = useStore();
     const authenticated = store.state.authenticated;
     const baseUrl = ref("/presentation/poster/");
-    const categories = computed(()=>{
-        return store.state.categories.map((text: string)=>{
-            return text.split('·');
-        });
-    }); 
+    const categories = computed(() => {
+      return store.state.categories.map((text:any) => {
+        return text.split(" · ");
+      });
+    });
     onMounted(async () => {
       // 사용자 정보 세팅
       await store.dispatch("setUserInfo");
@@ -46,9 +57,9 @@ export default {
     return {
       baseUrl,
       categories,
-      authenticated,
+      authenticated
     };
-  },
+  }
 };
 </script>
 
@@ -58,50 +69,23 @@ export default {
   align-items: center;
   flex-direction: column;
   flex: 1;
-  position:relative;
-}
-.wrapper .background-logo{
-  position:absolute;
- left: 8vw;
-  bottom:0;
-  height: 80%;
-}
-.title {
-  flex: 4;
-}
-.title article {
-  margin: 0 auto;
-  width: 30rem;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-/* 이미지 */
-.title article .image-wrapper {
-  width: 100%;
-  flex: 5;
   position: relative;
 }
-.title article .image-wrapper img {
+.wrapper .background-logo {
   position: absolute;
-  left: 50%;
+  left: 8vw;
   bottom: 0;
-  transform: translate(-50%, 0);
-  height: 60%;
-  object-fit: contain;
+  height: 80%;
 }
-/* 구두발표 */
-.title article h1 {
-  flex: 2;
+.title h1{
   text-align: center;
-  line-height: 4rem;
-  font-weight: 500;
-  font-size: 30px;
+  font-size: 2.5rem;
+  margin: 0;
 }
 .content {
   width: 100%;
   flex: 5;
-  display: flex;    
+  display: flex;
   justify-content: center;
   height: 100%;
 }
@@ -111,73 +95,80 @@ export default {
   align-items: center;
   width: 80%;
 }
-.content .article-wrapper .article{
-    z-index:2;
-    float:left; 
-    width: 11vw; 
-    height: 11vw;
-    margin:2vw;
-    border-radius: 50%;
-    background-color: #AAAAAA;
-    color: #FFFFFF;
-    position:relative; 
-    cursor:pointer;
+.content .article-wrapper .article {
+  z-index: 2;
+  float: left;
+  width: 13vw;
+  height: 13vw;
+  margin: 2vw;
+  border-radius: 50%;
+  background-color: #aaaaaa;
+  color: #ffffff;
+  position: relative;
+  cursor: pointer;
 }
-.content .article-wrapper .article h1 {
-    position:absolute;
-    width: 100%;
-    left : 50%;
-    top : 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    font-weight: 500;
-    font-size: 1.3vw;
-    line-height: 140%;
+.content .article-wrapper .article .article-title {
+  position: absolute;
+  width: 100%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-weight: 500;
+  font-size: 1.3vw;
+  line-height: 140%;
 }
-.q-a{
-  z-index:2;
-    flex:4;
-    width: 80%;
-    text-align: center;
+.content .article-wrapper .article .article-title p{
+  font-size: 1.1vw;
+  margin: 0 ;
+  line-height: 130%;
+  coloR: white;
 }
-.q-a a{
-    display: block;
-    width: 65%;
-    height: 4rem;
-    line-height: 4rem;
-    margin:0 auto;
-    font-weight: bold;
-    font-size: 1.6rem;
-    background-color:#F5AAAF;
-    border-radius: 0.8rem;
+
+
+.q-a {
+  z-index: 2;
+  flex: 4;
+  width: 80%;
+  text-align: center;
+}
+.q-a a {
+  display: block;
+  width: 65%;
+  height: 4rem;
+  line-height: 4rem;
+  margin: 0 auto;
+  font-weight: bold;
+  font-size: 1.6rem;
+  background-color: #f5aaaf;
+  border-radius: 0.8rem;
 }
 
 /* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/
 @media all and (min-width: 768px) and (max-width: 1023px) {
-    
 }
 /* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/
 @media all and (max-width: 767px) {
-   .title{
-       display: none;
-   }
-   .content {
-     height: 80%;
-     align-items: center;
-   }
-   .content .article-wrapper{
-       display: flex;
-       flex-wrap: wrap;
-       margin: 10vh 0;
-   }
-   .content .article-wrapper .article{
-       width: 50vw;
-       border-radius: 0.8em;
-       height: 20vw;
-       z-index: 2;
-   }
-    .content .article-wrapper .article h1{
-        font-size: 3.5vw;
-    }
+  .title {
+    display: none;
+  }
+  .content {
+    height: 80%;
+    align-items: center;
+  }
+  .content .article-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10vh 0;
+  }
+  .content .article-wrapper .article {
+    width: 50vw;
+    border-radius: 0.8em;
+    height: 20vw;
+    z-index: 2;
+  }
+  .content .article-wrapper .article .article-title p{
+    font-size: 1.5rem;
+  }
 }
 </style>

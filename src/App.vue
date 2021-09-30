@@ -39,6 +39,9 @@ a {
   text-decoration: none !important;
   color : #222 !important;
 }
+a:focus{
+  outline: none;
+}
 
 h1,h2,h3,h4,h5,h6{
   margin : 0;
@@ -68,11 +71,21 @@ ul{
   flex-direction: column;
   overflow: auto;
 }
-/* slick-slider */
-/* .banner .slider>.slick-prev{
- display: none !important; 
+ 
+button.slick-prev, button.slick-next{
+  display: none !important;
 }
-.banner .slider>.slick-next{
-   display: none !important;
-} */
+
+.content .post-content p img{
+  object-fit: contain;
+  width: 90%;
+}
+
+@media (max-width: 767px) {
+ .content .post-content p img{
+  object-fit: contain;
+  width: 100%;
+}
+
+}
 </style>

@@ -5,7 +5,7 @@
         2021
       </h1>
       <h3>'Fashion for Human, Peace and the Future'</h3>
-      <p>October 23, 2021 International Peace Center(and virtual Jeju)</p>
+      <p>October 23, 2021 International Peace Center(and Virtual JEJU)</p>
     </article>
 </template>
 
@@ -38,9 +38,24 @@ export default {
 }
 @media all and (max-width: 767px) {
     .title{
-        display: none;
+        
         margin: 10px 0;
     }
+    .title h1 {
+  font-weight: bold;
+  font-size: 4vw;
+  padding: 0.5rem 0;
+}
+.title h3 {
+  font-size: 3vw;
+  font-weight: 400;
+  color: #c00000;
+  padding: 0.5rem 0;
+}
+.title p {
+  font-size: 2vw;
+  padding: 0.5rem 0;
+}
     
 }
 </style>

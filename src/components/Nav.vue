@@ -3,7 +3,7 @@
     <nav>
       <div class="logo">
         <router-link class="home" to="/">
-          <img src="/img/header-logo.png" />
+          <img src="/img/header-logo.png" ondragstart="return false"/>
         </router-link>
       </div>
       <button class="menu-btn" @click="toggleSideBar">
@@ -13,8 +13,8 @@
         <button class="toggle-btn" @click="toggleSideBar">
           <img src="/img/cancel.png"/>
         </button>
-        <li class="auth-btn" v-if="!auth">
-          <router-link class="signin" to="/login"><i class="fas fa-sign-in-alt"></i></router-link>
+        <li class="auth" v-if="!auth">
+          <router-link class="signin" to="/login"><i class="far fa-user"></i></router-link>
         </li>
         <li class="auth" v-if="auth">
           <button class="auth-btn" @click="logout"><i class="fas fa-sign-out-alt"></i></button>
@@ -44,7 +44,7 @@ export default {
       try {
         await logout();
         localStorage.removeItem("jwt");
-        await store.dispatch("setUserInfo");
+        await store.dispatch('setUserInfo')
         await router.push(`/login`);
       } catch (error) {
         console.log(error);
@@ -54,7 +54,6 @@ export default {
       isActive.value = !isActive.value;
     };
     return {
-      // data 처럼 사용 가능
       auth,
       logout,
       isActive,
@@ -112,46 +111,23 @@ nav .menu-btn i{
   margin-right: 0;
 }
 nav .auth{
-
 }
 nav .auth i{
   font-size: 30px;
 }
+nav .auth-btn{
+  background-color: transparent;
+}
 /* PC */
- {
+nav .menu-btn,nav .toggle-btn,.gnb .category,.gnb h1{
   display: none;
 }
-
-nav button,.gnb .category,.gnb h1{
-  display: none;
-}
-
-/* .gnb .toggle-btn {
-  display: none;
-} */
-
-/* nav .auth a:first-child {
-  margin-right: 0.5em;
-  position: relative;
-}
-
-nav .auth a:first-child::after {
-  display: inline-block;
-  content: "";toggle-btn
-  top: -2px;
-  width: 2px;
-  height: 20px;
-  vertical-align: middle;
-  display: block;
-  background: rgb(52, 52, 52);
-} */
 
 /* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/
 @media all and (min-width: 768px) and (max-width: 1023px) {
 }
 /* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/
 @media all and (max-width: 767px) {
-  
   nav button{
     display: inline-block;
   }

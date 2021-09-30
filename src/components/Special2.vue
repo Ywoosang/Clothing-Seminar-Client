@@ -51,14 +51,14 @@
                             </h3>
                             <p>
                                 Soon Min Yoon is a CEO, pattern maker and modelist of.Viepa in Korea.  is a professor of School of Architecture at He received his bachelor's degree from Hanyang University.
-                                <br><br>
+                                <br>
                                 <a href="https://workwork.kr/project/002" target="_blank" style="color: blue !important;">https://workwork.kr/project/002</a>
                             </p>
                         </div>
                     </div>
                 </div>
                 <div class="btn-wrap">
-                    <button type="button" onclick=openZoom()>participate</button>
+                    <button type="button" onclick=openZoom()>Participate</button>
                 </div>
             </article>
         </main>

@@ -14,7 +14,7 @@
     </div>
     <div class="register">
       <div class="form" style="margin-bottom: 1rem">
-        <label for="copyright_holder">작성자(*)</label>
+        <label for="copyright_holder">이름(*)</label>
         <input
           type="text"
           id="copyright_holder"
@@ -29,17 +29,17 @@
           type="number"
           id="password"
           v-model="password"
-          placeholder="비밀번호로 사용할 4자리 숫자를 입력해 주세요"
+          placeholder="4자리 숫자를 입력해 주세요(작성하신 댓글 삭제 시 필요합니다)"
         />
       </div>
       <div class="form">
-        <label for="content">내용(*)</label>
+        <label for="content">댓글(*)</label>
         <textarea
           id="content"
           v-model="content"
-          placeholder="댓글 내용을 입력해 주세요"
+          placeholder="논문에 대한 간단한 의견을 남겨 주세요"
         ></textarea>
-        <button @click="postComment">댓글<br />작성</button>
+        <button @click="postComment">작성<br/>완료</button>
       </div>
     </div>
   </article>
@@ -168,7 +168,7 @@ export default {
 <style scoped>
 .comments {
   background: #dcdcdc;
-  width: 80%;
+  width: 90%;
   padding: 1em;
   margin: 2em 0;
 }
@@ -192,6 +192,8 @@ export default {
   word-break: break-all;
   white-space: pre-line;
   border-bottom: 2px solid #787878;
+  line-height: 1.8rem;
+  font-size: 1.5rem;
 }
 .comments .register {
   display: flex;
@@ -210,7 +212,7 @@ export default {
   flex: 1;
   background-color: #ebebeb;
   border: none;
-  font-size: 1em;
+ font-size: 1.5rem;
   height: 3rem;
   flex: 1;
   box-sizing: border-box;
@@ -223,7 +225,7 @@ export default {
   padding-left: 0.5rem;
   padding: 0.5em 0 0.5em 0.5em;
   border: none;
-  font-size: 1em;
+  font-size: 1.5rem;
   height: 8rem;
   flex: 1;
   box-sizing: border-box;
