@@ -7,18 +7,18 @@
       <div class="article-wrapper">
         <router-link
           class="article"
-          :to="baseUrl + category +'?page=1'"
+          :to="baseUrl + category.url +'?page=1'"
           v-for="category in categories"
-          :key="category"
+          :key="category.url"
         >
-          <h1 class="article-title" v-if="category.length != 1">
-            <p v-for="(text,index) in category" :key="text">
+          <h1 class="article-title" v-if="category.des.length != 1">
+            <p v-for="(text,index) in category.des" :key="index">
               <span v-if="index !== 0">·</span>
               {{ text }}
             </p>
           </h1>
           <h1 class="article-title" v-else>
-            <p>{{ category[0] }}</p>
+            <p>{{ category.des[0] }}</p>
           </h1>
         </router-link>
       </div>
@@ -47,7 +47,10 @@ export default {
     const baseUrl = ref("/presentation/poster/");
     const categories = computed(() => {
       return store.state.categories.map((text:any) => {
-        return text.split(" · ");
+        return {
+          url : text,
+          des : text.split(" · ")
+        }  
       });
     });
     onMounted(async () => {

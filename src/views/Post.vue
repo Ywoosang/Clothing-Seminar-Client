@@ -37,17 +37,12 @@ import { Post } from '../types/type';
 import { getPostById,deletePostById } from "../api/post";
 
 export default {
-  props: {
-    category: {
-      type: String,
-      required: true,
-    },
-  },
-  setup(props: any) {
+  
+  setup() {
     const store = useStore();
     const route = useRoute();
     const router = useRouter();
-    const { category } = toRefs(props);
+    const category = route.params.category as string;
     const postId = ref<any>(route.query.id);
     const postViewLink = ref<any>(`${process.env.VUE_APP_BASE_URL}/api/post/${route.query.id}/view`);
     const post = ref<any>({
@@ -89,7 +84,7 @@ export default {
       try {
           await deletePostById(postId.value);
           alert("삭제되었습니다");
-          await router.push(`/presentation/poster/${category.value}?page=1`);
+          await router.push(`/presentation/poster/${category}?page=1`);
       } catch (error) {
         if(error.response){
           const status = error.response.status;

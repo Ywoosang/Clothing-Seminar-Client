@@ -137,9 +137,9 @@ nav .menu-btn,nav .toggle-btn,.gnb .category,.gnb h1{
     font-size: 20px;
     font-weight: bold;
   }
-  *{
-    /* border: 1px solid red; */
-  }
+  nav .menu-btn,nav .toggle-btn,.gnb h1{
+  display: block;
+  } 
   .gnb {
     z-index: 1001;
     flex-direction: column;

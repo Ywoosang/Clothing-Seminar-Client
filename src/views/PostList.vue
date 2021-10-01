@@ -49,16 +49,15 @@ import { getPostsByPageNumber,getTotalPageNumber } from '../api/post';
 export default {
   props: ["category"],
   name: "PostList",
-  setup(props: any) {
+  setup() {
     const store = useStore();
     const router = useRouter();
     const route = useRoute(); 
     const posts = ref<Post[]>([]);
     const categories = store.state.categories;
     const pages = ref<any>();
-    
     const currentCategory = computed(() =>{
-       return props.category.replace(",", "·");
+       return route.params.category as string;
     });
     watch(currentCategory,async(newValue,oldValue)=>{
       store.commit('SET_CATEGORY',newValue); 
@@ -69,7 +68,7 @@ export default {
 
     onMounted(async () => {
       await store.dispatch("setUserInfo");
-      store.commit('SET_CATEGORY',currentCategory); 
+      store.commit('SET_CATEGORY',route.params.category); 
       // title
       document.title = `KICIC > ${currentCategory.value}`
       await getNumberOfPages();
