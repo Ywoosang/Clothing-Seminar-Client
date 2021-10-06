@@ -15,10 +15,11 @@
         <div class="name">
           {{ post.filename }}
         </div>
-        <a :href="postViewLink"
+        <a :href="postViewLink" id="viewer" style="display:none"></a> 
+        <div @click="viewPdf"
           ><i class="fa fa-file-pdf-o" style="margin-right: 0.5em; font-size: 1.3em;"></i
-          ><b style="font-size: 1.3em; line-height: 3rem;">원본 PDF 파일 보기</b></a
-        >
+          ><b style="font-size: 1.3em; line-height: 3rem;">원본 PDF 파일 보기</b>
+        </div>
       </div>
       <div class="post-content" v-html="post.content"></div>
       <Comment :postid="postId"/>
@@ -67,6 +68,9 @@ export default {
         await router.push(`/404`);
       }
     });
+    const viewPdf = () => {
+      (document.getElementById('viewer') as any).click();
+    }
     const modified = computed(() => {
       return post.value.created_at !== post.value.updated_at;
     });

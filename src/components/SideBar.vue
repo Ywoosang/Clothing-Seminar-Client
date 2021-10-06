@@ -15,16 +15,13 @@
 
 <script lang="ts">
 import { useStore } from 'vuex'; 
-import {computed, onMounted} from 'vue';
+import {computed} from 'vue';
 
 export default {
     setup(){
         const store = useStore();
         let currentCategory = computed(()=> store.state.category);
         const categories = store.state.categories; 
-        onMounted(()=>{
-          // currentCategory = store.state.category;
-        })
         return {
             currentCategory,
             categories
