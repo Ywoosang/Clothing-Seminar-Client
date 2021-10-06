@@ -57,10 +57,11 @@
               <br />Professor, Hanyang Univ
             </td>
             <td colspan="2">'Discourse on Metaverse for Graduate Students’ Understanding'</td>
-            <td>
+            <td> - </td>
+            <!-- <td>
               Jeongwook Choi
               <br />Kyung Hee Univ
-            </td>
+            </td> -->
           </tr>
           <tr>
             <td>11:40 - 11:50</td>

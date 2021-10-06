@@ -18,7 +18,7 @@
           <section class="reviews">
             <div class="review" v-for="(review,index) in reviews" :key="index">
                 <div class="des">
-                    <h3>윤우상 2020.11.29 12:12</h3>
+                    <h3>{{ review.name }} {{ review.created_at }}</h3>
                     <button class="delete" @click="deleteReview(index)">삭제</button>
                 </div>
                 <div class="content">
@@ -39,14 +39,16 @@
 <script lang="ts">
 import Background from '../components/common/Background.vue'
 import PresentationTitle from '../components/common/PresentationTitle.vue'
-import {computed, onMounted, ref, watch } from 'vue';
+import {computed, onMounted, ref, useSSRContext, watch } from 'vue';
 import {useStore } from 'vuex';
-import { useRoute} from 'vue-router'; 
+import { useRoute} from 'vue-router';
+import { Review } from '../types/type'; 
 import * as request from '../api/review';
 
 export default {
   components: { PresentationTitle, Background },
   setup(){
+      const store = useStore();
       const route = useRoute();
       const name = ref<string>("");
       const password = ref<any>();
@@ -54,17 +56,42 @@ export default {
       const totalReviews = ref<any[]>([]);
       const pages = ref<any[]>([]);
       const reviewsPerPage:number = 5;
+
+      const currentDate = (curr: Date) => {
+        const utc = 
+                curr.getTime() + 
+                (curr.getTimezoneOffset() * 60 * 1000);
+        const KR_TIME_DIFF = 9 * 60 * 60 * 1000;
+        const kr_curr = 
+                new Date(utc + (KR_TIME_DIFF));
+        const year = kr_curr.getFullYear();
+        const month = (kr_curr.getMonth() +1);
+        const day = kr_curr.getDate();
+        const hours = kr_curr.getHours();
+        const minutes = kr_curr.getMinutes();
+        const seconds = kr_curr.getSeconds(); 
+        return `${ year}-${month}-${ day } ${hours}:${minutes}:${seconds}`;
+      }
+
       const postReview = async() => {
           if(!name.value || !password.value || !content.value){
               return alert('정보를 모두 입력해주세요'); 
           }
-          const review = {
+        
+        
+          try{
+            const response = await request.postReview({
+                name: name.value,
+                password: password.value,
+                content: content.value
+            });
+               const review: Review = {
+                   id: response.data.reviewId, 
               name: name.value,
+              created_at: currentDate(new Date()),
               password: password.value,
               content: content.value
           }
-          try{
-            const response = await request.postReview(review);
             totalReviews.value.unshift(review); 
             setPageNumber(); 
             setPageReviews(); 
@@ -88,6 +115,7 @@ export default {
             const endIndex: number = reviewsPerPage*pageNumber;
             reviews.value=  totalReviews.value.slice(startIndex,endIndex);   
       }
+
       watch(currentPage,(oldValue,newValue) => {
             setPageReviews();
       });
@@ -100,9 +128,11 @@ export default {
       
       
       const deleteReview = async(index:number) => {
-          const clientPassword = prompt('비밀번호를 입력해 주세요');
+          let clientPassword;
+          if(store.state.authority != "ROOT" && store.state.authority != "ADMINISTER"){
+             clientPassword = prompt('비밀번호를 입력해 주세요');
+          } 
           try{
-          console.log(totalReviews.value[index].id);
           const response = await request.deleteReview({
               reviewId: totalReviews.value[index].id,
               password: clientPassword,

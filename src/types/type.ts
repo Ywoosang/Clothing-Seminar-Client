@@ -36,6 +36,14 @@ export interface Post{
     views: number;
 } 
 
+export interface Review{
+    id: number; 
+    name: string;
+    created_at:string;
+    password: number;
+    content:string;
+}
+
 export interface AuthResponse extends Response {
     id: number;
     userId: string;

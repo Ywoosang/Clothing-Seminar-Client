@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <poster-presentation>
-      <h1>Poster Presentation</h1>
+      <h1>Poster Session</h1>
     </poster-presentation>
     <section class="content">
       <div class="article-wrapper">

@@ -49,7 +49,8 @@
             <td colspan="2">
               '이공계 대학원생을 위한 Metaverse의 이해와 활용'
             </td>
-            <td>최정욱<br />경희대학교</td>
+            <td> - </td>
+            <!-- <td>최정욱<br />경희대학교</td> -->
           </tr>
           <tr>
             <td>11:40 - 11:50</td>
@@ -68,7 +69,7 @@
           </tr>
           <tr>
             <td rowspan="2">12:50 - 13:30</td>
-            <td class="content-title" rowspan="2">포스터세션</td>
+            <td class="content-title" rowspan="2">포스터발표</td>
             <td style="padding: 0" colspan="5">
               <div class="section">
                 <div>복식사</div>
