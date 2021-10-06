@@ -24,7 +24,7 @@
       </div>
     </section>
     <section class="q-a">
-      <a href="#">Q&A on Zoom</a>
+      <a href="https://us06web.zoom.us/j/89787862191?pwd=anRqbWErdm0rWWJVSFd4TVlDWDNMdz09">Q&A on Zoom</a>
     </section>
     <img class="background-logo" src="/img/background-logo.png" />
   </div>

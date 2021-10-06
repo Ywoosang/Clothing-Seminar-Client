@@ -5,7 +5,7 @@
     </presentation-title>
     <section class="content">
       <div class="article-wrapper">
-        <article v-for="category in categories" :key="category">
+        <a :href="links[index]" class="article" v-for="(category,index) in categories" :key="category">
           <h1 class="article-title" v-if="category.length != 1">
             <p v-for="(text,index) in category" :key="text">
               <span v-if="index !== 0">·</span>
@@ -13,7 +13,7 @@
             </p>
           </h1>
           <h1 class="article-title" v-else><p>{{ category[0] }}</p></h1>
-        </article>
+        </a>
       </div>
     </section>
     <background/>
@@ -29,6 +29,12 @@ import PresentationTitle from '../components/common/PresentationTitle.vue';
 export default {
   components: { Background, PresentationTitle },
   setup() {
+    const links = [
+      "https://us06web.zoom.us/j/85613854576?pwd=R2RtTVRuMnRaYVYyRlFLdklQYWxQdz09",
+      "https://us06web.zoom.us/j/85308489997?pwd=Y1M3b3IxbTlSMmNuNncyU05hc2Eydz09",
+      "https://us06web.zoom.us/j/86392493339?pwd=YlUzZG1CU1hYQXc5OG1FYm1rVVo0UT09",
+      "https://us06web.zoom.us/j/84232442713?pwd=cGZzeHd2S25xNi9lR2FrZ3dPQmc4QT09"
+    ]
     const store = useStore();
     const categories = computed(() => {
       return store.state.categories.map(text => {
@@ -36,7 +42,8 @@ export default {
       });
     });
     return {
-      categories
+      categories,
+      links
     };
   }
 };
@@ -67,7 +74,7 @@ export default {
   justify-content: center;
   width: 80%;
 }
-.content .article-wrapper article {
+.content .article-wrapper .article {
   z-index: 2;
   float: left;
   width: 13vw;
@@ -78,7 +85,7 @@ export default {
   position: relative;
   cursor: pointer;
 }
-.content .article-wrapper article .article-title {
+.content .article-wrapper .article .article-title {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -88,7 +95,7 @@ export default {
   font-weight: 500;
 }
 
-.content .article-wrapper article .article-title p{
+.content .article-wrapper .article .article-title p{
   margin:0;
   font-size: 1.1vw;
   line-height: 130%;
@@ -108,16 +115,16 @@ export default {
     flex-wrap: wrap;
     margin: 10vh 0;
   }
-  .content .article-wrapper article {
+  .content .article-wrapper .article {
     border-radius: 0.8rem;
     z-index: 1001;
     height: 20vw;
     width: 50vw;
   }
-  .content .article-wrapper article h1 {
+  .content .article-wrapper .article h1 {
     font-size: 3.5vw;
   }
-   .content .article-wrapper article .article-title p{
+   .content .article-wrapper .article .article-title p{
     font-size: 1.5rem;
   }
 }

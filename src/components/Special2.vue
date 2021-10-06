@@ -57,19 +57,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="btn-wrap">
-                    <button type="button" onclick=openZoom()>Participate</button>
-                </div>
+                <zoom-button link="https://us06web.zoom.us/j/85261974542?pwd=NzFUWktPT0Q5bDh4ZUE0aDBvdHlGQT09"/>
             </article>
         </main>
 </template>
 
 <script>
+import ZoomButton from './common/ZoomButton.vue'
 export default {
+    components: {
+        ZoomButton
+    }
 
 }
 </script>
-
-<style>
-
-</style>

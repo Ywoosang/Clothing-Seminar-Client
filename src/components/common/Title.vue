@@ -5,7 +5,7 @@
         2021
       </h1>
       <h3>'Fashion for Human, Peace and the Future'</h3>
-      <p>October 23, 2021 International Peace Center(and Virtual JEJU)</p>
+      <p>October 23, 2021<span style="padding: 0 1rem; text-align:center;">::</span>International Peace Center(and Virtual JEJU)</p>
     </article>
 </template>
 

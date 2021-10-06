@@ -74,9 +74,7 @@
              
           </div>
         </div>
-        <div class="btn-wrap">
-          <button type="button" onclick="openZoom()">Participate</button>
-        </div>
+         <zoom-button link="https://us06web.zoom.us/j/85364532741?pwd=VWFXTjQxRml3TzN5QXhLY29PTEl3QT09"></zoom-button>
       </article>
     </main>
     <img src="/img/background-logo.png" />
@@ -85,10 +83,13 @@
 
 <script>
 import TitleMessage from "../components/common/Title.vue";
+import ZoomButton from '../components/common/ZoomButton.vue';
 export default {
-  components: { TitleMessage },
+  components: { TitleMessage,
+  ZoomButton },
 };
 </script>
+
 
 <style scoped>
 .wrapper {
@@ -145,20 +146,6 @@ article {
   font-family: "Heebo", sans-serif;
   margin-bottom: 3rem;
 }
-.btn-wrap {
-  width: 70%;
-  margin-bottom: 81px;
-  margin-top: 30px;
-  text-align: center;
-}
-.btn-wrap button {
-  background-color: #787878;
-  color: white;
-  border-radius: 15px;
-  padding: 25px 90px;
-  font-size: 2em;
-  font-weight: 800;
-}
 
 @media (max-width: 767px) {
   main {
@@ -192,15 +179,9 @@ article {
   font-size: 11px;
   line-height: 20px;
 }
- 
-  .btn-wrap button {
-    padding: 15px 50px;
-  }
-  
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
-   
   .speaker {
     width: 90%;
   }

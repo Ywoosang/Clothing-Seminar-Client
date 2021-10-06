@@ -30,7 +30,7 @@
           </tr>
           <tr>
             <td>10:00 - 10:10</td>
-            <td colspan="6">KSCIC 2021 Introduction Video</td>
+            <td colspan="6">Welcome Message & Opening Remarks</td>
             <td>
               Ji Young Kim
               <br />Chungbuk National Univ

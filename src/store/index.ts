@@ -32,7 +32,6 @@ export default createStore({
     async setUserInfo({ commit }: { commit: Commit }) {
       try{
         const response  = await getUserInfo();  
-        console.log(response.data);
         commit('SET_AUTHENTICATED_USER', {
           authenticated: true,
           id : response.data.id,

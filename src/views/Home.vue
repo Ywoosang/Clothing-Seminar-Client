@@ -38,14 +38,14 @@
               <p>Session 1</p>
             </div>
           </router-link>
-          <div class="content">
+          <a href="https://us06web.zoom.us/j/84910766396?pwd=NHBqZEo2anlWSHZrd3JSMUJ5cGNHZz09" class="content">
             <img src="/img/zoom.png" />
             <div>
               <p>Research</p>
               <p>Ethics</p>
               <p>Seminar</p>
             </div>
-          </div>
+          </a>
           <router-link to="/presentation/kosco" class="content">
             <div>
               <p>2021</p>
@@ -84,13 +84,13 @@
               <p>Talks 2</p>
             </div>
           </router-link>
-          <div class="content">
+          <a href="https://us06web.zoom.us/j/86080844864?pwd=TTF0R2Y0NGVJV2duSFlSaU15OUdqUT09" class="content">
             <img src="/img/zoom.png" />
             <div>
               <p>Awards</p>
               <p>Ceremony</p>
             </div>
-          </div>
+          </a>
           <router-link to="/review?page=1" class="content">
             <div>
               <p>Comments</p>

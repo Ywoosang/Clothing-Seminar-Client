@@ -79,7 +79,6 @@ export default {
     const copyrightHolder = ref<string>();
     const getComments = async () => {
       try {
-        await store.dispatch("setUserInfo");
         const response = await getCommentsByPostId(postid.value);
         comments.value = response.data.comments;
       } catch (error) {
