@@ -17,7 +17,7 @@
           <router-link class="signin" to="/login"><i class="far fa-user"></i></router-link>
         </li>
         <li class="auth" v-if="auth">
-          <button class="auth-btn" @click="logout"><i class="fas fa-sign-out-alt"></i></button>
+          <button class="auth-btn" @click="signout"><i class="fas fa-sign-out-alt"></i></button>
         </li>
          <h1>Poster Session</h1>
         <Category />
@@ -40,7 +40,7 @@ export default {
     const router = useRouter();
     const auth = computed(() => store.state.authenticated);
     const isActive = ref<boolean>(false);
-    const logout = async () => {
+    const signout = async () => {
       try {
         await logout();
         localStorage.removeItem("jwt");
@@ -55,7 +55,7 @@ export default {
     };
     return {
       auth,
-      logout,
+      signout,
       isActive,
       toggleSideBar
     };
