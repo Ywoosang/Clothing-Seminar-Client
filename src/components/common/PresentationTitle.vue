@@ -10,9 +10,6 @@
 </template>
 
 <style scoped>
-*{
-  border: 1px solid red;
-}
 .title {
   flex:2;
   margin: 5rem 0;

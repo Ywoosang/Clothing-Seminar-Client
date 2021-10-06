@@ -3,9 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
+    "serve": "vue-cli-service serve --mode dev",
+    "build": "vue-cli-service build --mode production",
     "deploy": "npm run build && aws s3 cp dist/ s3://clothing-seminar-client --recursive"
   },
   "dependencies": {
