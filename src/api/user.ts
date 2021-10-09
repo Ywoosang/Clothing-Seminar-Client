@@ -4,5 +4,5 @@ export const getUserInfo  = () =>
     request({
         url: '/api/user',
         method: 'GET'
-    })  
+    });
  
