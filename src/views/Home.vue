@@ -137,16 +137,6 @@ export default {
     const store = useStore();
     onMounted(async () => {
         await store.dispatch("setUserInfo");
-         $('#slider').slick({
-          dots: false,
-          infinite: true,
-          slidesToShow: 3,
-          slidesToScroll: 1,
-          autoplay: true,
-          autoplaySpeed: 2000,
-          dots: false
-      });
-       
     });
     const prevImg = () => {
       document.querySelector('.slick-prev').click()
@@ -154,6 +144,18 @@ export default {
      const nextImg = () => {
       document.querySelector('.slick-next').click()
     }
+
+    setTimeout(() => {
+      $('#slider').slick({
+          dots: false,
+          infinite: true,
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          autoplay: true,
+          autoplaySpeed: 2000,
+          dots: false
+        });
+    },0);
    
     return {
       prevImg,
