@@ -38,7 +38,7 @@
               <p>Session 1</p>
             </div>
           </router-link>
-          <a href="https://us06web.zoom.us/j/84910766396?pwd=NHBqZEo2anlWSHZrd3JSMUJ5cGNHZz09" class="content">
+          <a href="https://us06web.zoom.us/j/85364532741?pwd=VWFXTjQxRml3TzN5QXhLY29PTEl3QT09" class="content">
             <img src="/img/zoom.png" />
             <div>
               <p>Research</p>

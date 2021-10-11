@@ -47,7 +47,6 @@ import { Post } from '../types/type';
 import { getPostsByPageNumber,getTotalPageNumber } from '../api/post'; 
 
 export default {
-  props: ["category"],
   name: "PostList",
   setup() {
     const store = useStore();

@@ -53,7 +53,7 @@
           </div>
         </div>
       </div>
-      <zoom-button link="https://us06web.zoom.us/j/87389800447?pwd=aFZ3bXNkemdTOHVROEgwQWRwYVdEUT09" />
+      <zoom-button link="https://us06web.zoom.us/j/86080844864?pwd=TTF0R2Y0NGVJV2duSFlSaU15OUdqUT09" />
     </article>
   </main>
 </template>

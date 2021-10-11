@@ -37,7 +37,7 @@
           </div>
         </div>
       </div>
-      <zoom-button link="https://us06web.zoom.us/j/81433338170?pwd=ckZ6UWxidHUrdm84UUNWRVFtSXhUZz09"/> 
+      <zoom-button link="https://us06web.zoom.us/j/85364532741?pwd=VWFXTjQxRml3TzN5QXhLY29PTEl3QT09"/> 
     </article>
   </main>
 </template>
