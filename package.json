@@ -5,11 +5,12 @@
   "scripts": {
     "serve": "vue-cli-service serve --mode dev",
     "build": "vue-cli-service build --mode production",
-    "deploy": "npm run build && aws s3 cp dist/ s3://clothing-seminar-client --recursive"
+    "deploy": "npm run build && aws s3 rm s3://clothing-seminar-client --recursive && s3 cp dist/ s3://clothive awng-seminar-client --recursive"
   },
   "dependencies": {
     "axios": "^0.21.3",
     "core-js": "^3.6.5",
+    "hls.js": "^1.0.11",
     "vue": "^3.0.0",
     "vue-class-component": "^8.0.0-0",
     "vue-router": "^4.0.0-0",

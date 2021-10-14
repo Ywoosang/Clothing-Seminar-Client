@@ -40,10 +40,9 @@ export default createStore({
           authority: response.data.authority,
         });
       } catch (error: any) {
-          console.log(error);
           if(error.response.status == 403){
              localStorage.removeItem("jwt");
-          }
+          }  
           commit('SET_AUTHENTICATED_USER', {
             authenticated: false,
             id : 0,
