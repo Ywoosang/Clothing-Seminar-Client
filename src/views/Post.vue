@@ -16,7 +16,7 @@
           {{ post.filename }}
         </div>
         <a :href="postViewLink" id="viewer" style="display:none"></a> 
-        <div @click="viewPdf"
+        <div class="viewer-btn" @click="viewPdf"
           ><i class="fa fa-file-pdf-o" style="margin-right: 0.5em; font-size: 1.3em;"></i
           ><b style="font-size: 1.3em; line-height: 3rem;">원본 PDF 파일 보기</b>
         </div>
@@ -118,6 +118,7 @@ export default {
       category,
       deletePost,
       hasDeleteAuthority,
+      viewPdf
     };
   },
   components: {
@@ -171,6 +172,9 @@ export default {
 .content .file .name {
   font-size: 1em;
   margin-bottom: 0.5em;
+}
+.content .file .viewer-btn{
+  cursor: pointer;
 }
 
 .content .post-content{

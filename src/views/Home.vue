@@ -38,7 +38,7 @@
               <p>Session 1</p>
             </div>
           </router-link>
-          <a href="https://us06web.zoom.us/j/84910766396?pwd=NHBqZEo2anlWSHZrd3JSMUJ5cGNHZz09" class="content">
+          <a href="https://us06web.zoom.us/j/85364532741?pwd=VWFXTjQxRml3TzN5QXhLY29PTEl3QT09" class="content">
             <img src="/img/zoom.png" />
             <div>
               <p>Research</p>
@@ -137,16 +137,6 @@ export default {
     const store = useStore();
     onMounted(async () => {
         await store.dispatch("setUserInfo");
-         $('#slider').slick({
-          dots: false,
-          infinite: true,
-          slidesToShow: 3,
-          slidesToScroll: 1,
-          autoplay: true,
-          autoplaySpeed: 2000,
-          dots: false
-      });
-       
     });
     const prevImg = () => {
       document.querySelector('.slick-prev').click()
@@ -154,6 +144,18 @@ export default {
      const nextImg = () => {
       document.querySelector('.slick-next').click()
     }
+
+    setTimeout(() => {
+      $('#slider').slick({
+          dots: false,
+          infinite: true,
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          autoplay: true,
+          autoplaySpeed: 2000,
+          dots: false
+        });
+    },0);
    
     return {
       prevImg,
