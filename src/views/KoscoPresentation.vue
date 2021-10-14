@@ -26,13 +26,12 @@ export default {
   components: { Background },
   setup() {
     onMounted(() => {
-      var video: any = document.getElementById("video")!;
-      console.log(video)
-      var videoSrc = "http://d35cx579ka6x3l.cloudfront.net/streaming-test.m3u8";
+      const video: any = document.getElementById("video")!;
+      const videoSrc = "http://d35cx579ka6x3l.cloudfront.net/streaming-test.m3u8";
       if (video.canPlayType("application/vnd.apple.mpegurl")) {
         video.src = videoSrc;
       } else if (Hls.isSupported()) {
-        var hls = new Hls();
+        const hls = new Hls(); 
         hls.loadSource(videoSrc);
         hls.attachMedia(video);
       }
