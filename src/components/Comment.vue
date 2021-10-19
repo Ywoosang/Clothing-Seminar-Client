@@ -167,11 +167,9 @@ export default {
 <style scoped>
 .comments {
   background: #dcdcdc;
-  width: 90%;
   padding: 1em;
   margin: 2em 0;
 }
-
 .comment {
   display: flex;
   flex-direction: column;
@@ -217,7 +215,6 @@ export default {
   box-sizing: border-box;
   padding-left: 0.5rem;
 }
-
 .comments .register textarea {
   background-color: #ebebeb;
   resize: none;
@@ -229,7 +226,6 @@ export default {
   flex: 1;
   box-sizing: border-box;
 }
-
 .comments .register button {
   background-color: #787878;
   color: #ffffff;
@@ -238,7 +234,6 @@ export default {
   padding: 0;
   margin-left: 1em;
 }
-
 /* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/
 @media all and (min-width: 768px) and (max-width: 1023px) {
   
@@ -250,7 +245,7 @@ export default {
   width: 100%;
   padding: 1em;
   margin: 2em 0;
-}
+  }
   .category{
     display: none;
   }
@@ -258,6 +253,5 @@ export default {
     margin:2px;
     padding:0;
   }
-  
 }
 </style>

@@ -78,10 +78,6 @@ button.slick-prev, button.slick-next{
   display: none !important;
 }
 
-.content .post-content p img{
-  object-fit: contain;
-  width: 90%;
-}
 
 @media (max-width: 767px) {
  .content .post-content p img{

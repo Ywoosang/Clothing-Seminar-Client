@@ -138,7 +138,7 @@ export default {
   flex: 3;
   display: flex;
   flex-direction: column;
-  padding: 2em 2em 0em 2em;
+  padding: 2em 10% 0em 2em;
 }
 
 .content .category {
@@ -153,7 +153,6 @@ export default {
 
 .content .info {
   display: flex;
-  width: 90%;
   border-bottom: 2px solid #dcdcdc;
   padding-bottom: 0.2em;
 }
@@ -166,7 +165,6 @@ export default {
 .content .file {
   margin: 2em 0 0 0;
   background-color: #dcdcdc;
-  width: 90%;
   padding: 1em;
 }
 .content .file .name {
@@ -182,7 +180,13 @@ export default {
 }
 /* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/
 @media all and (min-width: 768px) and (max-width: 1023px) {
-  
+ 
+.content {
+  padding: 2em 2em 0em 2em;
+}
+.content .info div {
+  margin-right: 1em;
+}
 }
 /* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/
 @media all and (max-width: 767px) {

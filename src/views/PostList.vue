@@ -77,6 +77,7 @@ export default {
     });
 
     watch(currentCategory,async(newValue)=>{
+      if(!currentCategory.value) return;
       store.commit('SET_CATEGORY',newValue); 
       await getNumberOfPages();
       await getCurrentPagePosts(); 
