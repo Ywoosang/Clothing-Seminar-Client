@@ -74,7 +74,7 @@
              
           </div>
         </div>
-         <zoom-button link="https://us06web.zoom.us/j/85364532741?pwd=VWFXTjQxRml3TzN5QXhLY29PTEl3QT09"></zoom-button>
+         <zoom-button/>
       </article>
     </main>
     <img src="/img/background-logo.png" />

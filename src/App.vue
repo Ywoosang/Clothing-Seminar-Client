@@ -34,13 +34,15 @@ body{
   line-height: 1.5rem; 
   font-weight : normal;
 }
-
-a {
-  text-decoration: none !important;
-  color : #222 !important;
+a{
+  color:#222;
+}
+a:hover{
+  color: #222;
 }
 a:focus{
-  outline: none;
+  color: #222;
+  text-decoration: none;
 }
 
 h1,h2,h3,h4,h5,h6{

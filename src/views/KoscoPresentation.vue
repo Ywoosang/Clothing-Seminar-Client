@@ -27,7 +27,7 @@ export default {
   setup() {
     onMounted(() => {
       const video: any = document.getElementById("video")!;
-      const videoSrc = "http://d35cx579ka6x3l.cloudfront.net/streaming-test.m3u8";
+      const videoSrc = process.env.VUE_APP_STREAMING_URL;
       if (video.canPlayType("application/vnd.apple.mpegurl")) {
         video.src = videoSrc;
       } else if (Hls.isSupported()) {

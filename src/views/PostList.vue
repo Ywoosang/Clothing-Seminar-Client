@@ -32,7 +32,12 @@
       </article>
       <article class="pagination">
         <div class="pages">
-          <div class="page" v-for="page in pages" :key="page">{{ page }}</div>
+          <div class="page" v-for="page in pages" :key="page">
+            <!-- <span @click="changeCategoryPage(page)">{{page}}</span> -->
+            <router-link :class="{ curr : page == currentPage }" :to="'/presentation/poster/'+currentCategory+'?page='+page">
+              {{ page }}
+            </router-link>
+          </div>
         </div>
       </article>
     </section>
@@ -54,11 +59,24 @@ export default {
     const route = useRoute(); 
     const posts = ref<Post[]>([]);
     const categories = store.state.categories;
-    const pages = ref<any>();
+    const pages = ref();
+    // 페이지
+    const currentPage = computed(()=>{
+      return route.query.page as string ;
+    });
+
+    watch(currentPage,async() => {
+        if(!currentPage.value) return;
+        await getNumberOfPages();
+        await getCurrentPagePosts(); 
+    }); 
+
+    // 카테고리
     const currentCategory = computed(() =>{
        return route.params.category as string;
     });
-    watch(currentCategory,async(newValue,oldValue)=>{
+
+    watch(currentCategory,async(newValue)=>{
       store.commit('SET_CATEGORY',newValue); 
       await getNumberOfPages();
       await getCurrentPagePosts(); 
@@ -89,14 +107,15 @@ export default {
 
     async function getCurrentPagePosts(){
       try {
-        const page = route.query.page as string; 
-        const category = currentCategory.value; 
-        const response = await getPostsByPageNumber(page,category); 
+        // const page = route.query.page as string; 
+        const category = currentCategory.value;
+        const response = await getPostsByPageNumber(currentPage.value,category); 
         posts.value = response.data.posts;
       } catch (error) {
         console.log(error);
       }
     }
+    
     const postAuth = computed(()=> {
       return store.state.authority == "ADMINISTER" || store.state.authority == "ROOT"; 
     }
@@ -107,6 +126,7 @@ export default {
       currentCategory,
       categories,
       pages,
+      currentPage
     };
   },
   components : {SideBar}
@@ -184,11 +204,11 @@ export default {
 .pagination {
   flex: 1;
 }
-.pages {
+.pagination  .pages {
   margin-top: 2em;
   text-align: center;
 }
-.pages .page {
+.pagination  .pages .page {
   width: 1.1rem;
   display: inline-block;
   margin: 0.2rem;
@@ -198,8 +218,8 @@ export default {
   color: #787878;
 }
 /* 현재 위치한 페이지 */
-.pages .curr {
-  color: #000000;
+.pagination .pages .curr {
+  color: #f86969 ;
   font-weight: 600;
 }
 

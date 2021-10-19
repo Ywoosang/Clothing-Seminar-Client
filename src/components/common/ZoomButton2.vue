@@ -1,6 +1,6 @@
 <template>
   <div class="btn-wrap">
-    <a href="https://us06web.zoom.us/j/85364532741?pwd=VWFXTjQxRml3TzN5QXhLY29PTEl3QT09">Participate</a>
+    <a href="https://us06web.zoom.us/j/86080844864?pwd=TTF0R2Y0NGVJV2duSFlSaU15OUdqUT09">Participate</a>
   </div>
 </template>
 

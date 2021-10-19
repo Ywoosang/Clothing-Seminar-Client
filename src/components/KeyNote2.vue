@@ -53,13 +53,13 @@
           </div>
         </div>
       </div>
-      <zoom-button link="https://us06web.zoom.us/j/86080844864?pwd=TTF0R2Y0NGVJV2duSFlSaU15OUdqUT09" />
+      <zoom-button/>
     </article>
   </main>
 </template>
 
 <script>
-import ZoomButton from './common/ZoomButton.vue';
+import ZoomButton from './common/ZoomButton2.vue';
 export default {
   components:{
     ZoomButton

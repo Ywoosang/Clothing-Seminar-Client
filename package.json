@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve --mode dev",
     "build": "vue-cli-service build --mode production",
-    "deploy": "npm run build && aws s3 rm s3://clothing-seminar-client --recursive && s3 cp dist/ s3://clothive awng-seminar-client --recursive"
+    "deploy": "npm run build && aws s3 cp dist/ s3://clothing-seminar-client --recursive"
   },
   "dependencies": {
     "axios": "^0.21.3",

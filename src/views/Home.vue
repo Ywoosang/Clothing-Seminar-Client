@@ -126,7 +126,7 @@
 </template>
 
 <script lang="js">
-import { onMounted, ref } from "vue";
+import { onMounted } from "vue";
 import { useStore } from "vuex";
 import TitleMessage from '../components/common/Title.vue';
 import Background from '../components/common/Background.vue'; 
@@ -153,7 +153,6 @@ export default {
           slidesToScroll: 1,
           autoplay: true,
           autoplaySpeed: 2000,
-          dots: false
         });
     },0);
    

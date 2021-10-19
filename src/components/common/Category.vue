@@ -26,6 +26,6 @@ export default {
 </script>
 <style scoped>
 .curr {
-  color: #ea2d2e !important;
+  color: #ea2d2e;
 }
 </style>

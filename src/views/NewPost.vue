@@ -70,7 +70,7 @@
 
 
 <script lang='ts'>
-import { onMounted, ref, toRefs, reactive, computed } from "vue";
+import { onMounted, ref, toRefs, computed } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import { uploadPost,uploadPostImage,uploadPostPdf } from "../api/upload";

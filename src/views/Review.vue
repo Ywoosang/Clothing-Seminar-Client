@@ -70,7 +70,7 @@ export default {
     const content = ref<string>("");
     const totalReviews = ref<any[]>([]);
     const pages = ref<any[]>([]);
-    const reviewsPerPage: number = 5;
+    const reviewsPerPage = 5;
 
     const currentDate = (curr: Date) => {
       const utc = curr.getTime() + curr.getTimezoneOffset() * 60 * 1000;
