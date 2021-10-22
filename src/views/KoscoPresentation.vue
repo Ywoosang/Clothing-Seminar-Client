@@ -48,64 +48,56 @@ export default {
   flex: 1;
   position: relative;
 }
-.wrapper .background-logo {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 80%;
-}
 
-.title {
-  flex: 1;
+/* 타이틀 */
+.title{
+  flex: 2;
+  display: flex;
+  box-sizing: border-box;
+  padding-top: 3rem;
 }
 .title article {
   margin: 0 auto;
   height: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 /* 이미지 */
 .title article .image-wrapper {
   width: 100%;
-  flex: 5;
-  position: relative;
+  display: flex;
+  justify-content: center;
 }
 .title article .image-wrapper img {
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  transform: translate(-50%, 0);
-  height: 80%;
-  object-fit: contain;
+  height: 12rem;
 }
-/* 구두발표 */
+/* 글  */
 .title article h1 {
-  flex: 2;
   text-align: center;
   font-weight: 500;
   font-size: 1.4em;
   margin-top: 0.5em;
 }
+
+/* 비디오 */
 .video-container {
-  width: 100%;
-  flex: 2;
   display: flex;
+  width: 100%;
+  height: 90%;
   justify-content: center;
+  padding-top: 5rem;
 }
 .video-container video {
-  max-width: 800px;
   border: 1em solid #787878;
-  margin-bottom: 3em;
+  height: 80%;
 }
 
 /* 테블릿 가로, 테블릿 세로 (해상도 768px ~ 1023px)*/
-@media all and (min-width: 768px) and (max-width: 1023px) {
-  .video-container {
-    max-width: 500px;
-  }
-  video {
-    width: 500px;
-  }
+@media all and (min-width: 768px) and (max-width: 1024px) {
+ .video-container video {
+  max-width: 95vw;
+}
 }
 /* 모바일 가로, 모바일 세로 (해상도 480px ~ 767px)*/
 @media all and (max-width: 767px) {
@@ -115,5 +107,14 @@ export default {
   video {
     width: 400px;
   }
+.video-container {
+  flex:6;
+  align-items: flex-start;
+  padding-top: 5rem;
+  overflow: hidden;
+}
+ .video-container video {
+  max-width: 95vw;
+}
 }
 </style>
