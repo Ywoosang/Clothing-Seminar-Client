@@ -155,6 +155,7 @@ export default {
 }
 .title h1 {
   font-size: 2.3em;
+  padding: 1rem 0;
   font-weight: 500;
 }
 .title .write{
