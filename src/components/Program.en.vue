@@ -1,9 +1,9 @@
 <template>
-  <title-message />
-  <main>
+ <title-message/>
+    <main>
     <article>
       <table>
-        <language />
+         <language />
         <thead>
           <tr>
             <td class="time">
@@ -56,12 +56,13 @@
               Mi Jeong Kim
               <br />Professor, Hanyang Univ
             </td>
-            <td colspan="2">'Discourse on Metaverse for Graduate Students’ Understanding'</td>
-            <td> - </td>
-            <!-- <td>
-              Jeongwook Choi
-              <br />Kyung Hee Univ
-            </td> -->
+            <td colspan="2">
+              'Discourse on Metaverse for Graduate Students’ Understanding'
+            </td>
+            <td>
+              Hyewon Park <br />
+              Changwon National Univ
+            </td>
           </tr>
           <tr>
             <td>11:40 - 11:50</td>
@@ -70,16 +71,20 @@
               Heesoon Yang
               <br />Professor, Sangmyung Univ
             </td>
-            <td colspan="2">'Research Ethics'</td>
+            <td colspan="2">
+              'Research Ethics Seminar for English Journals'
+            </td>
             <td>
-              Ji Young Kim
-              <br />Chungbuk National Univ
+              Ji Young Kim <br />
+              Chungbuk National Univ
             </td>
           </tr>
           <tr>
             <td>11:50 - 12:50</td>
             <td colspan="4">Break time</td>
-            <td colspan="2">Virtual Tour: International KOSCO Exhibition 2021</td>
+            <td colspan="2">
+              Virtual Tour: International KOSCO Exhibition 2021
+            </td>
             <td></td>
           </tr>
           <tr>
@@ -87,16 +92,10 @@
             <td class="content-title" rowspan="2">Poster Session</td>
             <td style="padding: 0" colspan="5">
               <div class="section">
-                <div
-                  
-                >History of Costume</div>
-                <div
-                   
-                >Aesthetics·Fashion Design</div>
-                <div
-                  
-                >Fashion Marketing·Psychology</div>
-                <div>Clothing Construction·Textiles·General Costume</div>
+                <div>History of Costume</div>
+                <div>Aesthetics·Fashion Design</div>
+                <div>Fashion Marketing·Psychology</div>
+                <div>Clothing <br/>Construction·Textiles·General <br>Costume</div>
               </div>
             </td>
             <td rowspan="2">
@@ -105,21 +104,36 @@
             </td>
           </tr>
           <tr>
-            <td colspan="5">Poster Presentation and Q&A</td>
+            <td style="padding: 0" colspan="5">
+              <div class="section">
+                <div class="section" style="padding: 0">
+                  <div class="section-01">chair</div>
+                  <div class="section-02">
+                    Lee, Eun-Joo <br/>
+                    Andong National Univ
+                  </div>
+                </div>
+                <div>
+                Jee Hyun Lee <br/> Yonsei Univ
+                </div>
+                <div>
+                  Heesoon Yang <br/> Sangmyung Univ
+                </div>
+                <div>
+                  Kim, Sung Hyon <br/> Kookmin Univ
+                </div>
+              </div>
+            </td>
           </tr>
           <tr>
             <td rowspan="2">13:30 - 14:50</td>
             <td class="content-title" rowspan="2">Oral Session</td>
             <td style="padding: 0" colspan="5">
               <div class="section">
-                <div
-                >History of Costume</div>
-                <div
-                >Aesthetics·Fashion Design</div>
-                <div
-                 
-                >Fashion Marketing·Psychology</div>
-                <div>Clothing Construction·Textiles·General Costume</div>
+                <div>History of Costume</div>
+                <div>Aesthetics·Fashion Design</div>
+                <div>Fashion Marketing·Psychology</div>
+                <div>Clothing <br/>Construction·Textiles·General <br>Costume</div>
               </div>
             </td>
             <td rowspan="2"></td>
@@ -130,8 +144,7 @@
                 <div class="section" style="padding: 0">
                   <div class="section-01">chair</div>
                   <div class="section-02">
-                    Yeon Woo Choi
-                    <br />Dankook Univ
+                   Kyung Mi Lee <br/> Hankyong National Univ
                   </div>
                 </div>
                 <div>
@@ -143,8 +156,7 @@
                   <br />Ewha Womans Univ
                 </div>
                 <div>
-                  Gin Ah Park
-                  <br />Changwon National Univ
+                 Gin Ah Park <br/> Changwon National Univ
                 </div>
               </div>
             </td>
@@ -159,11 +171,12 @@
             <td class="content-title">Special Topic Session 2</td>
             <td class="content-speaker" colspan="3">
               Alana Kennedy (Retail Transformation Manager at FARFETCH, UK.)
-              <br />Minji
-              Seo (Researcher, UAL, UK)
-              <br />Soon Min Yoon (CEO of Viepa, Korea)
+              <br />Minji Seo (Researcher, UAL, UK) <br />Soon Min Yoon (CEO of
+              Viepa, Korea)
             </td>
-            <td colspan="2">'The Future of Fashion Specialists on Global Platforms'</td>
+            <td colspan="2">
+              'The Future of Fashion Specialists on Global Platforms'
+            </td>
             <td>
               Sojin Jung
               <br />Kyung Hee Univ
@@ -172,11 +185,12 @@
           <tr>
             <td>15:50 - 16:50</td>
             <td class="content-title">Keynote Talks 2</td>
-            <td
-              class="content-speaker"
-              colspan="3"
-            >Alessandra Vecchi (Reader, University of the Arts London, UK)</td>
-            <td colspan="2">'Mapping the UK Fashion, Textiles and Technology Ecosystem'</td>
+            <td class="content-speaker" colspan="3">
+              Alessandra Vecchi (Reader, University of the Arts London, UK)
+            </td>
+            <td colspan="2">
+              'Mapping the UK Fashion, Textiles and Technology Ecosystem'
+            </td>
             <td>
               Juyeon Park
               <br />Seoul National Univ

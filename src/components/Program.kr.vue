@@ -1,9 +1,9 @@
 <template>
-  <title-message/>
+  <title-message />
   <main>
     <article>
       <table>
-          <language/>
+        <language />
         <thead>
           <tr>
             <td class="time"><span style="color: white">TIME</span></td>
@@ -28,7 +28,7 @@
           </tr>
           <tr>
             <td>10:00 - 10:10</td>
-            <td colspan="6">개회사와 환영 인사</td>
+            <td colspan="6">개회사와 환영 인사</td> 
             <td>김지영<br />충북대학교</td>
           </tr>
           <tr>
@@ -49,8 +49,8 @@
             <td colspan="2">
               '이공계 대학원생을 위한 Metaverse의 이해와 활용'
             </td>
-            <td> - </td>
-            <!-- <td>최정욱<br />경희대학교</td> -->
+            <td>박혜원 <br> 창원대학교</td>
+            
           </tr>
           <tr>
             <td>11:40 - 11:50</td>
@@ -81,8 +81,12 @@
 
             <td rowspan="2">김영삼<br />중앙대학교</td>
           </tr>
-          <tr>
-            <td colspan="5">분야별 논문 포스터 발표 및 질의 응답</td>
+         <tr>
+            <td>좌장</td>
+            <td>이은주<br/>안동대학교</td>
+            <td>이지현<br />연세대학교</td>
+            <td>양희순<br />상명대학교</td>
+            <td>김승현<br />국민대학교</td>
           </tr>
           <tr>
             <td rowspan="2">13:30 - 14:50</td>
@@ -142,12 +146,12 @@
   </main>
 </template>
 <script>
-import Language from './common/Language.vue';
-import TitleMessage from './common/Title.vue';
+import Language from "./common/Language.vue";
+import TitleMessage from "./common/Title.vue";
 
 export default {
-    components : {Language,TitleMessage}
-}
+  components: { Language, TitleMessage },
+};
 </script>
 <style scoped>
 article {
@@ -207,16 +211,16 @@ td {
 }
 
 @media all and (max-width: 767px) {
-    article {
+  article {
     padding: 0 5px;
   }
-  table{
+  table {
     width: 100%;
     margin-top: 4em;
   }
   td {
-  font-size: 11px;
-  word-break: break-all;
+    font-size: 11px;
+    word-break: break-all;
   }
 }
 </style>

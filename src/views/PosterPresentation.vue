@@ -26,7 +26,7 @@
     <section class="q-a">
       <a href="https://us06web.zoom.us/j/89787862191?pwd=anRqbWErdm0rWWJVSFd4TVlDWDNMdz09">Q&A on Zoom</a>
     </section>
-    <img class="background-logo" src="/img/background-logo.png" />
+    <background/>
   </div>
 </template>
 
@@ -35,11 +35,13 @@ import { ref } from "vue";
 import { useStore } from "vuex";
 import { onMounted, computed } from "vue";
 import PosterPresentation from "../components/common/PresentationTitle.vue";
+import Background from '../components/common/Background.vue';
 
 export default {
   name: "Home",
   components: {
-    PosterPresentation
+    PosterPresentation,
+    Background
   },
   setup() {
     const store = useStore();
@@ -73,12 +75,6 @@ export default {
   flex-direction: column;
   flex: 1;
   position: relative;
-}
-.wrapper .background-logo {
-  position: absolute;
-  left: 8vw;
-  bottom: 0;
-  height: 80%;
 }
 .title h1{
   text-align: center;
